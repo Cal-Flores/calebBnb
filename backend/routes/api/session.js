@@ -31,7 +31,7 @@ router.post('/', async (req, res, next) => {
 );
 
 
-// logs a "logged in" user out; log out
+// logs a user out;
 router.delete('/', (_req, res) => {
     res.clearCookie('token');
     return res.json({ message: 'success' });
@@ -39,6 +39,16 @@ router.delete('/', (_req, res) => {
 );
 
 
+// Restore session user
+router.get('/', restoreUser, (req, res) => {
+    const { user } = req;
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        });
+    } else return res.json({});
+}
+);
 
 
 
