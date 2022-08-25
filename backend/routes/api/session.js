@@ -8,7 +8,7 @@ const { User } = require('../../db/models');
 const router = express.Router();
 
 
-
+// logs in a user only if valid credentials
 router.post('/', async (req, res, next) => {
     const { credential, password } = req.body;
 
@@ -31,7 +31,12 @@ router.post('/', async (req, res, next) => {
 );
 
 
-
+// logs a "logged in" user out; log out
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+}
+);
 
 
 
