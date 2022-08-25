@@ -3,9 +3,9 @@
 ## Database Schema Design
 
 `<insert database schema design here>`
-![image](https://drive.google.com/uc?export=view&id=1pLDahFmS4z99S_dfr87UsE4ldovr2aBP)
-
-
+![image](https://drive.google.com/drive/folders/1yAdM_zy48E1buKLjW4ebOrGVLZaBfnKn?usp=sharing)
+<!-- https://drive.google.com/uc?export=view&id=1pLDahFmS4z99S_dfr87UsE4ldovr2aBP
+https://drive.google.com/drive/folders/1yAdM_zy48E1buKLjW4ebOrGVLZaBfnKn?usp=sharing -->
 
 ## API Documentation
 
