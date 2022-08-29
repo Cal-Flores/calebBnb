@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('ReviewImages', {
@@ -10,7 +11,6 @@ module.exports = {
       },
       reviewId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Reviews' }
       },
       url: {
         type: Sequelize.STRING
@@ -26,8 +26,10 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
+
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ReviewImages');
+    await queryInterface.dropTable('users');
   }
 };
