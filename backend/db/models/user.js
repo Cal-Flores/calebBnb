@@ -1,12 +1,14 @@
 'use strict';
-const { Model, Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static async signup({ username, email, password }) {
+    static async signup({ firstname, lastname, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstname,
+        lastname,
         username,
         email,
         hashedPassword
@@ -51,11 +53,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(30),
         unique: true,
         allowNull: false,
+        validate: {
+          len: [3, 35],
+        }
       },
       lastName: {
         type: DataTypes.STRING(30),
         unique: true,
         allowNull: false,
+        validate: {
+          len: [3, 35],
+        }
       },
       username: {
         type: DataTypes.STRING,

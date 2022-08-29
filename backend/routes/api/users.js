@@ -12,6 +12,14 @@ const router = express.Router();
 
 //middleware to check request credentials (username, password, email)
 const validateSignup = [
+    check('firstName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 3 })
+        .withMessage('Please provide a firstName with at least 3 characters.'),
+    check('lastName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 3 })
+        .withMessage('Please provide a lastName with at least 3 characters.'),
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
