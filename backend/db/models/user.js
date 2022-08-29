@@ -74,8 +74,16 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       },
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
+      firstName: {
+        type: DataTypes.STRING(30),
+        unique: true,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING(30),
+        unique: true,
+        allowNull: false,
+      },
     },
     {
       sequelize,
