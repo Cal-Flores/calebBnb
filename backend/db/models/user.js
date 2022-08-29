@@ -4,11 +4,11 @@ const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static async signup({ firstname, lastname, username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
