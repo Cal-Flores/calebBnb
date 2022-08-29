@@ -1,12 +1,14 @@
 'use strict';
-const { Model, Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static async signup({ username, email, password }) {
+    static async signup({ firstname, lastname, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstname,
+        lastname,
         username,
         email,
         hashedPassword
@@ -39,11 +41,30 @@ module.exports = (sequelize, DataTypes) => {
     }
     static associate(models) {
       // define association here
+      User.hasMany(models.Spot, { foreignKey: 'ownerId' });
+      User.hasMany(models.Review, { foreignKey: 'userId' });
+      User.hasMany(models.Booking, { foreignKey: 'userId' });
     }
   };
 
   User.init(
     {
+      firstName: {
+        type: DataTypes.STRING(30),
+        unique: true,
+        allowNull: false,
+        validate: {
+          len: [3, 35],
+        }
+      },
+      lastName: {
+        type: DataTypes.STRING(30),
+        unique: true,
+        allowNull: false,
+        validate: {
+          len: [3, 35],
+        }
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -59,6 +80,7 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [3, 256],
           isEmail: true
@@ -71,8 +93,6 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       },
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
     },
     {
       sequelize,

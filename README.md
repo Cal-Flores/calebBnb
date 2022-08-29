@@ -84,8 +84,8 @@ information.
 
 * Require Authentication: false
 * Request
-  * Method: ? GET
-  * URL: ? /LOGIN/USER
+  * Method: ?
+  * URL: ? /SESSION/USER
   * Headers:
     * Content-Type: application/json
   * Body:
