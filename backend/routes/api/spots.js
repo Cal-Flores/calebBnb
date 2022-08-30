@@ -104,10 +104,6 @@ const validateQuery = [
 
 // /api/spots
 
-router.get('/', async (req, res, next) => {
-    const spots = await Spot.findAll();
-    return res.json(spots);
-});
 
 //get all spots from a current user
 router.get('/current', async (req, res, next) => {
@@ -120,11 +116,21 @@ router.get('/current', async (req, res, next) => {
         }
     })
     return res.json(spots);
-})
+});
 
 
+//Get details of a Spot from an id
+router.get('/:spotId', async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    return res.json(spot);
+    //console.log(spot);
+});
 
-
+//get all spots
+router.get('/', async (req, res, next) => {
+    const spots = await Spot.findAll();
+    return res.json(spots);
+});
 
 
 
