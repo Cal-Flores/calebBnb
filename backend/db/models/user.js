@@ -15,6 +15,16 @@ module.exports = (sequelize, DataTypes) => {
       });
       return await User.scope('currentUser').findByPk(user.id);
     }
+    static getCurrentUserById(id) {
+      return User.scope("currentUser").findByPk(id);
+    }
+    toSafeObject() {
+      const { id, username, email } = this; // context will be the User instance
+      return { id, username, email };
+    }
+    validatePassword(password) {
+      return bcrypt.compareSync(password, this.hashedPassword.toString());
+    }
     static async login({ credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
@@ -28,16 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       if (user && user.validatePassword(password)) {
         return await User.scope('currentUser').findByPk(user.id);
       }
-    }
-    static getCurrentUserById(id) {
-      return User.scope("currentUser").findByPk(id);
-    }
-    toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
-    }
-    validatePassword(password) {
-      return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
     static associate(models) {
       // define association here

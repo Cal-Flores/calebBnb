@@ -4,10 +4,10 @@ const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
+const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const router = express.Router();
 
 //middleware thats checks validation on a login request
 const validateLogin = [
@@ -32,18 +32,24 @@ router.post('/', validateLogin, async (req, res, next) => {
     const user = await User.login({ credential, password });
 
     if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next(err);
+        // const err = new Error('Login failed');
+        // err.status = 401;
+        // err.title = 'Login failed';
+        // err.errors = ['The provided credentials were invalid.'];
+        // return next(err);
+        res.status(401);
+        res.json({
+            message: "Invalid credentials",
+            statusCode: 401,
+        });
+    } else {
+
+        await setTokenCookie(res, user);
+
+        return res.json({
+            user
+        });
     }
-
-    await setTokenCookie(res, user);
-
-    return res.json({
-        user
-    });
 }
 );
 
