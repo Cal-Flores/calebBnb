@@ -31,7 +31,7 @@ module.exports = {
           price: 1250,
         },
         {
-          ownerId: 3,
+          ownerId: 4,
           adress: '300 park lane',
           city: 'Chicago',
           state: 'Illionois',

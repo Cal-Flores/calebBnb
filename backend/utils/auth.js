@@ -65,6 +65,15 @@ const requireAuth = function (req, _res, next) {
 
 
 
+const authenticate = function (user, owner, next) {
+    if (user.id !== owner.dataValues.ownerId) {
+        const err = new Error("Forbidden");
+        err.message = "Forbidden";
+        err.status = 403;
+        next(err);
+    }
 
+    return true;
+};
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, requireAuth, authenticate };
