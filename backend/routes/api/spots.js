@@ -118,10 +118,23 @@ router.get('/current', async (req, res, next) => {
     return res.json(spots);
 });
 
+// post a new spot
 router.post('/', async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({ address, city, state, country, lat, lng, name, description, price })
     return res.json(newSpot);
+})
+
+//update an existing spot
+router.put('/:spotId', async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const spot = await Spot.findByPk(req.params.spotId);
+    if (!spot) {
+        res.status(404)
+        return res.json({ "message": "Spot couldn't be found" });
+    }
+    const updatespot = await spot.update({ address, city, state, country, lat, lng, name, description, price });
+    return res.json(updatespot);
 })
 
 //Get details of a Spot from an id
