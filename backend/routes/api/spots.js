@@ -125,6 +125,17 @@ router.post('/', async (req, res, next) => {
     return res.json(newSpot);
 })
 
+//delete a spot
+router.delete('/:spotId', async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.id);
+    if (!spot) {
+        res.status(404)
+        return res.json({ "message": "Spot couldn't be found" });
+    }
+    await spot.destroy();
+    return res.json({ "message": "Successfully deleted" });
+})
+
 //update an existing spot
 router.put('/:spotId', async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
