@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           ownerId: 1,
-          adress: '100 park lane',
+          address: '100 park lane',
           city: 'Phoenix',
           state: 'Arizona',
           country: 'USA',
@@ -20,7 +20,7 @@ module.exports = {
         },
         {
           ownerId: 2,
-          adress: '200 park lane',
+          address: '200 park lane',
           city: 'Dallas',
           state: 'Texas',
           country: 'USA',
@@ -32,7 +32,7 @@ module.exports = {
         },
         {
           ownerId: 3,
-          adress: '300 park lane',
+          address: '300 park lane',
           city: 'Chicago',
           state: 'Illionois',
           country: 'USA',

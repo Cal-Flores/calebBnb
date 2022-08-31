@@ -5,7 +5,7 @@ const {
     requireAuth,
     authenticate,
 } = require('../../utils/auth');
-const { User, Spot, Image, Review, Booking, SpotImage } = require('../../db/models');
+const { User, Spot, Image, Review, Booking, SpotImage, ReviewImage } = require('../../db/models');
 const { Op } = require("sequelize");
 const router = express.Router();
 const { Sequelize } = require("sequelize");
@@ -209,28 +209,37 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         return res.json({ "message": "Spot couldn't be found" });
     }
     const updatespot = await spot.update({ address, city, state, country, lat, lng, name, description, price });
-    return res.json({
-        adress: updatespot.adress,
-        city: updatespot.city,
-        state: updatespot.state,
-        country: updatespot.country,
-        lat: updatespot.lat,
-        lng: updatespot.lat,
-        name: updatespot.name,
-        description: updatespot.description,
-        price: updatespot.price
-    });
+    return res.json(updatespot);
 })
 
 //Get details of a Spot from an id
 router.get('/:spotId', async (req, res, next) => {
-    const spot = await Spot.findByPk(req.params.spotId);
+    const spot = await Spot.findByPk(req.params.spotId, {
+        include: [
+            { model: SpotImage, attributes: ['id', 'url', 'preview'] },
+            { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] }
+        ]
+    });
     if (!spot) {
         res.status(404)
         return res.json({ "message": "Spot couldn't be found" })
     }
-    return res.json(spot);
-    //console.log(spot);
+    const countReview = await Spot.findByPk(req.params.spotId, {
+        include: {
+            model: Review,
+            attributes: [],
+        },
+        attributes: [
+            [Sequelize.fn("COUNT", Sequelize.col("review")), "numReviews"],
+            [Sequelize.fn("AVG", Sequelize.col("stars")), "avgStarRating"],
+        ],
+        raw: true,
+    });
+    let currentSpotJSON = spot.toJSON();
+    currentSpotJSON.numReviews = countReview.numReviews;
+    const rating = countReview.avgStarRating;
+    currentSpotJSON.avgStarRating = Number(rating).toFixed(1);
+    res.json(currentSpotJSON);
 });
 
 //get all spots
@@ -245,18 +254,33 @@ router.get('/', async (req, res, next) => {
 
 //get all reviews by spot id
 router.get('/:spotId/reviews', restoreUser, async (req, res, next) => {
-    const spot = await Spot.findByPk(req.params.spotId);
+    const spotId = req.params.spotId;
+    const spot = await Spot.findByPk(spotId);
     if (!spot) {
-        res.status(404)
-        return res.json({ "message": "Spot couldn't be found" })
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404,
+        });
     }
     const reviews = await Review.findAll({
         where: {
-            spotId: req.params.spotId
-        }
-    })
-    return res.json(reviews);
-})
+            spotId: spotId,
+        },
+        include: [
+            { model: User, attributes: ["id", "firstName", "lastName"] },
+            { model: ReviewImage, attributes: ["id", "url"] },
+        ],
+    });
+    const images = await ReviewImage.findAll({
+        where: {
+            reviewId: spotId,
+        },
+    });
+    // for (let review of reviews) {
+    //   review.Images = images;
+    // }
+    res.json({ Reviews: reviews });
+});
 
 
 

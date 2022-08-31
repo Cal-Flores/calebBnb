@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Users' }
       },
-      adress: {
+      address: {
         type: Sequelize.STRING
       },
       city: {

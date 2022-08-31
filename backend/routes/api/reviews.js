@@ -21,6 +21,22 @@ const validateReview = [
     handleValidationErrors,
 ];
 
+//delete a review
+router.delete('/:reviewId', requireAuth, restoreUser, async (req, res, next) => {
+    const review = await Review.findByPk(req.params.reviewId);
+    if (!review) {
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
+    }
+    await review.destroy();
+    return res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+})
+
 //Edit a Review
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
     let { review, stars } = req.body
@@ -44,7 +60,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
         stars: stars
     })
 
-    return res.json(editreview);
+    return res.json(editreview)
 })
 
 
@@ -63,14 +79,14 @@ router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
         let review = currentReviews[i];
         // console.log("review``````````````````", review);
         let spot = await review.getSpot();
-        let images = await review.getReviewImages({
-            attributes: ["id", ["reviewId", "imageableId"], "url"],
+        let ReviewImages = await review.getReviewImages({
+            attributes: ["id", "url"],
         });
         let owner = await review.getUser({
             attributes: ["id", "firstName", "lastName"],
         });
         review.dataValues.Spot = spot.toJSON();
-        review.dataValues.Images = images;
+        review.dataValues.ReviewImages = ReviewImages;
         review.dataValues.User = owner.toJSON();
     }
     res.json({ Reviews: currentReviews });
