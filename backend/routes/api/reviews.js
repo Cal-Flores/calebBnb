@@ -29,10 +29,8 @@ router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
         },
         include: [User]
     })
-    return res.json(reviews);
+    return res.json({ reviews });
 })
-
-
 
 
 

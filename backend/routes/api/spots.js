@@ -118,11 +118,15 @@ router.post('/:spotId/images', requireAuth, restoreUser, async (req, res, next) 
         url: url,
         preview: preview
     })
-    return res.json(newImg);
+    return res.json({
+        id: newImg.spotId,
+        url: newImg.url,
+        preview: newImg.preview,
+    });
 
 })
 //get all spots from a current user
-router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
     const current = req.user.id;
     console.log(current);
     console.log('hi')
@@ -135,9 +139,9 @@ router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
 });
 
 // post a new spot
-router.post('/', requireAuth, restoreUser, async (req, res, next) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const newSpot = await Spot.create({ address, city, state, country, lat, lng, name, description, price })
+router.post('/', requireAuth, validateSpot, async (req, res, next) => {
+    let { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const newSpot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
     return res.json(newSpot);
 })
 
@@ -161,7 +165,17 @@ router.put('/:spotId', requireAuth, restoreUser, async (req, res, next) => {
         return res.json({ "message": "Spot couldn't be found" });
     }
     const updatespot = await spot.update({ address, city, state, country, lat, lng, name, description, price });
-    return res.json(updatespot);
+    return res.json({
+        adress: updatespot.adress,
+        city: updatespot.city,
+        state: updatespot.state,
+        country: updatespot.country,
+        lat: updatespot.lat,
+        lng: updatespot.lat,
+        name: updatespot.name,
+        description: updatespot.description,
+        price: updatespot.price
+    });
 })
 
 //Get details of a Spot from an id
@@ -183,7 +197,16 @@ router.get('/', async (req, res, next) => {
 
 //still need avgrating and preview image
 
-
+//
+router.get('/:spotId/reviews', requireAuth, restoreUser, async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    const reviews = await Review.findAll({
+        where: {
+            spotId: spot.id
+        }
+    })
+    return res.json(reviews);
+})
 
 
 
