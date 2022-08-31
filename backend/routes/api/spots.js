@@ -5,7 +5,7 @@ const {
     requireAuth,
     authenticate,
 } = require('../../utils/auth');
-const { User, Spot, Image, Review, Booking } = require('../../db/models');
+const { User, Spot, Image, Review, Booking, SpotImage } = require('../../db/models');
 const { Op } = require("sequelize");
 const router = express.Router();
 const { Sequelize } = require("sequelize");
@@ -104,9 +104,25 @@ const validateQuery = [
 
 // /api/spots
 
+//add an image to a spot
+router.post('/:spotId/images', requireAuth, restoreUser, async (req, res, next) => {
+    const { url, preview } = req.body;
+    const spot = await Spot.findByPk(req.params.spotId);
 
+    if (!spot) {
+        res.status(404)
+        return res.json({ "message": "Spot couldn't be found" })
+    }
+    const newImg = await SpotImage.create({
+        spotId: req.params.spotId,
+        url: url,
+        preview: preview
+    })
+    return res.json(newImg);
+
+})
 //get all spots from a current user
-router.get('/current', async (req, res, next) => {
+router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
     const current = req.user.id;
     console.log(current);
     console.log('hi')
@@ -115,18 +131,18 @@ router.get('/current', async (req, res, next) => {
             ownerId: current
         }
     })
-    return res.json(spots);
+    return res.json({ spots });
 });
 
 // post a new spot
-router.post('/', async (req, res, next) => {
+router.post('/', requireAuth, restoreUser, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({ address, city, state, country, lat, lng, name, description, price })
     return res.json(newSpot);
 })
 
 //delete a spot
-router.delete('/:spotId', async (req, res, next) => {
+router.delete('/:spotId', requireAuth, restoreUser, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.id);
     if (!spot) {
         res.status(404)
@@ -137,7 +153,7 @@ router.delete('/:spotId', async (req, res, next) => {
 })
 
 //update an existing spot
-router.put('/:spotId', async (req, res, next) => {
+router.put('/:spotId', requireAuth, restoreUser, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) {
@@ -162,10 +178,10 @@ router.get('/:spotId', async (req, res, next) => {
 //get all spots
 router.get('/', async (req, res, next) => {
     const spots = await Spot.findAll();
-    return res.json(spots);
+    return res.json({ spots });
 });
 
-
+//still need avgrating and preview image
 
 
 
