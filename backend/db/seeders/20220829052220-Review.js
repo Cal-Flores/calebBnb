@@ -9,19 +9,19 @@ module.exports = {
           spotId: 1,
           userId: 1,
           review: 'Kyler was great',
-          starts: 5,
+          stars: 5,
         },
         {
           spotId: 2,
           userId: 2,
           review: 'Dak could do better',
-          starts: 4,
+          stars: 4,
         },
         {
           spotId: 3,
           userId: 3,
           review: 'Justin could use improvment',
-          starts: 2,
+          stars: 2,
         }
       ], {});
   },

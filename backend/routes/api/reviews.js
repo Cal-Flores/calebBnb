@@ -21,18 +21,75 @@ const validateReview = [
     handleValidationErrors,
 ];
 
-router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
-    const current = req.user.id
-    const reviews = await Review.findAll({
-        where: {
-            userId: current
-        },
-        include: [User]
+//Edit a Review
+router.put('/:reviewId', requireAuth, async (req, res, next) => {
+    let { review, stars } = req.body
+    const editreview = await Review.findByPk(req.params.reviewId);
+    if (!editreview) {
+        res.status(404)
+        return res.json({ "message": "Review couldn't be found" });
+    }
+    if (!review || !stars) {
+        return res.json({
+            "message": "Validation error",
+            "statusCode": 400,
+            "errors": {
+                "review": "Review text is required",
+                "stars": "Stars must be an integer from 1 to 5",
+            }
+        })
+    }
+    editreview.update({
+        review: review,
+        stars: stars
     })
-    return res.json({ reviews });
+
+    return res.json(editreview);
 })
 
 
+
+
+
+
+//get all reviews of current user
+router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
+    const currentReviews = await Review.findAll({
+        where: {
+            userId: req.user.id,
+        },
+    });
+    for (let i = 0; i < currentReviews.length; i++) {
+        let review = currentReviews[i];
+        // console.log("review``````````````````", review);
+        let spot = await review.getSpot();
+        let images = await review.getReviewImages({
+            attributes: ["id", ["reviewId", "imageableId"], "url"],
+        });
+        let owner = await review.getUser({
+            attributes: ["id", "firstName", "lastName"],
+        });
+        review.dataValues.Spot = spot.toJSON();
+        review.dataValues.Images = images;
+        review.dataValues.User = owner.toJSON();
+    }
+    res.json({ Reviews: currentReviews });
+});
+
+// Add an Image to a Review based on the Review's id
+router.post('/:reviewId/images', requireAuth, restoreUser, async (req, res, next) => {
+    let { url } = req.body;
+    const review = await Review.findByPk(req.params.reviewId);
+    if (!review) {
+        res.status(404)
+        return res.json({ "message": "Review couldn't be found" })
+    }
+    let newImg = ReviewImage.create({
+        reviewId: req.params.reviewId,
+        url: url,
+    })
+    return res.json(newImg);
+})
 
 
 
