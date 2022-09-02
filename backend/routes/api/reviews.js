@@ -94,17 +94,41 @@ router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
 
 // Add an Image to a Review based on the Review's id
 router.post('/:reviewId/images', requireAuth, restoreUser, async (req, res, next) => {
-    let { url } = req.body;
-    const review = await Review.findByPk(req.params.reviewId);
+    const reviewId = req.params.reviewId;
+    // console.log('reviewId```````````````````````',reviewId)
+    const review = await Review.findByPk(reviewId);
+    // console.log("review--------", review);
     if (!review) {
-        res.status(404)
-        return res.json({ "message": "Review couldn't be found" })
+        res.status(404);
+        res.json({
+            message: "Review couldn't be found",
+            statusCode: 404,
+        });
     }
-    let newImg = ReviewImage.create({
-        reviewId: req.params.reviewId,
-        url: url,
-    })
-    return res.json(newImg);
+    const totalImages = await SpotImage.findAll({
+        where: {
+            spotId: review.spotId,
+        },
+    });
+    if (totalImages.length >= 10) {
+        res.status(403);
+        res.json({
+            message: "Maximum number of images for this resource was reached",
+            statusCode: 403,
+        });
+    }
+    let previewImage = false;
+    if (req.body.previewImage) {
+        previewImage = req.body.previewImage;
+    }
+    const newImg = await SpotImage.create({
+        url: req.body.url,
+        spotId: review.spotId,
+    });
+    res.json({
+        id: newImg.id,
+        url: newImg.url,
+    });
 })
 
 
