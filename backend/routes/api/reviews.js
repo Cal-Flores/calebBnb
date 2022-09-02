@@ -105,9 +105,9 @@ router.post('/:reviewId/images', requireAuth, restoreUser, async (req, res, next
             statusCode: 404,
         });
     }
-    const totalImages = await SpotImage.findAll({
+    const totalImages = await ReviewImage.findAll({
         where: {
-            spotId: review.spotId,
+            reviewId: review.spotId,
         },
     });
     if (totalImages.length >= 10) {
@@ -117,13 +117,9 @@ router.post('/:reviewId/images', requireAuth, restoreUser, async (req, res, next
             statusCode: 403,
         });
     }
-    let previewImage = false;
-    if (req.body.previewImage) {
-        previewImage = req.body.previewImage;
-    }
-    const newImg = await SpotImage.create({
+
+    const newImg = await ReviewImage.create({
         url: req.body.url,
-        spotId: review.spotId,
     });
     res.json({
         id: newImg.id,
