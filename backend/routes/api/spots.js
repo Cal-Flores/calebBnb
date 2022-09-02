@@ -312,7 +312,68 @@ router.get('/:spotId', async (req, res, next) => {
 
 //get all spots
 router.get('/', async (req, res, next) => {
-    const spots = await Spot.findAll();
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
+        req.query;
+    let pagination = { options: [] };
+
+    page = parseInt(page);
+    size = parseInt(size);
+
+    if (Number.isNaN(page)) {
+        page = 1;
+    }
+    if (Number.isNaN(size)) {
+        size = 20;
+    }
+
+    pagination.limit = size;
+    pagination.offset = size * (page - 1);
+
+    //push in options arr
+    if (minLat) {
+        pagination.options.push({
+            lat: { [Op.gte]: Number(minLat) },
+        });
+    }
+
+    if (maxLat) {
+        pagination.options.push({
+            lat: { [Op.lte]: Number(maxLat) },
+        });
+    }
+
+    if (minLng) {
+        pagination.options.push({
+            lng: { [Op.gte]: Number(minLng) },
+        });
+    }
+
+    if (maxLng) {
+        pagination.options.push({
+            lat: { [Op.lte]: Number(maxLng) },
+        });
+    }
+
+    if (minPrice) {
+        pagination.options.push({
+            price: { [Op.gte]: Number(minPrice) },
+        });
+    }
+
+    if (maxPrice) {
+        pagination.options.push({
+            price: { [Op.lte]: Number(maxPrice) },
+        });
+    }
+
+    const spots = await Spot.findAll({
+        where: {
+            [Op.and]: pagination.options,
+        },
+        limit: pagination.limit,
+        offset: pagination.offset,
+    });
+
 
     for (let spot of spots) {
         const stars = await spot.getReviews({
@@ -331,7 +392,7 @@ router.get('/', async (req, res, next) => {
             spot.dataValues.previewImage = previewImg.dataValues.url
         }
     }
-    return res.json({ spots });
+    return res.json({ spots: spots, page, size });
 });
 
 //still need avgrating and preview image////
