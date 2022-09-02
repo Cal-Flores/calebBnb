@@ -87,6 +87,18 @@ router.get('/current', requireAuth, async (req, res, next) => {
             ],
         }
     })
+
+    // for (let booking of bookings) {
+    //     let previewImage = booking.findOne({
+    //         where: {
+    //             spotId: bookings.Spot.id
+    //         }
+    //     })
+    //     if (previewImage) {
+    //         bookings.spotId.datavalues.previewImage = previewImage.datavalues
+    //     }
+    // }
+
     const result = [];
     for (let booking of bookings) {
         // console.log("this is booking ````", booking);
