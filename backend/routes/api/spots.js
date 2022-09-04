@@ -329,7 +329,9 @@ router.get('/', async (req, res, next) => {
     pagination.limit = size;
     pagination.offset = size * (page - 1);
 
-    //push in options arr
+
+
+
     if (minLat) {
         pagination.options.push({
             lat: { [Op.gte]: Number(minLat) },
