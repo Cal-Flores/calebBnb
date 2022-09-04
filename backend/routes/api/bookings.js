@@ -51,10 +51,6 @@ const validateBooking = [
         .exists({ checkFalsy: true })
         .isDate()
         .notEmpty()
-        // .custom((value)=>{
-
-        // }
-        // )
         .withMessage(
             "startDate cannot be empty. Cannot be greater than endDate. Format is YYYY-MM-DD"
         ),
@@ -101,7 +97,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     const result = [];
     for (let booking of bookings) {
-        // console.log("this is booking ````", booking);
         booking = booking.toJSON();
         result.push(booking);
     }

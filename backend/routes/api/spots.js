@@ -121,8 +121,8 @@ router.post('/:spotId/bookings', requireAuth, restoreUser, validateBooking, asyn
             spotId: spotId,
             [Op.and]:
                 [
-                    { startDate: { [Op.lte]: req.body.startDate } },
-                    { endDate: { [Op.gte]: req.body.endDate } },
+                    { startDate: { [Op.gte]: req.body.startDate } },
+                    { endDate: { [Op.lte]: req.body.endDate } },
                 ],
         },
     });
@@ -174,8 +174,10 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) {
-        res.status(404)
-        return res.json({ "message": "Spot couldn't be found" })
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
     }
     if (!req.body.review || !req.body.stars) {
         res.status(400);
@@ -431,9 +433,6 @@ router.get('/:spotId/reviews', restoreUser, async (req, res, next) => {
             reviewId: spotId,
         },
     });
-    // for (let review of reviews) {
-    //   review.Images = images;
-    // }
     res.json({ Reviews: reviews });
 });
 
@@ -450,9 +449,9 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
     const bookings = await Booking.findAll({
         where: {
-            spotId: spotId,
+            spotId: spotId
         },
-        include: { model: User, attributes: ["id", "firstName", "lastName"] },
+        include: [{ model: User, attributes: ["id", "firstName", "lastName"] }],
     });
 
     return res.json({ bookings });
