@@ -42,8 +42,10 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
     let { review, stars } = req.body
     const editreview = await Review.findByPk(req.params.reviewId);
     if (!editreview) {
-        res.status(404)
-        return res.json({ "message": "Review couldn't be found" });
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        });
     }
     if (!review || !stars) {
         return res.json({

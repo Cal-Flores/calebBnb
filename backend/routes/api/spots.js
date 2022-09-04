@@ -142,11 +142,8 @@ router.post('/:spotId/bookings', requireAuth, restoreUser, validateBooking, asyn
         userId: userId,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
-        // updatedAt: new Date(),
     });
-    // console.log('newbooking``````````````',newBooking)
-    // await newBooking.save();
-    res.json(newBooking);
+    return res.json(newBooking);
 });
 
 //add an image to a spot
@@ -155,8 +152,10 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId);
 
     if (!spot) {
-        res.status(404)
-        return res.json({ "message": "Spot couldn't be found" })
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
     }
     const newImg = await SpotImage.create({
         spotId: req.params.spotId,
@@ -261,8 +260,10 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 router.delete('/:spotId', requireAuth, restoreUser, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) {
-        res.status(404)
-        return res.json({ "message": "Spot couldn't be found" });
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        });
     }
     await spot.destroy();
     return res.json({ "message": "Successfully deleted" });
@@ -273,8 +274,10 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) {
-        res.status(404)
-        return res.json({ "message": "Spot couldn't be found" });
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        });
     }
     const updatespot = await spot.update({ address, city, state, country, lat, lng, name, description, price });
     return res.json(updatespot);
@@ -290,7 +293,10 @@ router.get('/:spotId', async (req, res, next) => {
     });
     if (!spot) {
         res.status(404)
-        return res.json({ "message": "Spot couldn't be found" })
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
     }
     const countReview = await Spot.findByPk(req.params.spotId, {
         include: {
