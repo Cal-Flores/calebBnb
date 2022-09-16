@@ -11,9 +11,6 @@ const { Sequelize } = require("sequelize");
 const router = express.Router();
 
 
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-
 router.delete('/:imageId', requireAuth, restoreUser, async (req, res, next) => {
     const img = await SpotImage.findByPk(req.params.imageId);
     if (!img) {

@@ -9,17 +9,7 @@ const { op } = require('sequelize');
 const { User, Spot, Booking, Review, ReviewImage, SpotImage } = require('../../db/models');
 const router = express.Router();
 
-//validations for use
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
 
-const validateReview = [
-    check("review")
-        .exists({ checkFalsy: true })
-        .withMessage("Review is required"),
-    check("stars").exists({ checkFalsy: true }).withMessage("Rating is required"),
-    handleValidationErrors,
-];
 
 //delete a review
 router.delete('/:reviewId', requireAuth, restoreUser, async (req, res, next) => {
