@@ -3,7 +3,7 @@
     "bcryptjs": "^2.4.3",
     "pg": "^8.8.0"
   },
-  "name": "authenticate-me",
+  "name": "calebBnb",
   "description": "## Database Schema Design",
   "version": "1.0.0",
   "main": "index.js",
