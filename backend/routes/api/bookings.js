@@ -53,7 +53,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 });
 
 
-router.put('/:bookingId', requireAuth, restoreUser, validateBooking, async (req, res, next) => {
+router.put('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
     const { startDate, endDate } = req.body;
     const booking = await Booking.findByPk(req.params.bookingId);
     if (!booking) {

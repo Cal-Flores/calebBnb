@@ -15,7 +15,7 @@ const { Sequelize } = require("sequelize");
 // /api/spots
 
 //Create a Booking from a Spot based on the Spot's id
-router.post('/:spotId/bookings', requireAuth, restoreUser, validateBooking, async (req, res, next) => {
+router.post('/:spotId/bookings', requireAuth, restoreUser, async (req, res, next) => {
     const spotId = parseInt(req.params.spotId);
     const userId = parseInt(req.user.id);
     const spot = await Spot.findByPk(spotId);
@@ -161,7 +161,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 });
 
 // post a new spot
-router.post('/', requireAuth, validateSpot, async (req, res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
     return res.json(newSpot);
