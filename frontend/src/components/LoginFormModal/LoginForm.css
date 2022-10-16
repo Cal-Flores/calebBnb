@@ -1,0 +1,16 @@
+.login-form {
+    border: 1px solid black;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-label {
+    display: block;
+    height: 1.5rem;
+    border: 1px solid #666;
+    border-radius: 2px;
+    margin: 5px 0;
+    font-size: 1rem;
+    padding: 2px 5px;
+}
