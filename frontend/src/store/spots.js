@@ -9,6 +9,7 @@ const LOAD_SPOTS = '/spots/all-spots';
 // regular AC
 
 const loadAll = spots => {
+    console.log('this is in ac', spots)
     return {
         type: LOAD_SPOTS,
         spots
@@ -36,12 +37,15 @@ const spotsReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
         case LOAD_SPOTS: {
+            console.log(action.spots)
             action.spots.forEach((spot) => {
                 newState[spot.id] = spot;
             })
             console.log('this is get all spots newState.....', newState)
             return newState;
         }
+        default:
+            return state;
     }
 }
 

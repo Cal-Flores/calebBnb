@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/SplashPage";
+import DemoFormModal from "./components/DemoUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
+            < DemoFormModal />
             < AllSpots />
           </Route>
           <Route path="/signup">
