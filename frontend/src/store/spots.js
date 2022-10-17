@@ -37,7 +37,7 @@ const spotsReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
         case LOAD_SPOTS: {
-            console.log(action.spots)
+            console.log('being passed in case', action.spots)
             action.spots.forEach((spot) => {
                 newState[spot.id] = spot;
             })
