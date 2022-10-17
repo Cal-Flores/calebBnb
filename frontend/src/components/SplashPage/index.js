@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
+import SpotCard from '../spotCard'
 
 
 
@@ -19,11 +20,12 @@ function AllSpots() {
 
     return (
         <div>
-            {loaded && spotsArr.map(spot => (
-                <Link key={spot.id} to={`/spots/${spot.id}`}>{spot.address}</Link>
-            ))}
+            {loaded && spotsArr.map(spot => <SpotCard key={spot?.id} spot={spot} />)}
         </div>
     )
 }
 
+{/* {loaded && spotsArr.map(spot => (
+    <Link key={spot.id} to={`/spots/${spot.id}`}>{spot.address}</Link>
+))} */}
 export default AllSpots;
