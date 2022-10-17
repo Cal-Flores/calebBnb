@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { getAllSpots } from "../../store/spots";
 
 
 
-function allSpots() {
+function AllSpots() {
     const dispatch = useDispatch()
-    const { spotId } = useParams();
-    const spots = useSelector(state => {
-        return state.spot.list.map(spotId => state.spot[spotId])
-    })
+    const spots = useSelector((state) => state.spots)
+    console.log('this is spots', spots)
+    //const spotsArr = Object.values(spots);
 
     useEffect(() => {
         dispatch(getAllSpots())
@@ -17,7 +17,9 @@ function allSpots() {
 
     return (
         <ul>
-            <li>{spots.name}</li>
+
         </ul>
     )
 }
+
+export default AllSpots;

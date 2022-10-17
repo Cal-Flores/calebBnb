@@ -31,7 +31,6 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <i class="fa-solid fa-user-crown"></i>
             <button onClick={openMenu}>
             </button>
             {showMenu && (
