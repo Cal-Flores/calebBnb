@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import AllSpots from "./components/SplashPage";
 import SpotDetail from "./components/spotDetail";
 import EditSpotForm from "./components/EditASpot";
+import DeleteASpot from "./components/DeleteASpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path='/spots/edit/:spotId'>
             <EditSpotForm />
+          </Route>
+          <Route exact path='/spots/delete/:spotId'>
+            <DeleteASpot />
           </Route>
         </Switch>
       )}

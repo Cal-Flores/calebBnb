@@ -7,6 +7,7 @@ const LOAD_SPOTS = '/spots/all-spots';
 const LOAD_ONE_SPOT = '/spots/spotId';
 const CREATE_SPOT = '/spots/post'
 const EDIT_SPOT = '/spots/edit'
+const DELETE_SPOT = '/spots/delete';
 
 
 // regular AC

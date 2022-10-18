@@ -40,6 +40,7 @@ function SpotDetail() {
             {spot &&
                 <>
                     {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
+                    {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
                     <h1>This is spot detail</h1>
                     <div>{spot.name}</div>
                     <div>{spot.avgRating} Stars</div>
