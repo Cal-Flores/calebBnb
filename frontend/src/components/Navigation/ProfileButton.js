@@ -31,10 +31,8 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <i class="fa-thin fa-user-crown">
-                <button onClick={openMenu}>
-                </button>
-            </i>
+            <button onClick={openMenu}>
+            </button>
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li>{user.username}</li>
