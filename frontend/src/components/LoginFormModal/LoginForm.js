@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function LoginForm() {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+
+    const sessionUser = useSelector((state) => state.session.user);
+    if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +24,14 @@ function LoginForm() {
             }
         );
     };
+
+    const demoHandler = (e) => {
+        e.preventDefault()
+
+        return dispatch(
+            sessionActions.login({ credential: 'Demo-lition', password: 'password' })
+        )
+    }
 
     return (
         <form
@@ -50,6 +63,7 @@ function LoginForm() {
                 />
             </label>
             <button type="submit">Log In</button>
+            <button onClick={demoHandler}> Demo User</button>
         </form>
     );
 }
