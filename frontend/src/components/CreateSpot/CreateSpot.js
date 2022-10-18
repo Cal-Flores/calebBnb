@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
+import { CreateNewSpot } from "../../store/spots";
 
 
 function CreateSpotForm() {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [name, setName] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -14,9 +19,18 @@ function CreateSpotForm() {
     const [description, setDescription] = useState('')
     //const [] = useState()
 
+    const submitter = (e) => {
+        e.preventDefault();
+        let spotDetail = { name, address, city, state, country, lat, lng, image, price, description }
+        //thunk time!!
+        dispatch(CreateNewSpot(spotDetail))
+        history.push('/');
+
+    }
+
     return (
         // <h1>Create A Spot</h1>
-        <form >
+        <form onSubmit={submitter}>
             <label>
                 Name
                 <input
@@ -117,6 +131,7 @@ function CreateSpotForm() {
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
+            <button type='submit'>SUBMIT</button>
         </form>
     )
 }

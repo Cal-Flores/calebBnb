@@ -5,6 +5,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_SPOTS = '/spots/all-spots';
 const LOAD_ONE_SPOT = '/spots/spotId';
+const CREATE_SPOT = '/spots/post'
 
 
 // regular AC
@@ -24,6 +25,13 @@ const loadOne = spot => {
     }
 }
 
+const addOne = newSpot => {
+    return {
+        type: CREATE_SPOT,
+        newSpot
+    }
+}
+
 //thunk AC
 
 export const getAllSpots = () => async dispatch => {
@@ -38,7 +46,7 @@ export const getAllSpots = () => async dispatch => {
 }
 
 export const getOneSpot = (spotId) => async dispatch => {
-    console.log('this is spot id being passed to getOne thunk', spotId);
+    //console.log('this is spot id being passed to getOne thunk', spotId);
     const response = await csrfFetch(`/api/spots/${spotId}`);
 
     if (response.ok) {
@@ -48,6 +56,23 @@ export const getOneSpot = (spotId) => async dispatch => {
     }
 }
 
+export const CreateNewSpot = spotDetails => async dispatch => {
+    const { name, address, city, state, country, lat, lng, image, price, description } = spotDetails
+    const response = await csrfFetch(`/api/spots`, {
+        method: 'POST',
+        headers: { 'Content-Type': "application/json" },
+        //need to destructure individually for some reason?
+        body: JSON.stringify({
+            name, address, city, state, country, lat, lng, image, price, description
+        })
+    })
+
+    if (response.ok) {
+        const newSpot = await response.json()
+        dispatch(addOne(newSpot))
+        return newSpot;
+    }
+}
 
 //reducer
 const initialState = {};
@@ -71,6 +96,12 @@ const spotsReducer = (state = initialState, action) => {
                 ...newState[action.spot.id],
                 ...action.spot,
             }
+            return newState;
+        }
+        case CREATE_SPOT: {
+            newState = { ...state }
+            //console.log('this is newSpot created', action.newSpot)
+            newState[action.newSpot.id] = action.newSpot;
             return newState;
         }
         default:
