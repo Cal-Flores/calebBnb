@@ -40,6 +40,13 @@ const EditOne = editedSpot => {
     }
 }
 
+const DeleteOne = deleted => {
+    return {
+        type: DELETE_SPOT,
+        deleted
+    }
+}
+
 //thunk AC
 
 export const getAllSpots = () => async dispatch => {
@@ -96,7 +103,18 @@ export const EditSpot = ({ formInfo, spotId }) => async dispatch => {
         dispatch(EditOne(editedSpot))
         return editedSpot;
     }
+}
 
+export const DeleteSpot = (spotId) => async dispatch => {
+    console.log('spot id to delete!', spotId);
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const deleted = await response.json();
+        dispatch(DeleteOne(deleted))
+        return deleted;
+    }
 }
 
 //reducer
@@ -132,6 +150,11 @@ const spotsReducer = (state = initialState, action) => {
         case EDIT_SPOT: {
             newState = { ...state }
             newState[action.editedSpot.id] = action.editedSpot;
+            return newState;
+        }
+        case DELETE_SPOT: {
+            newState = { ...state }
+            delete newState[action.deleted]
             return newState;
         }
         default:
