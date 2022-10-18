@@ -24,6 +24,7 @@ function SpotDetail() {
         <>
             <h1>This is spot detail</h1>
             <div>{spot.name}</div>
+            <div>{spot.avgRating} Stars</div>
             <div>{spot.price}$</div>
             <div>{spot.adress}</div>
             <div>{spot.city}</div>

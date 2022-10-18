@@ -10,7 +10,8 @@ function SpotCard({ spot }) {
                 {spot.name}
             </Link>
             <div>{spot.address}</div>
-            <div>{spot.price}</div>
+            <div>{spot.avgRating} Stars</div>
+            <div>{spot.price}$</div>
             <div>{spot.city}</div>
             <div>{spot.state}</div>
             <div>{spot.description}</div>
