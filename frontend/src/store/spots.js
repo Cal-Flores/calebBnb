@@ -81,8 +81,9 @@ export const CreateNewSpot = spotDetails => async dispatch => {
     }
 }
 
-export const EditSpot = ({ spotId, newData }) => async dispatch => {
-    const { name, address, city, state, country, lat, lng, image, price, description } = newData
+export const EditSpot = ({ formInfo, spotId }) => async dispatch => {
+    console.log('this is edit spot package', spotId, formInfo);
+    const { name, address, city, state, country, lat, lng, image, price, description } = formInfo;
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -90,8 +91,8 @@ export const EditSpot = ({ spotId, newData }) => async dispatch => {
     })
 
     if (response.ok) {
-        const editedSpot = response.JSON();
-        dispatch(EditSpot(editedSpot))
+        const editedSpot = await response.json();
+        dispatch(EditOne(editedSpot))
         return editedSpot;
     }
 
@@ -127,12 +128,13 @@ const spotsReducer = (state = initialState, action) => {
             newState[action.newSpot.id] = action.newSpot;
             return newState;
         }
-        default:
-            return state;
         case EDIT_SPOT: {
             newState = { ...state }
-
+            newState[action.editedSpot.id] = action.editedSpot;
+            return newState;
         }
+        default:
+            return state;
     }
 }
 
