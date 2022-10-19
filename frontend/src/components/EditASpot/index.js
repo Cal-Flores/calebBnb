@@ -29,7 +29,7 @@ function EditSpotForm() {
         let editedSpot = { name, address, city, state, country, image, price, description }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
-        history.push(`/spots/${spotId}`);
+        history.push(`/spots`);
     }
 
     return (

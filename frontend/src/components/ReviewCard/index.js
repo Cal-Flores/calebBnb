@@ -9,10 +9,10 @@ function ReviewCard({ review }) {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log('review prop is', review);
+    //console.log('review prop is', review);
     const sessionUser = useSelector((state) => state?.session?.user);
-    console.log('sessionUser is', sessionUser);
-    console.log('my review Id', review.id)
+    //console.log('sessionUser is', sessionUser);
+    //console.log('my review Id', review.id)
 
     //const [reviewd, setReviewed] = useState(true)
     const [owner, setOwner] = useState(false);
@@ -32,10 +32,10 @@ function ReviewCard({ review }) {
         history.push(`/spots/${spotId}`)
     }
 
-    const reviewer = (e) => {
-        e.preventDefault();
-        history.push(`/spots/${spotId}/create-review`)
-    }
+    // const reviewer = (e) => {
+    //     e.preventDefault();
+    //     history.push(`/spots/${spotId}/create-review`)
+    // }
 
     return (
         //<h1>Review card</h1>
