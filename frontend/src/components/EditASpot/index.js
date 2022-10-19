@@ -17,8 +17,8 @@ function EditSpotForm() {
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    // const [lat, setLat] = useState(0)
+    // const [lng, setLng] = useState(0)
     const [image, setImage] = useState('')
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
@@ -26,7 +26,7 @@ function EditSpotForm() {
 
     const editSubmitter = (e) => {
         e.preventDefault();
-        let editedSpot = { name, address, city, state, country, lat, lng, image, price, description }
+        let editedSpot = { name, address, city, state, country, image, price, description }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
         history.push(`/spots/${spotId}`);
@@ -84,7 +84,7 @@ function EditSpotForm() {
                     onChange={(e) => setCountry(e.target.value)}
                 />
             </label>
-            <label>
+            {/* <label>
                 Latitude
                 <input
                     type='number'
@@ -103,7 +103,7 @@ function EditSpotForm() {
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
                 />
-            </label>
+            </label> */}
             <label>
                 Preview Image
                 <input

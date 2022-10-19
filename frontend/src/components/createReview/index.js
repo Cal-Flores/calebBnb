@@ -19,7 +19,8 @@ function CreateReiew() {
         const payload = { review, stars, spotId }
         dispatch(createReview(payload))
         console.log('the review in comp', payload);
-        history.push(`/spots/reviews/${spotId}`)
+        //history.push(`/spots/reviews/${spotId}`)
+        history.push(`/spots/${spotId}`)
     }
 
     return (

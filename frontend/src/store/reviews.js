@@ -19,6 +19,13 @@ const postReview = review => {
         review
     }
 }
+const deleteReview = deleted => {
+    return {
+        type: DELETE_REVIEW,
+        deleted
+    }
+}
+
 
 
 // Thunk AC
@@ -55,8 +62,15 @@ export const createReview = ({ review, stars, spotId }) => async dispatch => {
     else console.log('dang');
 }
 
-export const DeleteReview = (spotId) => async dispatch => {
-    const response = await csrfFetch(``)
+export const DeleteReview = (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        const deleted = await response.json();
+        dispatch(deleteReview(deleted))
+        return deleted;
+    }
 }
 
 //Reducer
@@ -77,6 +91,11 @@ const reviewsReducer = (state = initialState, action) => {
         case CREATE_REVIEW: {
             const newState = { ...state }
             newState[action.review.id] = action.review;
+            return newState;
+        }
+        case DELETE_REVIEW: {
+            newState = { ...state }
+            delete newState[action.deleted]
             return newState;
         }
         default:

@@ -12,8 +12,8 @@ function CreateSpotForm() {
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    // const [lat, setLat] = useState(0)
+    // const [lng, setLng] = useState(0)
     const [image, setImage] = useState('')
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
@@ -21,7 +21,7 @@ function CreateSpotForm() {
 
     const submitter = (e) => {
         e.preventDefault();
-        let spotDetail = { name, address, city, state, country, lat, lng, image, price, description }
+        let spotDetail = { name, address, city, state, country, image, price, description }
         //thunk time!!
         dispatch(CreateNewSpot(spotDetail))
         history.push('/');
@@ -81,7 +81,7 @@ function CreateSpotForm() {
                     onChange={(e) => setCountry(e.target.value)}
                 />
             </label>
-            <label>
+            {/* <label>
                 Latitude
                 <input
                     type='number'
@@ -100,7 +100,7 @@ function CreateSpotForm() {
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
                 />
-            </label>
+            </label> */}
             <label>
                 Preview Image
                 <input

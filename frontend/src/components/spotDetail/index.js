@@ -25,33 +25,28 @@ function SpotDetail() {
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
 
-    }, [dispatch, spotId])
-
-
-
-
-
+    }, [dispatch])
 
 
     return (
 
         <div>
 
-            {spot &&
-                <>
-                    {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
-                    {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
-                    <h1>This is spot detail</h1>
-                    <div>{spot.name}</div>
-                    <div>{spot.avgRating} Stars</div>
-                    <div>{spot.price}$</div>
-                    <div>{spot.adress}</div>
-                    <div>{spot.city}</div>
-                    <div>{spot.state}</div>
-                    <div>{spot.description}</div>
-                    <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
-                </>
-            }
+
+            <>
+                {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
+                {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
+                <h1>This is spot detail</h1>
+                <div>{spot?.name}</div>
+                <div>{spot?.avgRating} Stars</div>
+                <div>{spot?.price}$</div>
+                <div>{spot?.adress}</div>
+                <div>{spot?.city}</div>
+                <div>{spot?.state}</div>
+                <div>{spot?.description}</div>
+                <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
+            </>
+
 
         </div>
     )
