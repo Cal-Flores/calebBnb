@@ -49,6 +49,7 @@ function SpotDetail() {
                     <div>{spot.city}</div>
                     <div>{spot.state}</div>
                     <div>{spot.description}</div>
+                    <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
                 </>
             }
 

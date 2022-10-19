@@ -8,6 +8,7 @@ import AllSpots from "./components/SplashPage";
 import SpotDetail from "./components/spotDetail";
 import EditSpotForm from "./components/EditASpot";
 import DeleteASpot from "./components/DeleteASpot";
+import ReviewSpot from "./components/ReviewsBySpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path='/spots/delete/:spotId'>
             <DeleteASpot />
+          </Route>
+          <Route exact path='/spots/reviews/:spotId'>
+            <ReviewSpot />
           </Route>
         </Switch>
       )}
