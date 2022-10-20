@@ -31,11 +31,11 @@ function EditSpotForm() {
     //const [] = useState()
 
     const editSubmitter = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let editedSpot = { name, address, city, state, country, price, description }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
-        //history.push(`/spots`);
+        history.push(`/spots/${spotId}`);
     }
 
 

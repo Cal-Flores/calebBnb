@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import { CreateNewSpot } from "../../store/spots";
@@ -18,10 +18,32 @@ function CreateSpotForm() {
     const [image, setImage] = useState('')
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
-    //const [] = useState()
+    const [errors, setErrors] = useState([])
+    const [sub, setSub] = useState(false);
+
+
+    useEffect(() => {
+        let validateErrors = [];
+
+        if (name.length <= 0) validateErrors.push('name is required')
+        if (address.length <= 0) validateErrors.push('Adress is required')
+        if (city.length <= 0) validateErrors.push('city is required')
+        if (state.length <= 0) validateErrors.push('state is required')
+        if (country.length <= 0) validateErrors.push('country is required')
+        if (!price) validateErrors.push('cost per night is required')
+        if (!image.includes(".jpg")) validateErrors.push('Invalid Image!')
+        if (!image.includes(".png")) validateErrors.push('Invalid Image!')
+        if (!image.includes(".jpeg")) validateErrors.push('Invalid Image!')
+
+        setSub(true)
+
+        return setErrors(validateErrors);
+
+    }, [name, address, city, state, country, price, image])
 
     const submitter = (e) => {
         e.preventDefault();
+        if (errors.length) return
         let spotDetail = { name, address, city, state, country, image, price, description }
         //thunk time!!
         dispatch(CreateNewSpot(spotDetail))
@@ -29,60 +51,69 @@ function CreateSpotForm() {
 
     }
 
+
     return (
-        // <h1>Create A Spot</h1>
-        <form onSubmit={submitter}>
-            <label>
-                Name
-                <input
-                    type='text'
-                    name="name"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </label>
-            <label>
-                Address
-                <input
-                    type='text'
-                    name="address"
-                    required
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                />
-            </label>
-            <label>
-                City
-                <input
-                    type='text'
-                    name="city"
-                    required
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                />
-            </label>
-            <label>
-                State
-                <input
-                    type='text'
-                    name="state"
-                    required
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                />
-            </label>
-            <label>
-                Country
-                <input
-                    type='text'
-                    name="country"
-                    required
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                />
-            </label>
-            {/* <label>
+        <>
+            <h1>CalebBnB's New Home</h1>
+            <form onSubmit={submitter}>
+                <ul className="errors">
+                    {sub && (
+                        errors.map(error => {
+                            <li key={error}>{error}</li>
+                        })
+                    )}
+                </ul>
+                <label>
+                    Name
+                    <input
+                        type='text'
+                        name="name"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Address
+                    <input
+                        type='text'
+                        name="address"
+                        required
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </label>
+                <label>
+                    City
+                    <input
+                        type='text'
+                        name="city"
+                        required
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                    />
+                </label>
+                <label>
+                    State
+                    <input
+                        type='text'
+                        name="state"
+                        required
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Country
+                    <input
+                        type='text'
+                        name="country"
+                        required
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                    />
+                </label>
+                {/* <label>
                 Latitude
                 <input
                     type='number'
@@ -102,38 +133,39 @@ function CreateSpotForm() {
                     onChange={(e) => setLng(e.target.value)}
                 />
             </label> */}
-            <label>
-                Preview Image
-                <input
-                    type='text'
-                    name="image"
-                    required
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                />
-            </label>
-            <label>
-                Price
-                <input
-                    type='number'
-                    name="price"
-                    required
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                />
-            </label>
-            <label>
-                Description
-                <input
-                    type='text'
-                    name="description"
-                    required
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-            </label>
-            <button type='submit'>SUBMIT</button>
-        </form>
+                <label>
+                    Preview Image
+                    <input
+                        type='text'
+                        name="image"
+                        required
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Price
+                    <input
+                        type='number'
+                        name="price"
+                        required
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Description
+                    <input
+                        type='text'
+                        name="description"
+                        required
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </label>
+                <button type='submit'>SUBMIT</button>
+            </form>
+        </>
     )
 }
 
