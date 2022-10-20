@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { createReview } from "../../store/reviews";
+import { createReview, getAllSpotReviews } from "../../store/reviews";
+
 
 
 
@@ -13,13 +14,14 @@ function CreateReiew() {
     const { spotId } = useParams();
 
 
-    const reviewSub = (e) => {
+    const reviewSub = async (e) => {
         e.preventDefault();
         stars = Number(stars);
         const payload = { review, stars, spotId }
-        dispatch(createReview(payload))
+        await dispatch(createReview(payload))
+        await dispatch(getAllSpotReviews(spotId))
         //console.log('the review in comp', payload);
-        //history.push(`/spots/reviews/${spotId}`)
+        history.push(`/spots/reviews/${spotId}`)
     }
 
     return (
