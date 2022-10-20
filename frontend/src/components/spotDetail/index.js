@@ -21,7 +21,9 @@ function SpotDetail() {
     //console.log('spots owner id', spot.Owner?.id);
     //console.log('this is true owner id', ownerId)
     const sessionUser = useSelector((state) => state.session.user);
-    console.log('session user', sessionUser);
+    //console.log('session user', sessionUser);
+    //console.log('this spot', spot)
+    //console.log('preview image', spot.previewImage)
 
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
@@ -37,28 +39,26 @@ function SpotDetail() {
             <>
                 <div className="outer">
                     <h1 className="header" >{spot?.name}</h1>
-                    <div> <span className="stars">{spot?.avgRating} </span>
-                        <span className="reviewsLink">
-                            <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
-                        </span>
-                    </div>
-                    <div>
-                        {spot?.city},   {spot?.state},   {spot?.country}
-                    </div>
-                    <div>
-                        <img src={spot?.previewImage} width="700" height="350" border-radius="25px"></img>
-                    </div>
-                    <div>Entire home hosted by {sessionUser.firstName}</div>
-                    <div>{spot?.adress}  {spot?.price}$</div>
+                    <span className="reviewsLink">
+                        <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
+                    </span>
+                </div>
+                <div>
+                    {spot?.city},   {spot?.state},   {spot?.country} <span className="stars">{spot?.avgRating}</span>
+                </div>
+                <div>
+                    <img src={spot?.previewImage} width="700" height="350" border-radius="25px"></img>
+                </div>
+                <div>Entire home hosted by {sessionUser.firstName}</div>
+                <div>{spot?.adress}  {spot?.price}$</div>
 
-                    <div>{spot?.description}</div>
+                <div>{spot?.description}</div>
+                <div>
                     <div>
-                        <div>
-                            {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
-                        </div>
-                        <div>
-                            {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
-                        </div>
+                        {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
+                    </div>
+                    <div>
+                        {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
                     </div>
                 </div>
             </>

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { EditSpot } from "../../store/spots";
+import "./index.css"
 
 function EditSpotForm() {
     const spots = useSelector((state) => state.spots)

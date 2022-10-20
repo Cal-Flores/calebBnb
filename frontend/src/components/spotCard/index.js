@@ -4,22 +4,25 @@ import "./spotCard.css";
 
 
 function SpotCard({ spot }) {
-    console.log('this is prop', spot)
-    console.log('image url', spot.previewImage);
+    //console.log('this is prop', spot)
+    //if (!spot.previewImage) return null
+    //console.log('image url', spot.previewImage);
     return (
         <>
             <div className="imageCard">
                 <p>
                     <img src={spot?.previewImage} width="300" height="200" border-radius="25px"></img>
                 </p>
-                <div className="location">
-                    <span className="loc" >{spot.city}, {spot.state} </span>      <span className="stars">{spot.avgRating}</span>
+                <div className="locstars">
+                    <p className="location">
+                        {spot.city}, {spot.state}                <span>{spot.avgRating}</span>
+                    </p>
                 </div>
-                <div className="namelink">
+                <p className="namelink">
                     <Link className="nameLink" key={spot.id} to={`/spots/${spot.id}`}>
                         {spot.name}
                     </Link>
-                </div>
+                </p>
                 <p>
                     {spot.price}$ <span className="night">night</span>
                 </p>

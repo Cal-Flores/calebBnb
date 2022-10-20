@@ -73,6 +73,8 @@ export const getOneSpot = (spotId) => async dispatch => {
 
 export const CreateNewSpot = spotDetails => async dispatch => {
     const { name, address, city, state, country, image, price, description } = spotDetails
+    console.log('thunk image', image)
+    console.log('im hit');
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': "application/json" },
@@ -84,9 +86,20 @@ export const CreateNewSpot = spotDetails => async dispatch => {
 
     if (response.ok) {
         const newSpot = await response.json()
+        //if preview true
+        console.log('newspotid', newSpot.id)
+        if (image && newSpot) {
+            const res = await csrfFetch(`/api/spots/spotImage/${newSpot.id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': "application/json" },
+                body: JSON.stringify({ image })
+            })
+        }
+        //fetch to image table
         dispatch(addOne(newSpot))
         return newSpot;
     }
+    // const res = await csrfFetch(`/api/spots/spotImage/${}`)
 }
 
 export const EditSpot = ({ formInfo, spotId }) => async dispatch => {

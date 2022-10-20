@@ -31,9 +31,6 @@
     color: gray;
 }
 
-.stars {
-    float: right;
-}
 
 .image {
     border-radius: 50%;
@@ -45,4 +42,13 @@
     color: black;
     text-align: left;
     margin-top: 10px;
+}
+
+.loc {
+    text-align: left;
+}
+
+
+.stars {
+    justify-content: flex-end;
 }
