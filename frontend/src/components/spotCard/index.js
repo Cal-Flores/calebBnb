@@ -11,7 +11,7 @@ function SpotCard({ spot }) {
         <>
             <div className="imageCard">
                 <p>
-                    <img src={spot?.previewImage} width="300" height="200" border-radius="25px"></img>
+                    <img className="img" src={spot?.previewImage} width="300" height="200" border-radius="25%"></img>
                 </p>
                 <div className="locstars">
                     <p className="location">

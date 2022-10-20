@@ -89,26 +89,35 @@ export const CreateNewSpot = spotDetails => async dispatch => {
         //if preview true
         console.log('newspotid', newSpot.id)
         if (image && newSpot) {
-            const res = await csrfFetch(`/api/spots/spotImage/${newSpot.id}`, {
+            const res = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',
                 headers: { 'Content-Type': "application/json" },
-                body: JSON.stringify({ image })
+                body: JSON.stringify({ url: image, preview: true })
             })
+            if (res.ok) {
+                const newImg = await res.json();
+                newSpot.previewImage = newImg.url;
+                console.log('preview is loaded', newImg)
+                dispatch(addOne(newSpot))
+                return newSpot;
+            }
+        } else {
+            dispatch(addOne(newSpot))
+            return newSpot;
+
         }
         //fetch to image table
-        dispatch(addOne(newSpot))
-        return newSpot;
     }
     // const res = await csrfFetch(`/api/spots/spotImage/${}`)
 }
 
 export const EditSpot = ({ formInfo, spotId }) => async dispatch => {
     console.log('this is edit spot package', spotId, formInfo);
-    const { name, address, city, state, country, previewImage, price, description } = formInfo;
+    const { name, address, city, state, country, price, description } = formInfo;
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, address, city, state, country, previewImage, price, description })
+        body: JSON.stringify({ name, address, city, state, country, price, description })
     })
 
     if (response.ok) {
@@ -137,11 +146,11 @@ const spotsReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
         case LOAD_SPOTS: {
-            console.log('being passed in case', action.spots)
+            // console.log('being passed in case', action.spots)
             action.spots.forEach((spot) => {
                 newState[spot.id] = spot;
             })
-            console.log('this is get all spots newState.....', newState)
+            //console.log('this is get all spots newState.....', newState)
             return newState;
         }
         case LOAD_ONE_SPOT: {

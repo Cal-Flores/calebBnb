@@ -25,14 +25,14 @@ function EditSpotForm() {
     const [country, setCountry] = useState(spot.country)
     // const [lat, setLat] = useState(0)
     // const [lng, setLng] = useState(0)
-    const [previewImage, setPreviewImage] = useState(spot.previewImage)
+    //const [previewImage, setPreviewImage] = useState(spot.previewImage)
     const [price, setPrice] = useState(spot.price)
     const [description, setDescription] = useState(spot.description)
     //const [] = useState()
 
     const editSubmitter = (e) => {
         e.preventDefault();
-        let editedSpot = { name, address, city, state, country, previewImage, price, description }
+        let editedSpot = { name, address, city, state, country, price, description }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
         //history.push(`/spots`);
@@ -112,7 +112,7 @@ function EditSpotForm() {
                     onChange={(e) => setLng(e.target.value)}
                 />
             </label> */}
-            <label>
+            {/* <label>
                 Preview Image
                 <input
                     type='text'
@@ -121,7 +121,7 @@ function EditSpotForm() {
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
                 />
-            </label>
+            </label> */}
             <label>
                 Price
                 <input
