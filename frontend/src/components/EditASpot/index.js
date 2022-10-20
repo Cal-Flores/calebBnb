@@ -2,35 +2,42 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditSpot } from "../../store/spots";
 
 function EditSpotForm() {
     const spots = useSelector((state) => state.spots)
     console.log('this is edit component spots', spots)
     const { spotId } = useParams();
+    const spotObj = useSelector((state) => state.spots)
+    const spot = spotObj[spotId];
+
+    console.log('edit prop spot', spot);
+    console.log('edit prop', spotObj);
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const [name, setName] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
+    const [name, setName] = useState(spot.name)
+    const [address, setAddress] = useState(spot.address)
+    const [city, setCity] = useState(spot.city)
+    const [state, setState] = useState(spot.state)
+    const [country, setCountry] = useState(spot.country)
     // const [lat, setLat] = useState(0)
     // const [lng, setLng] = useState(0)
-    const [image, setImage] = useState('')
-    const [price, setPrice] = useState(0)
-    const [description, setDescription] = useState('')
+    const [previewImage, setPreviewImage] = useState(spot.previewImage)
+    const [price, setPrice] = useState(spot.price)
+    const [description, setDescription] = useState(spot.description)
     //const [] = useState()
 
     const editSubmitter = (e) => {
         e.preventDefault();
-        let editedSpot = { name, address, city, state, country, image, price, description }
+        let editedSpot = { name, address, city, state, country, previewImage, price, description }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
-        history.push(`/spots`);
+        //history.push(`/spots`);
     }
+
+
 
     return (
         <form onSubmit={editSubmitter}>
@@ -110,8 +117,8 @@ function EditSpotForm() {
                     type='text'
                     name="image"
                     required
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
+                    value={previewImage}
+                    onChange={(e) => setPreviewImage(e.target.value)}
                 />
             </label>
             <label>

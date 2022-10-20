@@ -1,0 +1,48 @@
+.imageCard {
+    padding-top: 15px;
+    display: inline-block;
+    width: 300px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+    border-radius: 25px;
+}
+
+/* .imageCard>* {
+    flex: 1 1 100%;
+} */
+
+.no-link {
+    pointer-events: none;
+    cursor: text;
+    text-decoration: none;
+    color: black;
+}
+
+.location {
+    font-weight: bold;
+    display: block;
+    padding-bottom: 10px;
+}
+
+.night {
+    color: gray;
+}
+
+.stars {
+    float: right;
+}
+
+.image {
+    border-radius: 50%;
+    height: 200px;
+    width: 300px;
+}
+
+.nameLink {
+    color: black;
+    text-align: left;
+    margin-top: 10px;
+}

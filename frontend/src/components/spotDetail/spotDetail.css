@@ -1,0 +1,21 @@
+.header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.outer {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 80px;
+}
+
+.stars {
+    float: left;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.reviewsLink {
+    float: right;
+    transform: translateY(200%);
+    color: black;
+}

@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <div>
+            <div className='dropdwn'>
                 <ProfileButton user={sessionUser} />
                 <CreateSpotFormModal />
             </div>
@@ -31,7 +31,8 @@ function Navigation({ isLoaded }) {
     return (
         <ul>
             <li>
-                <NavLink exact to="/">Home</NavLink>
+                <i class="fa-solid fa-city"></i>
+                <NavLink className="calebbnb" exact to="/">CalebBnB</NavLink>
                 {isLoaded && sessionLinks}
             </li>
         </ul>

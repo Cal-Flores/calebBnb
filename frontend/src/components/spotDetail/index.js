@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import { Link } from "react-router-dom";
+import "./spotDetail.css"
 
 
 function SpotDetail() {
@@ -20,7 +21,7 @@ function SpotDetail() {
     //console.log('spots owner id', spot.Owner?.id);
     //console.log('this is true owner id', ownerId)
     const sessionUser = useSelector((state) => state.session.user);
-    // console.log('session user', sessionUser?.id);
+    console.log('session user', sessionUser);
 
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
@@ -34,21 +35,36 @@ function SpotDetail() {
 
 
             <>
-                {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
-                {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
-                <h1>This is spot detail</h1>
-                <div>{spot?.name}</div>
-                <div>{spot?.avgRating} Stars</div>
-                <div>{spot?.price}$</div>
-                <div>{spot?.adress}</div>
-                <div>{spot?.city}</div>
-                <div>{spot?.state}</div>
-                <div>{spot?.description}</div>
-                <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
+                <div className="outer">
+                    <h1 className="header" >{spot?.name}</h1>
+                    <div> <span className="stars">{spot?.avgRating} </span>
+                        <span className="reviewsLink">
+                            <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
+                        </span>
+                    </div>
+                    <div>
+                        {spot?.city},   {spot?.state},   {spot?.country}
+                    </div>
+                    <div>
+                        <img src={spot?.previewImage} width="700" height="350" border-radius="25px"></img>
+                    </div>
+                    <div>Entire home hosted by {sessionUser.firstName}</div>
+                    <div>{spot?.adress}  {spot?.price}$</div>
+
+                    <div>{spot?.description}</div>
+                    <div>
+                        <div>
+                            {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
+                        </div>
+                        <div>
+                            {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
+                        </div>
+                    </div>
+                </div>
             </>
 
 
-        </div>
+        </div >
     )
 }
 

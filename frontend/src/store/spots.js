@@ -91,11 +91,11 @@ export const CreateNewSpot = spotDetails => async dispatch => {
 
 export const EditSpot = ({ formInfo, spotId }) => async dispatch => {
     console.log('this is edit spot package', spotId, formInfo);
-    const { name, address, city, state, country, image, price, description } = formInfo;
+    const { name, address, city, state, country, previewImage, price, description } = formInfo;
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, address, city, state, country, image, price, description })
+        body: JSON.stringify({ name, address, city, state, country, previewImage, price, description })
     })
 
     if (response.ok) {

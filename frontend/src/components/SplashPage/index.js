@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 //import { Link } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import SpotCard from '../spotCard'
+import "./splashPage.css"
+
 
 
 
@@ -19,7 +21,7 @@ function AllSpots() {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="splash">
             {loaded && spotsArr.map(spot => <SpotCard key={spot?.id} spot={spot} />)}
         </div>
     )

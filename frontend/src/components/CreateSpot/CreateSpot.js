@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import { CreateNewSpot } from "../../store/spots";
+import './index.css'
 
 
 function CreateSpotForm() {
