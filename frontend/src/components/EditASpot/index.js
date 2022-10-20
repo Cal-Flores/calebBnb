@@ -28,7 +28,28 @@ function EditSpotForm() {
     //const [previewImage, setPreviewImage] = useState(spot.previewImage)
     const [price, setPrice] = useState(spot.price)
     const [description, setDescription] = useState(spot.description)
-    //const [] = useState()
+    const [error, setErrors] = useState([])
+
+    useEffect(() => {
+        const validateError = [];
+
+        if (name.length > 25) validateError.push('please include a name under 25 characters')
+        if (address.length > 25) validateError.push('please include a Address under 25 characters')
+        if (city.length > 25) validateError.push('please include a city under 25 characters')
+        if (state.length > 25) validateError.push('please include a state under 25 characters')
+        if (country.length > 25) validateError.push('please include a country under 25 characters')
+        if (description.length > 50) validateError.push('please include a city under 50 characters')
+        if (name === '') validateError.push('please include a name')
+        if (address === '') validateError.push('please include a Address')
+        if (city === '') validateError.push('please include a city')
+        if (state === '') validateError.push('please include a state')
+        if (country === '') validateError.push('please include a country')
+        if (description === '') validateError.push('please include a description')
+        if (price <= 0) validateError.push('price must be greater than 0');
+
+        setErrors(validateError);
+
+    }, [name, address, city, state, country, description, price])
 
     const editSubmitter = (e) => {
         // e.preventDefault();
@@ -42,6 +63,13 @@ function EditSpotForm() {
 
     return (
         <form onSubmit={editSubmitter}>
+            <ul>
+                {error.length > 0 &&
+                    error.map(err => (
+                        <li key={err}>{err}</li>
+                    ))
+                }
+            </ul>
             <label>
                 Name
                 <input
@@ -142,7 +170,7 @@ function EditSpotForm() {
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
-            <button type='submit'>SUBMIT</button>
+            <button type='submit' disabled={!!error.length}>SUBMIT</button>
         </form>
     )
 }

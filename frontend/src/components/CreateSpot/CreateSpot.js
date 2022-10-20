@@ -25,24 +25,25 @@ function CreateSpotForm() {
     useEffect(() => {
         let validateErrors = [];
 
-        if (name.length <= 0) validateErrors.push('name is required')
-        if (address.length <= 0) validateErrors.push('Adress is required')
-        if (city.length <= 0) validateErrors.push('city is required')
-        if (state.length <= 0) validateErrors.push('state is required')
-        if (country.length <= 0) validateErrors.push('country is required')
+        if (name.length > 25) validateErrors.push('name must be under 25 characters')
+        if (address.length > 25) validateErrors.push('Adress must be under 25 characters')
+        if (city > 25) validateErrors.push('City must be under 25 characters')
+        if (state > 25) validateErrors.push('State must be under 25 characters')
+        if (country > 25) validateErrors.push('Country must be under 25 characters')
         if (!price) validateErrors.push('cost per night is required')
-        if (!image.includes(".jpg")) validateErrors.push('Invalid Image!')
-        if (!image.includes(".png")) validateErrors.push('Invalid Image!')
-        if (!image.includes(".jpeg")) validateErrors.push('Invalid Image!')
+        if (price <= 0) validateErrors.push('price per night must be greater than 0')
+        if (!image.includes(".jpg") && !image.includes(".png") && !image.includes(".jpeg")) validateErrors.push('Invalid Image')
+        //if (!image.includes(".png")) validateErrors.push('Invalid Image!!')
+        //if (!image.includes(".jpeg")) validateErrors.push('Invalid Image!!!')
 
-        setSub(true)
 
-        return setErrors(validateErrors);
+        setErrors(validateErrors);
 
     }, [name, address, city, state, country, price, image])
 
     const submitter = (e) => {
         e.preventDefault();
+        setSub(true)
         if (errors.length) return
         let spotDetail = { name, address, city, state, country, image, price, description }
         //thunk time!!
@@ -56,11 +57,11 @@ function CreateSpotForm() {
         <>
             <h1>CalebBnB's New Home</h1>
             <form onSubmit={submitter}>
-                <ul className="errors">
+                <ul >
                     {sub && (
-                        errors.map(error => {
+                        errors.map(error => (
                             <li key={error}>{error}</li>
-                        })
+                        ))
                     )}
                 </ul>
                 <label>

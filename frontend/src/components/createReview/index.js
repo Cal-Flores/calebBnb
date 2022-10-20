@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview, getAllSpotReviews } from "../../store/reviews";
@@ -11,8 +11,19 @@ function CreateReiew() {
     const history = useHistory();
     const [review, setReview] = useState('');
     let [stars, setStars] = useState(0);
+    const [errors, setErrors] = useState([])
     const { spotId } = useParams();
 
+
+    useEffect(() => {
+        const validateError = [];
+
+        if (stars > 5 || stars < 0) validateError.push('stars must be between 0 and 5');
+        if (review === '') validateError.push('please leave a review')
+        if (review.length > 50) validateError.push('review cant exceed 50 characters')
+
+        setErrors(validateError);
+    }, [stars, review])
 
     const reviewSub = async (e) => {
         e.preventDefault();
@@ -29,6 +40,13 @@ function CreateReiew() {
             <h1> Create Review</h1>
             <div>
                 <form>
+                    <ul>
+                        {errors.length > 0 &&
+                            errors.map(error => (
+                                <li key={error}>{error}</li>
+                            ))
+                        }
+                    </ul>
                     <label>
                         <input
                             type='textArea'
@@ -47,7 +65,10 @@ function CreateReiew() {
                             onChange={(e) => setStars(e.target.value)}
                         />
                     </label>
-                    <button onClick={reviewSub}>Submit</button>
+                    <button
+                        onClick={reviewSub}
+                        disabled={!!errors.length}
+                    >Submit</button>
 
                 </form>
             </div>
