@@ -33,8 +33,8 @@ function CreateSpotForm() {
         if (country > 25) validateErrors.push('Country must be under 25 characters')
         if (!price) validateErrors.push('cost per night is required')
         if (price <= 0) validateErrors.push('price per night must be greater than 0')
-        if (!image.includes(".jpg") && !image.includes(".png") && !image.includes(".jpeg")) validateErrors.push('Invalid Image')
-        if (!image.includes(".JPG") && !image.includes(".PNG") && !image.includes(".JPEG")) validateErrors.push('Invalid Image!')
+        if (!image.includes(".jpg") && !image.includes(".png") && !image.includes(".jpeg") && !image.includes(".JPG") && !image.includes(".PNG") && !image.includes(".JPEG")) validateErrors.push('Invalid Image')
+        //if (!image.includes(".JPG") && !image.includes(".PNG") && !image.includes(".JPEG")) validateErrors.push('Invalid Image!')
 
 
         setErrors(validateErrors);

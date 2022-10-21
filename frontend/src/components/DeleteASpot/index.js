@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { DeleteSpot } from "../../store/spots";
+import "./delete.css"
 
 function DeleteASpot() {
     const history = useHistory()
@@ -22,12 +23,18 @@ function DeleteASpot() {
     }
     return (
         <>
-            <h2>Delete this spot?</h2>
-            <button onClick={submitter}>yes</button>
-            <button onClick={noSub}>Go Back</button>
-            {deleted &&
-                <h3>Your Spot has successfully been Deleted!</h3>
-            }
+            <div className="deletecontainer">
+
+                <h2 className="htag">Delete this spot?</h2>
+                <div>
+                    <button className="yesbtn" onClick={submitter}>yes</button>
+                    <button className="yesbtn" onClick={noSub}>Go Back</button>
+                </div>
+                {deleted &&
+                    <h3 className="succtag">Your Spot has successfully been Deleted!</h3>
+                }
+
+            </div>
         </>
     )
 };
