@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview, getAllSpotReviews } from "../../store/reviews";
-
+import "./createSpot.css"
 
 
 
@@ -36,45 +36,41 @@ function CreateReiew() {
     }
 
     return (
-        <div>
-            <h1> Create Review</h1>
-            <div>
-                <form>
-                    <ul>
-                        {errors.length > 0 &&
-                            errors.map(error => (
-                                <li key={error}>{error}</li>
-                            ))
-                        }
-                    </ul>
-                    <label>
-                        <input
-                            type='textArea'
-                            placeholder='Review'
-                            required
-                            value={review}
-                            onChange={(e) => setReview(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <input
-                            type='number'
-                            placeholder='Stars'
-                            required
-                            value={stars}
-                            onChange={(e) => setStars(e.target.value)}
-                        />
-                    </label>
-                    <button
-                        onClick={reviewSub}
-                        disabled={!!errors.length}
-                    >Submit</button>
-
-                </form>
-            </div>
-        </div>
-
-
+        <>
+            <h1 className="header"> Create Review</h1>
+            <form className="outer-form">
+                <ul className="errors">
+                    {errors.length > 0 &&
+                        errors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))
+                    }
+                </ul>
+                <label>
+                    <input
+                        type='textArea'
+                        placeholder='Review'
+                        required
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <input
+                        type='number'
+                        placeholder='Stars'
+                        required
+                        value={stars}
+                        onChange={(e) => setStars(e.target.value)}
+                    />
+                </label>
+                <button className="sendBtn"
+                    onClick={reviewSub}
+                    disabled={!!errors.length}
+                >
+                    Submit</button>
+            </form>
+        </>
     )
 }
 

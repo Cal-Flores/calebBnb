@@ -20,6 +20,7 @@ function CreateSpotForm() {
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
     const [sub, setSub] = useState(false);
+    const [succ, setSucc] = useState(false);
 
 
     useEffect(() => {
@@ -32,7 +33,7 @@ function CreateSpotForm() {
         if (country > 25) validateErrors.push('Country must be under 25 characters')
         if (!price) validateErrors.push('cost per night is required')
         if (price <= 0) validateErrors.push('price per night must be greater than 0')
-        if (!image.includes(".jpg") && !image.includes(".png") && !image.includes(".jpeg")) validateErrors.push('Invalid Image')
+        //if (!image.includes(".jpg") && !image.includes(".png") && !image.includes(".jpeg")) validateErrors.push('Invalid Image')
         //if (!image.includes(".png")) validateErrors.push('Invalid Image!!')
         //if (!image.includes(".jpeg")) validateErrors.push('Invalid Image!!!')
 
@@ -47,17 +48,21 @@ function CreateSpotForm() {
         if (errors.length) return
         let spotDetail = { name, address, city, state, country, image, price, description }
         //thunk time!!
-        dispatch(CreateNewSpot(spotDetail))
+        const newSpot = dispatch(CreateNewSpot(spotDetail))
+        // console.log('amies', newSpot?.id)
+        setSucc(true);
         history.push('/');
-
     }
 
 
     return (
         <>
-            <h1>CalebBnB's New Home</h1>
-            <form onSubmit={submitter}>
-                <ul >
+            <h1 className="spotheader">CalebBnB's New Home</h1>
+            {succ && <div>Thank you, Your New Spot Is Successfully Created!</div>}
+            <form
+                className="spotFrom"
+                onSubmit={submitter}>
+                <ul className="err">
                     {sub && (
                         errors.map(error => (
                             <li key={error}>{error}</li>
@@ -164,7 +169,7 @@ function CreateSpotForm() {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </label>
-                <button type='submit'>SUBMIT</button>
+                <button className="subBtn" type='submit'>SUBMIT</button>
             </form>
         </>
     )

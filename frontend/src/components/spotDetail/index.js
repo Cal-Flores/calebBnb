@@ -12,6 +12,7 @@ function SpotDetail() {
     const spotObj = useSelector((state) => state.spots)
     let { spotId } = useParams();
     const spot = spotObj[spotId];
+    console.log('this is amy', spot);
     //console.log('this is spot forver', spot)
     //console.log('this my spot id', spotId)
     //console.log('this is spotttt', spotObj)
@@ -49,7 +50,7 @@ function SpotDetail() {
                 <div>
                     <img src={spot?.previewImage} width="700" height="350" border-radius="25px"></img>
                 </div>
-                <div>Entire home hosted by {sessionUser.firstName}</div>
+                <div>Entire home hosted by {spot?.Owner?.firstName}</div>
                 <div>{spot?.adress}  {spot?.price}$</div>
 
                 <div>{spot?.description}</div>

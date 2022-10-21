@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { createReview, DeleteReview } from "../../store/reviews";
 import { useHistory, useParams } from "react-router-dom";
-
+import './reviewCard.css'
 
 function ReviewCard({ review }) {
     const { spotId } = useParams();

@@ -1,0 +1,38 @@
+.signbtn {
+
+    border: none;
+    background: linear-gradient(0.25turn, #e66465, #9198e5);
+    padding: .5rem;
+    margin: 1rem 0;
+    width: auto;
+    color: azure;
+    cursor: pointer;
+    border-radius: 25px;
+    float: right;
+    width: 75px;
+    margin: 5px;
+}
+
+.signbtn:hover {
+    background: linear-gradient(0.25turn, #fea931, #dc0707);
+}
+
+.specbtn {
+    border: none;
+    background: linear-gradient(0.25turn, #e66465, #9198e5);
+    padding: .5rem;
+    margin: 1rem 0;
+    width: auto;
+    color: azure;
+    cursor: pointer;
+    width: 75px;
+    margin-top: 15px;
+}
+
+.signupmodal {
+    border: 1px solid black;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+}

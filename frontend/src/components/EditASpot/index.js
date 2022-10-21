@@ -62,8 +62,10 @@ function EditSpotForm() {
 
 
     return (
-        <form onSubmit={editSubmitter}>
-            <ul>
+        <form
+            className="editForm"
+            onSubmit={editSubmitter}>
+            <ul className="er">
                 {error.length > 0 &&
                     error.map(err => (
                         <li key={err}>{err}</li>
@@ -170,7 +172,7 @@ function EditSpotForm() {
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
-            <button type='submit' disabled={!!error.length}>SUBMIT</button>
+            <button className="send" type='submit' disabled={!!error.length}>SUBMIT</button>
         </form>
     )
 }
