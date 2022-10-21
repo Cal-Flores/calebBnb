@@ -20,7 +20,7 @@ function CreateReiew() {
 
         if (stars > 5 || stars < 0) validateError.push('stars must be between 0 and 5');
         if (review === '') validateError.push('please leave a review')
-        if (review.length > 50) validateError.push('review cant exceed 50 characters')
+        if (review.length > 100) validateError.push('review cant exceed 50 characters')
 
         setErrors(validateError);
     }, [stars, review])

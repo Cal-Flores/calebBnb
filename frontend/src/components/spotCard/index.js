@@ -15,7 +15,7 @@ function SpotCard({ spot }) {
                 </p>
                 <div className="locstars">
                     <p className="location">
-                        {spot.city}, {spot.state}                <span>{spot.avgRating}</span>
+                        {spot.city}, {spot.state}                <span>{spot.avgRating}</span> &#9733;
                     </p>
                 </div>
                 <p className="namelink">

@@ -1,0 +1,33 @@
+.reviewdeletebtn {
+    background: linear-gradient(0.25turn, #ad18ed, #9198e5);
+    border: none;
+    padding: .5em;
+    border-radius: 15px;
+    color: aliceblue;
+    margin-top: 15px;
+    position: static;
+}
+
+.reviewdeletebtn:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.reviewername {
+    margin-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.review {
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+.star {
+    color: rgb(215, 218, 43);
+}
+
+.numberstar {
+    margin-top: 5px;
+}

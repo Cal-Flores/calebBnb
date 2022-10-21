@@ -9,7 +9,7 @@ function ReviewCard({ review }) {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    //console.log('review prop is', review);
+    console.log('review prop is', review);
     const sessionUser = useSelector((state) => state?.session?.user);
     //console.log('sessionUser is', sessionUser);
     //console.log('my review Id', review.id)
@@ -20,7 +20,7 @@ function ReviewCard({ review }) {
 
 
     useEffect(() => {
-        if (sessionUser.id === review.User.id) {
+        if (sessionUser?.id === review?.User?.id) {
             //reviewed = true;
             setOwner(true);
         }
@@ -40,10 +40,11 @@ function ReviewCard({ review }) {
     return (
         //<h1>Review card</h1>
         <>
-            <div>{review?.User?.firstName}  {review?.User?.lastName}</div>
-            <div>{review?.review}</div>
+            <div className="reviewername">{review?.User?.firstName}  {review?.User?.lastName}</div>
+            <div className="review">{review?.review}</div>
+            <div className="numberstar">{review?.stars} <span className="star">&#9733;</span> </div>
             {owner &&
-                <button onClick={deleter}>Delete Comment</button>
+                <button className="reviewdeletebtn" onClick={deleter}>Delete Comment</button>
             }
             {/* {reviewed &&
                 <button onClick={reviewer}>Leave a Review?</button>
