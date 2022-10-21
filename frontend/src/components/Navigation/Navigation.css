@@ -1,6 +1,13 @@
 .calebbnb {
     padding-left: 10px;
     margin-bottom: 50x;
+    color: black;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+}
+
+.calebbnb:hover {
+    color: #9198e5;
 }
 
 .userNav {

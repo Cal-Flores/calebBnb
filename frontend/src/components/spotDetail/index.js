@@ -34,38 +34,34 @@ function SpotDetail() {
 
     return (
 
-        <div>
 
 
-            <>
+        <>
+            <div className="detailcontainer">
                 <div className="outer">
                     <h1 className="header" >{spot?.name}</h1>
                     <span className="reviewsLink">
-                        <Link key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>
+
                     </span>
                 </div>
-                <div>
-                    {spot?.city},   {spot?.state},   {spot?.country} <span className="stars">{spot?.avgRating}</span>
+                <div className="det">
+                    <span className="stars"> &#9733; {spot?.avgRating} &#8729;</span>  <Link className="revieew" key={spotId} to={`/spots/reviews/${spotId}`}>Reviews</Link>{spot?.city},   {spot?.state},   {spot?.country}
                 </div>
-                <div>
-                    <img src={spot?.previewImage} width="700" height="350" border-radius="25px"></img>
+                <div >
+                    <img className="imgcontainer" src={spot?.previewImage} width="700" height="350" border-radius="25px"></img>
                 </div>
-                <div>Entire home hosted by {spot?.Owner?.firstName}</div>
-                <div>{spot?.adress}  {spot?.price}$</div>
+                <div className="ownername">Entire home hosted by {spot?.Owner?.firstName}</div>
+                <div className="spotprice">{spot?.price}$ <span className="pernight">night</span></div>
 
-                <div>{spot?.description}</div>
+
                 <div>
-                    <div>
-                        {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}
-                    </div>
-                    <div>
+                    <div className="linkdiv">
+                        <span className="editbtnn">{spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}</span>
                         {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
                     </div>
                 </div>
-            </>
-
-
-        </div >
+            </div >
+        </>
     )
 }
 

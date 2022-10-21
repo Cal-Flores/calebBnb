@@ -1,21 +1,90 @@
 .header {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+    float: left;
+    justify-content: left;
 }
 
-.outer {
+/* .outer {
     margin-left: 100px;
     margin-right: 100px;
     margin-top: 80px;
-}
+} */
 
 .stars {
-    float: left;
+    float: right;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+
 }
 
 .reviewsLink {
     float: right;
     transform: translateY(200%);
     color: black;
+}
+
+.detailcontainer {
+    display: flex;
+    flex-direction: column;
+    margin: 60px;
+    margin-top: 40px;
+    margin-left: 150px;
+}
+
+.imgcontainer {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+}
+
+.det {
+    display: flex;
+    flex-direction: row;
+    justify-content: safe;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+}
+
+.revieew {
+    margin-right: 10px;
+    color: black;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+}
+
+.ownername {
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.pernight {
+    color: gray;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+}
+
+.spotprice {
+    margin-bottom: 5px;
+}
+
+.linkdiv {
+    display: flex;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+    color: black;
+    margin-top: 10px;
+}
+
+.editbtnn {
+    margin-right: 10px;
+    color: black;
+}
+
+.editbtnn:hover {
+    color: brown;
 }
