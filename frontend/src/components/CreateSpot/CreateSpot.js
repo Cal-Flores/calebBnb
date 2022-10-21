@@ -48,7 +48,7 @@ function CreateSpotForm() {
         if (errors.length) return
         let spotDetail = { name, address, city, state, country, image, price, description }
         //thunk time!!
-        const newSpot = dispatch(CreateNewSpot(spotDetail))
+        dispatch(CreateNewSpot(spotDetail))
         // console.log('amies', newSpot?.id)
         setSucc(true);
         history.push('/');
