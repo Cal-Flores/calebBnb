@@ -56,7 +56,7 @@ function CreateSpotForm({ hideModal }) {
         setSucc(true);
         setSubmitted(true);
         hideModal();
-        //history.push('/');
+        history.push('/');
     }
 
 
