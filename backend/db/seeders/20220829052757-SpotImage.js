@@ -20,7 +20,22 @@ module.exports = {
           spotId: 3,
           url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-49194945/original/c49456c8-8608-446c-9f01-3843adc81945.jpeg?im_w=720',
           preview: true,
-        }
+        },
+        {
+          spotId: 4,
+          url: 'https://a0.muscache.com/im/pictures/miso/Hosting-34692739/original/3a75ba1b-e9cb-4b93-b6eb-b757bbcbfa1e.jpeg?im_w=720',
+          preview: true,
+        },
+        {
+          spotId: 5,
+          url: 'https://a0.muscache.com/im/pictures/miso/Hosting-46472449/original/0337d704-1a84-47d6-a051-e8ce121b8a70.jpeg?im_w=480',
+          preview: true,
+        },
+        {
+          spotId: 6,
+          url: 'https://a0.muscache.com/im/pictures/599f6894-3103-4cfb-bc13-6b0143f439a5.jpg?im_w=720',
+          preview: true,
+        },
       ], {});
 
   },
