@@ -67,8 +67,8 @@ function SpotDetail() {
 
                 <div>
                     <div className="linkdiv">
-                        <span className="editbtnn">{spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}</span>
-                        {spot?.Owner?.id === sessionUser?.id && <button onClick={deleterr}>Delete</button>}
+                        <span>{spot?.Owner?.id === sessionUser?.id && <Link className="editbtnn" key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}</span>
+                        {spot?.Owner?.id === sessionUser?.id && <button className="deletespotbtn" onClick={deleterr}>Delete</button>}
                     </div>
                 </div>
             </div >

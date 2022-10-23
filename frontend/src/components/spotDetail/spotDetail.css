@@ -83,8 +83,25 @@
 .editbtnn {
     margin-right: 10px;
     color: black;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
 }
 
 .editbtnn:hover {
     color: brown;
+}
+
+
+.deletespotbtn {
+    background: white;
+    border: none;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
+        sans-serif;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+.deletespotbtn:hover {
+    color: brown;
+    cursor: pointer;
 }
