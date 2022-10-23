@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
-import { getOneSpot } from "../../store/spots";
+import { Redirect, useHistory, useParams } from "react-router-dom";
+import { getAllSpots, getOneSpot } from "../../store/spots";
 import { Link } from "react-router-dom";
+import { DeleteSpot } from "../../store/spots";
 import "./spotDetail.css"
+import AllSpots from "../SplashPage";
 
 
 function SpotDetail() {
     const [isLoaded, setIsLoaded] = useState(false)
+    const [complete, setComplete] = useState(false)
     const dispatch = useDispatch();
+    const history = useHistory()
     const spotObj = useSelector((state) => state.spots)
     let { spotId } = useParams();
     const spot = spotObj[spotId];
-    console.log('this is amy', spot);
+    //console.log('this is amy', spot);
     //console.log('this is spot forver', spot)
     //console.log('this my spot id', spotId)
     //console.log('this is spotttt', spotObj)
@@ -30,6 +34,13 @@ function SpotDetail() {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
 
     }, [dispatch])
+
+    const deleterr = (e) => {
+        e.preventDefault();
+        dispatch(DeleteSpot(spotId));
+        dispatch(getAllSpots())
+        history.push('/')
+    }
 
 
     return (
@@ -57,7 +68,7 @@ function SpotDetail() {
                 <div>
                     <div className="linkdiv">
                         <span className="editbtnn">{spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}</span>
-                        {spot?.Owner?.id === sessionUser?.id && <Link key={spotId} to={`/spots/delete/${spotId}`}>Delete</Link>}
+                        {spot?.Owner?.id === sessionUser?.id && <button onClick={deleterr}>Delete</button>}
                     </div>
                 </div>
             </div >

@@ -9,13 +9,17 @@ import CreateSpotForm from './CreateSpot';
 function CreateSpotFormModal() {
     const [showModal, setShowModal] = useState(false);
 
+    const hideModal = () => {
+        setShowModal(false)
+    }
+
     return (
         <>
             <div className='becomeahost' onClick={() => setShowModal(true)}>Become a Host</div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>
-                        <CreateSpotForm />
+                        <CreateSpotForm hideModal={hideModal} />
                     </div>
                 </Modal>
             )}

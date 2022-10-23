@@ -55,7 +55,7 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
         const list = await response.json();
         dispatch(loadAll(list.spots))
-        console.log('this is list', list.spots);
+        //console.log('this is list', list.spots);
         return list.spots;
     }
 }
@@ -73,8 +73,8 @@ export const getOneSpot = (spotId) => async dispatch => {
 
 export const CreateNewSpot = spotDetails => async dispatch => {
     const { name, address, city, state, country, image, price, description } = spotDetails
-    console.log('thunk image', image)
-    console.log('im hit');
+    //console.log('thunk image', image)
+    //console.log('im hit');
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': "application/json" },
@@ -87,7 +87,7 @@ export const CreateNewSpot = spotDetails => async dispatch => {
     if (response.ok) {
         const newSpot = await response.json()
         //if preview true
-        console.log('newspotid', newSpot.id)
+        //console.log('newspotid', newSpot.id)
         if (image && newSpot) {
             const res = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',

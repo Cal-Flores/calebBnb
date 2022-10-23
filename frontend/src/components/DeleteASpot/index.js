@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { DeleteSpot } from "../../store/spots";
+import { DeleteSpot, getAllSpots } from "../../store/spots";
 import "./delete.css"
 
 function DeleteASpot() {
+    const [loaded, setLoaded] = useState(false);
     const history = useHistory()
     const dispatch = useDispatch();
     const { spotId } = useParams();
@@ -14,12 +15,11 @@ function DeleteASpot() {
     const submitter = (e) => {
         e.preventDefault();
         dispatch(DeleteSpot(spotId));
-        setDeleted(true);
+        history.push(`/`);
     }
 
     const noSub = (e) => {
         e.preventDefault()
-        history.push(`/spots/${spotId}`);
     }
     return (
         <>

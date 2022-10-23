@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import { CreateNewSpot } from "../../store/spots";
 import './index.css'
 
 
-function CreateSpotForm() {
+function CreateSpotForm({ hideModal }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const [name, setName] = useState('')
@@ -21,6 +21,7 @@ function CreateSpotForm() {
     const [errors, setErrors] = useState([])
     const [sub, setSub] = useState(false);
     const [succ, setSucc] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
 
     useEffect(() => {
@@ -41,16 +42,21 @@ function CreateSpotForm() {
 
     }, [name, address, city, state, country, price, image])
 
+    const hello = useSelector((state) => state.spots)
+
+
     const submitter = (e) => {
         e.preventDefault();
         setSub(true)
         if (errors.length) return
         let spotDetail = { name, address, city, state, country, image, price, description }
         //thunk time!!
-        dispatch(CreateNewSpot(spotDetail))
-        // console.log('amies', newSpot?.id)
+        const newSpot = dispatch(CreateNewSpot(spotDetail))
+        console.log('new spot', newSpot.id)
         setSucc(true);
-        history.push('/');
+        setSubmitted(true);
+        hideModal();
+        //history.push('/');
     }
 
 
