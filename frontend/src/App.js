@@ -11,6 +11,7 @@ import DeleteASpot from "./components/DeleteASpot";
 import ReviewSpot from "./components/ReviewsBySpot";
 import CreateReiew from "./components/createReview";
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
