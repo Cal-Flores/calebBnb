@@ -130,7 +130,7 @@ export const EditSpot = ({ formInfo, spotId }) => async dispatch => {
 export const DeleteSpot = (spotId) => async dispatch => {
     console.log('spot id to delete!', spotId);
     const response = await csrfFetch(`/api/spots/${spotId}`, {
-        method: "DELETE"
+        method: 'DELETE'
     })
     if (response.ok) {
         const deleted = await response.json();
