@@ -36,7 +36,7 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <div className="dropdown">
+            <div className="pb">
                 <button className="userNav" onClick={openMenu}>
                     <i class="fa-solid fa-circle-user"></i>
                 </button>

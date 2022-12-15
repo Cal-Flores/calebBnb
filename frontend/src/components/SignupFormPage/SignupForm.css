@@ -1,7 +1,7 @@
 .signbtn {
 
     border: none;
-    background: linear-gradient(0.25turn, #e66465, #9198e5);
+    background: rgb(255, 111, 135);
     padding: .5rem;
     margin: 1rem 0;
     width: auto;
@@ -14,12 +14,12 @@
 }
 
 .signbtn:hover {
-    background: linear-gradient(0.25turn, #fea931, #dc0707);
+    background: rgb(251, 66, 97);
 }
 
 .specbtn {
     border: none;
-    background: linear-gradient(0.25turn, #e66465, #9198e5);
+    background: rgb(255, 111, 135);
     padding: .5rem;
     margin: 1rem 0;
     width: auto;

@@ -1,42 +1,36 @@
 .calebbnb {
-    padding-left: 10px;
-    margin-bottom: 50x;
-    color: black;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
         sans-serif;
+    font-size: 20px;
+    display: flex;
+    font-weight: bold;
 }
 
-.calebbnb:hover {
-    color: #9198e5;
-}
 
 .userNav {
     font-size: 26px;
     border: none;
     outline: none;
-    background-color: inherit;
-    font-family: inherit;
-    padding-left: 10px;
-    padding-top: 10px;
-    float: right;
-    color: linear-gradient(0.25turn, #e66465, #9198e5);
+    /* color: linear-gradient(0.25turn, #e66465, #9198e5); */
+    cursor: pointer;
+    background-color: white;
+    border-radius: 30px;
+}
+
+.userNav:hover {
+    box-shadow: 0px 5px 5px rgb(162, 161, 161);
 }
 
 .dropdwn {
-    float: right;
-    overflow: hidden;
-    margin-right: 50px;
-    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
 }
 
-.dropdown {
-    float: right;
-    overflow: hidden;
-    margin-right: 50px;
 
-}
-
-.profile-dropdown {
+/* .profile-dropdown {
     background-color: #f9f9f9;
     box-shadow: 0px 0px 0px 4px linear-gradient(0.25turn, #e66465, #9198e5);
     padding-right: 20px;
@@ -44,16 +38,70 @@
     height: 80px;
     font-size: small;
     padding-top: 10px;
-}
+} */
 
 .textdiv {
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
 }
 
 .logoutBtn {
     color: white;
-    background: linear-gradient(0.25turn, #e66465, #9198e5);
+    background: rgb(255, 111, 135);
     border: none;
     width: 90px;
-    transform: translateY(100%);
+}
+
+.logo {
+    font-size: 40px;
+    margin-right: 5%;
+}
+
+.navcont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    border-bottom: 1px solid gray;
+    align-items: center;
+}
+
+.navwrapper {
+    display: flex;
+    flex-direction: row;
+    margin-left: 4%;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(255, 111, 135);
+}
+
+.seslinks {
+    /* margin-left: 85%; */
+    margin-right: 4%;
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+}
+
+.becomehost {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-weight: 500;
+    font-size: small; */
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    padding: 3%;
+}
+
+.becomehost:hover {
+    background-color: rgba(237, 235, 235, 0.792);
+    border-radius: 30px;
+}
+
+.pb {
+    margin-left: 5%;
+    cursor: pointer;
 }

@@ -15,8 +15,12 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <div className='dropdwn'>
-                <ProfileButton user={sessionUser} />
-                <CreateSpotFormModal />
+                <button className='becomehost'>
+                    <CreateSpotFormModal />
+                </button>
+                <div className='pb'>
+                    <ProfileButton user={sessionUser} />
+                </div>
             </div>
         );
     } else {
@@ -29,13 +33,21 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
-            <li>
-                <i class="fa-solid fa-city"></i>
-                <NavLink className="calebbnb" exact to="/">CalebBnB</NavLink>
+        <div className='navcont'>
+
+            <NavLink className='navwrapper' exact to="/">
+                <div className='logo'>
+                    <i class="fa-brands fa-airbnb"></i>
+                </div>
+                <div className="calebbnb" >
+                    <div>CalebBnB</div>
+                </div>
+            </NavLink>
+
+            <div className='seslinks'>
                 {isLoaded && sessionLinks}
-            </li>
-        </ul>
+            </div>
+        </div>
     );
 }
 
