@@ -22,6 +22,15 @@ function SpotDetail() {
     const spot = spotObj[spotId];
     const sessionUser = useSelector((state) => state.session.user);
 
+    let reviwed = true;
+    if (sessionUser) {
+        reviewsArr?.map(review => {
+            if (sessionUser.id === review.userId) {
+                reviwed = false
+            }
+        })
+    }
+
 
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
@@ -33,6 +42,11 @@ function SpotDetail() {
         dispatch(DeleteSpot(spotId));
         dispatch(getAllSpots())
         history.push('/')
+    }
+
+    const reviewer = (e) => {
+        e.preventDefault();
+        history.push(`/spots/${spotId}/create-review`)
     }
 
 
@@ -88,6 +102,13 @@ function SpotDetail() {
                 </div>
                 <div className="spotdes">
                     <div>{spot?.description}</div>
+                </div>
+                <div>
+                    {reviwed &&
+                        <button onClick={reviewer}>
+                            Leave a Review?
+                        </button>
+                    }
                 </div>
                 <div className="reviewscont">
                     <h2>{reviewsArr.length} Reviews {spot?.avgRating} &#9733;</h2>

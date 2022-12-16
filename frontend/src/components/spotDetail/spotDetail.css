@@ -31,6 +31,7 @@
     margin: 60px;
     margin-top: 40px;
     margin-left: 150px;
+    width: 45%;
 }
 
 .imgcontainer {
@@ -107,4 +108,12 @@
 .deletespotbtn:hover {
     color: brown;
     cursor: pointer;
+}
+
+.acover {
+    width: 100%;
+}
+
+.aircover {
+    width: 100%;
 }
