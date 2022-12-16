@@ -1,53 +1,24 @@
+.lfcont {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* width: 100%; */
+    background: linear-gradient(rgb(251, 176, 189), #fbfcff);
+}
+
 .login-form {
-    border: 1px solid black;
     margin: 20px 0;
-    padding: 20px;
+    padding: 50px;
     border-radius: 5px;
     width: 500px;
-    height: 200px;
 }
 
-/* .form-label {
-    display: block;
-    height: 1.5rem;
-    border: 1px solid #666;
-    border-radius: 2px;
-    margin: 5px 0;
-    font-size: 1rem;
-    padding: 2px 5px;
-}
-
-.loginbtn {
-    float: right;
-    margin-right: 50px;
-} */
-
-.logbtn {
-    border: none;
-    background: rgb(255, 111, 135);
-    padding: .5rem;
-    margin: 1rem 0;
-    width: auto;
-    color: azure;
-    cursor: pointer;
-}
-
-.logbtn:hover {
-    background: rgb(251, 66, 97);
-}
-
-.demobtn {
-    border: none;
-    background: rgb(255, 111, 135);
-    padding: .5rem;
-    margin: 15px;
-    width: auto;
-    color: azure;
-    cursor: pointer;
-}
-
-.demobtn:hover {
-    background: rgb(251, 66, 97);
+.lfinput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30px;
 }
 
 .loginbtn {

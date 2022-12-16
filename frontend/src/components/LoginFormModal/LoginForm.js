@@ -34,37 +34,40 @@ function LoginForm() {
     }
 
     return (
-        <form
-            className="login-form"
-            onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label className="form-label">
-                Username or Email
-                <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    placeholder='Username or Email'
-                    required
-                />
-            </label>
-            <label className="form-label">
-                Password
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Password'
-                    required
-                />
-            </label>
-            <button className="logbtn" type="submit">Log In</button>
-            <button className="demobtn" onClick={demoHandler}> Demo User</button>
-        </form>
+        <div className="lfcont" >
+            <form
+                className="login-form"
+                onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
+                <label className="form-label">
+
+                    <input
+                        className="lfinput"
+                        type="text"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        placeholder='Username or Email'
+                        required
+                    />
+                </label>
+                <label className="form-label">
+                    <input
+                        className="lfinput"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Password'
+                        required
+                    />
+                </label>
+                <button className="navlogbtn" type="submit">Log In</button>
+                <button className="navdemobtn" onClick={demoHandler}> Demo User</button>
+            </form>
+        </div>
     );
 }
 

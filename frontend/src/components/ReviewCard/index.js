@@ -38,7 +38,6 @@ function ReviewCard({ review }) {
     // }
 
     return (
-        //<h1>Review card</h1>
         <>
             <div className="reviewername">{review?.User?.firstName}  {review?.User?.lastName}</div>
             <div className="review">{review?.review}</div>

@@ -61,122 +61,123 @@ function CreateSpotForm({ hideModal }) {
 
 
     return (
-        <>
+        <div className="spotformcont">
             <h1 className="spotheader">CalebBnB's New Home</h1>
             {succ && <div>Thank you, Your New Spot Is Successfully Created!</div>}
-            <form
-                className="spotFrom"
-                onSubmit={submitter}>
-                <ul className="err">
-                    {sub && (
-                        errors.map(error => (
-                            <li key={error}>{error}</li>
-                        ))
-                    )}
-                </ul>
-                <label>
-                    Name
-                    <input
-                        type='text'
-                        name="name"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Address
-                    <input
-                        type='text'
-                        name="address"
-                        required
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                </label>
-                <label>
-                    City
-                    <input
-                        type='text'
-                        name="city"
-                        required
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                    />
-                </label>
-                <label>
-                    State
-                    <input
-                        type='text'
-                        name="state"
-                        required
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Country
-                    <input
-                        type='text'
-                        name="country"
-                        required
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                    />
-                </label>
-                {/* <label>
-                Latitude
-                <input
-                    type='number'
-                    name="latitude"
-                    required
-                    value={lat}
-                    onChange={(e) => setLat(e.target.value)}
-                />
-            </label>
-            <label>
-                Longitude
-                <input
-                    type='number'
-                    name="longitude"
-                    required
-                    value={lng}
-                    onChange={(e) => setLng(e.target.value)}
-                />
-            </label> */}
-                <label>
-                    Preview Image
-                    <input
-                        type='text'
-                        name="image"
-                        required
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Price
-                    <input
-                        type='number'
-                        name="price"
-                        required
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Description
-                    <input
-                        type='text'
-                        name="description"
-                        required
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </label>
-                <button className="subBtn" type='submit'>SUBMIT</button>
-            </form>
-        </>
+            <div className="cscont">
+
+
+
+                <form
+                    className="spotFrom"
+                    onSubmit={submitter}>
+                    <ul className="err">
+                        {sub && (
+                            errors.map(error => (
+                                <li key={error}>{error}</li>
+                            ))
+                        )}
+                    </ul>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="Name"
+                            type='text'
+                            name="name"
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="Address"
+                            type='text'
+                            name="address"
+                            required
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="City"
+                            type='text'
+                            name="city"
+                            required
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="State"
+                            type='text'
+                            name="state"
+                            required
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder=" Country"
+                            type='text'
+                            name="country"
+                            required
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="Preview Image"
+                            type='text'
+                            name="image"
+                            required
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <input
+                            className="csinput"
+                            placeholder=" Description"
+                            type='textarea'
+                            name="description"
+                            required
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </label>
+                    <label >
+                        <span className="pricecs">Price</span>
+                        <input
+                            className="csinput"
+                            placeholder="Price"
+                            type='number'
+                            name="price"
+                            required
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </label>
+
+                    <button className="subBtn" type='submit'>SUBMIT</button>
+                </form>
+            </div>
+        </div>
     )
 }
 

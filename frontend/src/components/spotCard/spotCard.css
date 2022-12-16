@@ -1,59 +1,110 @@
-.imageCard {
-    padding-top: 15px;
-    display: inline-block;
-    width: 300px;
-    margin-right: 30px;
-    margin-left: 30px;
-    padding-bottom: 5px;
-    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
-        sans-serif;
-    font-size: small;
-    border-radius: 25px;
+.splashwrapper {
+    display: flex;
+    flex-direction: row;
 }
 
-/* .imageCard>* {
-    flex: 1 1 100%;
-} */
-
-.no-link {
-    pointer-events: none;
-    cursor: text;
+.spotcard {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20%;
+    cursor: pointer;
     text-decoration: none;
     color: black;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
-.location {
+.spotimg {
+    height: 250px;
+    width: 300px;
+    border-radius: 10%;
+}
+
+.infowrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.spotloc {
+    display: flex;
+    flex-direction: row;
     font-weight: bold;
-    display: block;
-    padding-bottom: 10px;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
-.night {
+.spotrate {
+    display: flex;
+    flex-direction: row;
+    margin-right: 0;
+}
+
+.spotprice {
+    font-weight: bold;
+    padding-bottom: 2%;
+}
+
+.price {
+    margin-top: 2%;
+}
+
+.spotname {
     color: gray;
 }
 
-
-.image {
-    border-radius: 50%;
-    height: 200px;
-    width: 300px;
+.hostedcont {
+    border-bottom: 1px solid rgb(155, 152, 152);
+    margin-bottom: 2%;
 }
 
-.nameLink {
+.ownerstats {
+    margin-bottom: 2%;
+    border-bottom: 1px solid gray;
+}
+
+.owneraward {
+    font-size: 20px;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
+.words {
+    margin-left: 4%;
+}
+
+.deta {
+    color: gray;
+    font-size: 16px;
+}
+
+.elo {
+    margin-bottom: 2%;
+}
+
+.acover {
+    border-bottom: 1px solid gray;
+    padding-bottom: 2%;
+}
+
+.aircover {
+    width: 40%;
+}
+
+.airc {
+    font-size: 30px;
+    color: rgb(255, 111, 135);
+    margin-bottom: 1%;
+}
+
+.blackcover {
     color: black;
-    text-align: left;
-    margin-top: 10px;
 }
 
-.loc {
-    text-align: left;
-}
-
-
-.stars {
-    justify-content: flex-end;
-}
-
-.img {
-    border-radius: 25px;
+.spotdes {
+    margin-top: 2%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid gray;
 }

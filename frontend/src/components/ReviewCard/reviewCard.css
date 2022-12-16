@@ -31,3 +31,34 @@
 .numberstar {
     margin-top: 5px;
 }
+
+.reviewscont {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    /* width: 100%; */
+}
+
+.reviewswrapper {
+    padding: 2%;
+    /* border: 1px solid gray; */
+    width: 50%;
+}
+
+.revimg {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 4%;
+}
+
+.namestars {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+}
+
+.revsrs {
+    color: grey;
+}

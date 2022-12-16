@@ -10,6 +10,7 @@ import EditSpotForm from "./components/EditASpot";
 import DeleteASpot from "./components/DeleteASpot";
 import ReviewSpot from "./components/ReviewsBySpot";
 import CreateReiew from "./components/createReview";
+import './index.css'
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="sitewide">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -44,7 +45,7 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+    </div>
   );
 }
 

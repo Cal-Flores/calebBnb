@@ -90,7 +90,7 @@ function ReviewSpot() {
 }
 // {reviews.map(review => (
 //     review.userId !== sessionUser.id &&
-//     <button>Leave a Review?</button>
+//     <button>a Review?</button>
 // ))}
 
 export default ReviewSpot;

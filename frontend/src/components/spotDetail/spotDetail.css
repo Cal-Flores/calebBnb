@@ -79,7 +79,8 @@
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue",
         sans-serif;
     color: black;
-    margin-top: 10px;
+    flex-direction: row;
+    align-items: center;
 }
 
 .editbtnn {
