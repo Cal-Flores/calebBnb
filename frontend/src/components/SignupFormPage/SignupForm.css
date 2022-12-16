@@ -1,38 +1,59 @@
-.signbtn {
-
-    border: none;
-    background: rgb(255, 111, 135);
-    padding: .5rem;
-    margin: 1rem 0;
-    width: auto;
-    color: azure;
-    cursor: pointer;
-    border-radius: 25px;
-    float: right;
-    width: 75px;
-    margin: 5px;
-}
-
-.signbtn:hover {
-    background: rgb(251, 66, 97);
-}
-
-.specbtn {
-    border: none;
-    background: rgb(255, 111, 135);
-    padding: .5rem;
-    margin: 1rem 0;
-    width: auto;
-    color: azure;
-    cursor: pointer;
-    width: 75px;
-    margin-top: 15px;
+.sucont {
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* width: 100%; */
+    background: linear-gradient(rgb(251, 176, 189), #fbfcff);
 }
 
 .signupmodal {
-    border: 1px solid black;
-    margin: 20px 0;
-    padding: 20px;
     border-radius: 5px;
     width: 500px;
+}
+
+.suinput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30px;
+}
+
+.speccbtn {
+    border: none;
+    background: rgb(255, 111, 135);
+    padding: .5rem;
+    margin: 1rem 0;
+    width: auto;
+    color: azure;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 4%;
+}
+
+.speccbtn:hover {
+    background: rgb(251, 66, 97);
+}
+
+.suheader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(254, 64, 96);
+}
+
+.signupbtn {
+    border: none;
+    background: rgb(255, 111, 135);
+    padding: .5rem;
+    margin: 1rem 0;
+    color: azure;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 4%;
+    width: 75px;
+}
+
+.signupbtn:hover {
+    background: rgb(251, 66, 97);
 }

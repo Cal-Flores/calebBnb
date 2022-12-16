@@ -1,5 +1,5 @@
 .lfcont {
-    padding: 10px;
+    padding: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -7,9 +7,15 @@
     background: linear-gradient(rgb(251, 176, 189), #fbfcff);
 }
 
+.lfheader {
+    color: rgb(245, 69, 99);
+    display: flex;
+    justify-content: center;
+}
+
 .login-form {
-    margin: 20px 0;
-    padding: 50px;
+    /* margin: 20px 0; */
+    /* padding: 50px; */
     border-radius: 5px;
     width: 500px;
 }
@@ -26,15 +32,29 @@
     background: rgb(255, 111, 135);
     padding: .5rem;
     margin: 1rem 0;
-    width: auto;
     color: azure;
     cursor: pointer;
-    border-radius: 25px;
-    float: right;
+    border-radius: 20px;
+    margin-right: 4%;
     width: 75px;
-    margin: 5px;
 }
 
 .loginbtn:hover {
     background: rgb(251, 66, 97);
+}
+
+.demobtn {
+    border: none;
+    background: rgb(255, 111, 135);
+    padding: .5rem;
+    margin: 1rem 0;
+    width: auto;
+    color: azure;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 4%;
+}
+
+.errlog {
+    color: red;
 }

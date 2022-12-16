@@ -21,6 +21,7 @@ function LoginForm() {
             async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
+                console.log('errors,', errors)
             }
         );
     };
@@ -35,12 +36,13 @@ function LoginForm() {
 
     return (
         <div className="lfcont" >
+            <h2 className="lfheader">Welcome Back!  <i class="fa-brands fa-airbnb"></i></h2>
             <form
                 className="login-form"
                 onSubmit={handleSubmit}>
-                <ul>
+                <ul className="errlog">
                     {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
+                        <li className="errlog" key={idx}>{error}</li>
                     ))}
                 </ul>
                 <label className="form-label">
@@ -64,8 +66,8 @@ function LoginForm() {
                         required
                     />
                 </label>
-                <button className="navlogbtn" type="submit">Log In</button>
-                <button className="navdemobtn" onClick={demoHandler}> Demo User</button>
+                <button className="demobtn" type="submit">Log In</button>
+                <button className="demobtn" onClick={demoHandler}> Demo User</button>
             </form>
         </div>
     );
