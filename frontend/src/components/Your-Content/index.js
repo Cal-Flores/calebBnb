@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { getUserReviews } from "../../store/reviews";
-import { getUserSpots } from "../../store/spots";
+import { DeleteSpot, getUserSpots } from "../../store/spots";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import './index.css'
@@ -19,7 +19,11 @@ function MyProfile() {
     useEffect(() => {
         dispatch(getUserSpots())
         dispatch(getUserReviews())
-    }, dispatch)
+    }, [dispatch])
+
+    const deleter = (spotId) => {
+        dispatch(DeleteSpot(spotId)).then(() => dispatch(getUserSpots()))
+    }
     return (
         <div className="statscont">
             <div className="spotdiv">
@@ -33,6 +37,10 @@ function MyProfile() {
                         <div>{spot?.name}</div>
                         <div>${spot?.price} night</div>
                         <div>{spot?.city}, {spot?.state}</div>
+                        <div>
+                            <Link key={spot?.id} to={`/spots/edit/${spot?.id}`}>Edit</Link>
+                            <div onClick={(e) => { deleter(spot?.id) }}>Delete</div>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -40,14 +48,16 @@ function MyProfile() {
                 <h2>Reviews</h2>
                 {reviewsArr.map(review => (
                     <div>
+                        <div>
+                            <Link key={'no'} to={`/spots/${review?.Spot?.id}`}>{review?.Spot?.name}</Link>
+                        </div>
                         <div>{review?.review}</div>
-                        <div>{review?.Spot?.name}</div>
                         <div>{review?.stars}</div>
                     </div>
                 ))}
             </div>
 
-        </div>
+        </div >
     )
 }
 
