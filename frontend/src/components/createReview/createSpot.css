@@ -42,3 +42,7 @@
     border-radius: 20px;
     width: 20%;
 }
+
+.sendBtn:hover {
+    background: rgb(255, 68, 99);
+}

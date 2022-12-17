@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 //CRUD TYPES
 const LOAD_ALL_REVIEWS = 'reviews/all-reviews';
+const LOAD_USER_REVIEWS = 'reviews/userreviews'
 const CREATE_REVIEW = 'reviews/post'
 const DELETE_REVIEW = 'reviews/delete'
 
@@ -10,6 +11,12 @@ const DELETE_REVIEW = 'reviews/delete'
 const loadAll = reviews => {
     return {
         type: LOAD_ALL_REVIEWS,
+        reviews
+    }
+}
+const loadUser = reviews => {
+    return {
+        type: LOAD_USER_REVIEWS,
         reviews
     }
 }
@@ -31,7 +38,6 @@ const deleteReview = deleted => {
 // Thunk AC
 
 export const getAllSpotReviews = (spotId) => async dispatch => {
-    console.log('proof');
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
 
     if (response.ok) {
@@ -39,6 +45,16 @@ export const getAllSpotReviews = (spotId) => async dispatch => {
         console.log('get all reviews tthunk', reviews.Reviews);
         dispatch(loadAll(reviews.Reviews));
         return reviews.Reviews;
+    }
+}
+
+export const getUserReviews = () => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/current`)
+
+    if (response.ok) {
+        const reviews = await response.json();
+        dispatch(loadUser(reviews.Reviews));
+        return reviews.Reviews
     }
 }
 
@@ -81,12 +97,17 @@ const reviewsReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
         case LOAD_ALL_REVIEWS: {
-            console.log('review reducer reviews', action.reviews)
             action.reviews.forEach((review) => {
                 newState[review.id] = review;
                 console.log('new state revieves', newState);
             })
             return newState;
+        }
+        case LOAD_USER_REVIEWS: {
+            action.reviews.forEach((review) => {
+                newState[review.id] = review;
+            })
+            return newState
         }
         case CREATE_REVIEW: {
             const newState = { ...state }

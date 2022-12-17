@@ -10,6 +10,7 @@ import EditSpotForm from "./components/EditASpot";
 import DeleteASpot from "./components/DeleteASpot";
 import ReviewSpot from "./components/ReviewsBySpot";
 import CreateReiew from "./components/createReview";
+import MyProfile from "./components/Your-Content";
 import './index.css'
 
 
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path='/spots/:spotId/create-review'>
             <CreateReiew />
+          </Route>
+          <Route exact path='/my-profile'>
+            < MyProfile />
           </Route>
         </Switch>
       )}

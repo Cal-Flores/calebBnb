@@ -49,6 +49,7 @@
     background: rgb(255, 111, 135);
     border: none;
     width: 90px;
+    cursor: pointer;
 }
 
 .logo {
