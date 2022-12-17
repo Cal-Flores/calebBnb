@@ -117,3 +117,17 @@
 .aircover {
     width: 100%;
 }
+
+.lrbtn {
+    color: white;
+    background: rgb(255, 111, 135);
+    border: none;
+    width: 100px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+.lrbtn:hover {
+    background-color: rgb(255, 66, 98);
+}

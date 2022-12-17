@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview, getAllSpotReviews } from "../../store/reviews";
 import "./createSpot.css"
+import "../EditASpot/index.css"
 
 
 
@@ -36,7 +37,7 @@ function CreateReiew() {
     }
 
     return (
-        <div className="crcont">
+        <div className="escont">
             <div className="crwrapper">
                 <h1 className="reviewwheader"> Create Review</h1>
                 <form className="outer-form">
@@ -49,6 +50,7 @@ function CreateReiew() {
                     </ul>
                     <label>
                         <input
+                            className="crinput"
                             type='textArea'
                             placeholder='Review'
                             required
@@ -58,6 +60,7 @@ function CreateReiew() {
                     </label>
                     <label>
                         <input
+                            className="crinput"
                             type='number'
                             placeholder='Stars'
                             required

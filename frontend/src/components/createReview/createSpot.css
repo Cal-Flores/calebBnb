@@ -1,3 +1,44 @@
 .errors {
     color: red;
+    margin-bottom: 6%;
+}
+
+.reviewwheader {
+    color: rgb(255, 111, 135);
+    margin-left: 28%;
+}
+
+
+.crwrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: 1px solid gray;
+    background-color: white;
+    margin-top: 5%;
+}
+
+.outer-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20%;
+}
+
+.crinput {
+    width: 70%;
+    height: 30px;
+}
+
+.sendBtn {
+    border: none;
+    background: rgb(255, 111, 135);
+    padding: .5rem;
+    margin: 1rem 0;
+    color: azure;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 20%;
 }

@@ -105,7 +105,7 @@ function SpotDetail() {
                 </div>
                 <div>
                     {reviwed &&
-                        <button onClick={reviewer}>
+                        <button className="lrbtn" onClick={reviewer}>
                             Leave a Review?
                         </button>
                     }
