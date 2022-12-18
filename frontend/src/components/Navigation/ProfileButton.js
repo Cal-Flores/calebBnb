@@ -36,16 +36,14 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <div className="pb">
-                <button className="userNav" onClick={openMenu}>
-                    <div className="bars">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
-                    <div className="usercircle">
-                        <i class="fa-solid fa-circle-user"></i>
-                    </div>
-                </button>
-            </div>
+            <button className="userNav" onClick={openMenu}>
+                <div className="bars">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div className="usercircle">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+            </button>
             {
                 showMenu && (
                     <>

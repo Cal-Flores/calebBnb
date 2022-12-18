@@ -6,19 +6,22 @@ import { DeleteSpot, getUserSpots } from "../../store/spots";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import './index.css'
+import { getUserBookings } from "../../store/bookings";
 
 function MyProfile() {
     const history = useHistory()
     const dispatch = useDispatch()
     const userSpots = useSelector((state) => state.spots)
     const userReviews = useSelector((state) => state.reviews)
+    const userBookings = useSelector((state) => state.bookings)
     const reviewsArr = Object.values(userReviews)
-    console.log('kami wa', reviewsArr)
     const spotsArr = Object.values(userSpots)
-
+    const bookingsArr = Object.values(userBookings)
+    console.log('this is my selector booinks', bookingsArr)
     useEffect(() => {
         dispatch(getUserSpots())
         dispatch(getUserReviews())
+        dispatch(getUserBookings())
     }, [dispatch])
 
     const deleter = (spotId) => {
@@ -64,6 +67,14 @@ function MyProfile() {
                                 Delete
                             </div>
                         </div>
+                    </div>
+                ))}
+            </div>
+            <div className="bookingdiv">
+                <h2>Bookings</h2>
+                {bookingsArr.map(book => (
+                    <div>
+                        <div>{book.Spot.name}</div>
                     </div>
                 ))}
             </div>

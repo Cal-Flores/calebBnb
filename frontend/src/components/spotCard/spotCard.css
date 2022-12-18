@@ -55,13 +55,13 @@
 }
 
 .hostedcont {
-    border-bottom: 1px solid rgb(155, 152, 152);
+    border-bottom: 1px solid rgb(219, 216, 216);
     margin-bottom: 2%;
 }
 
 .ownerstats {
     margin-bottom: 2%;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(219, 216, 216);
 }
 
 .owneraward {
@@ -85,7 +85,7 @@
 }
 
 .acover {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(219, 216, 216);
     padding-bottom: 2%;
 }
 
@@ -106,5 +106,5 @@
 .spotdes {
     margin-top: 2%;
     padding-bottom: 2%;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(219, 216, 216);
 }

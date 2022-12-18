@@ -49,6 +49,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         booking = booking.toJSON();
         result.push(booking);
     }
+    console.log('resultz', result)
     res.json({ Bookings: result });
 });
 
