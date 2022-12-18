@@ -35,17 +35,17 @@ function MyProfile() {
             <div className="spotdiv">
                 <h2>Spots</h2>
                 {spotsArr.map(spot => (
-                    <div>
+                    <div className="spotwrap">
                         {/* <Link className="spotcard" key={spot.id} to={`/spots/${spot.id}`}> */}
                         <Link key={spot.id} to={`/spots/${spot.id}`}>
-                            <img src={spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }} width="200px" height="200px" border-radius="25px"></img>
+                            <img className="profileimage" src={spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                         </Link>
                         <div>{spot?.name}</div>
                         <div>${spot?.price} night</div>
                         <div>{spot?.city}, {spot?.state}</div>
                         <div>
-                            <Link key={spot?.id} to={`/spots/edit/${spot?.id}`}>Edit</Link>
-                            <div onClick={(e) => { deleter(spot?.id) }}>Delete</div>
+                            <Link key={spot?.id} to={`/spots/edit/${spot?.id}`}><i class="fa-regular fa-pen-to-square"></i></Link>
+                            <div onClick={(e) => { deleter(spot?.id) }}><i class="fa-regular fa-trash-can"></i></div>
                         </div>
                     </div>
                 ))}
@@ -53,18 +53,18 @@ function MyProfile() {
             <div className="reviewdiv">
                 <h2>Reviews</h2>
                 {reviewsArr.map(review => (
-                    <div>
+                    <div className="spotwrap">
                         <div>
                             <Link key={'no'} to={`/spots/${review?.Spot?.id}`}>{review?.Spot?.name}</Link>
                         </div>
                         <div>{review?.review}</div>
-                        <div>{review?.stars}</div>
+                        <div>{review?.stars} &#9733;</div>
                         <div>
                             <Link key={'to review'} to={`/reviews/edit/${review?.id}`}>
-                                Edit
+                                <i class="fa-regular fa-pen-to-square"></i>
                             </Link>
                             <div onClick={(e) => { revDel(review?.id) }}>
-                                Delete
+                                <i class="fa-regular fa-trash-can"></i>
                             </div>
                         </div>
                     </div>
@@ -72,13 +72,18 @@ function MyProfile() {
             </div>
             <div className="bookingdiv">
                 <h2>Bookings</h2>
-                {bookingsArr.map(book => (
-                    <div>
-                        <div>{book?.Spot?.name}</div>
-                        <div>Check-in Date: {book?.startDate}</div>
-                        <div>Checkout Date: {book?.endDate}</div>
-                    </div>
-                ))}
+                <div className="spotwrap">
+                    {bookingsArr.map(book => (
+                        <div>
+                            <div>{book?.Spot?.name}</div>
+                            <div>{book?.Spot?.city}, {book?.Spot?.state}</div>
+                            <div>Check-in Date: {book?.startDate}</div>
+                            <div>Checkout Date: {book?.endDate}</div>
+                            <div><i class="fa-regular fa-trash-can"></i></div>
+                            <div><i class="fa-regular fa-pen-to-square"></i></div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
         </div >

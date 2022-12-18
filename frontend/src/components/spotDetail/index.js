@@ -34,8 +34,8 @@ function SpotDetail() {
         })
     }
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    let [startDate, setStartDate] = useState(new Date());
+    let [endDate, setEndDate] = useState(new Date());
 
 
 
@@ -58,6 +58,8 @@ function SpotDetail() {
 
     const newBook = async (e) => {
         e.preventDefault()
+        startDate = startDate.toISOString().split('T')[0];
+        endDate = endDate.toISOString().split('T')[0];
         let payload = { startDate, endDate, spotId }
         await dispatch(postNewBooking(payload))
         history.push(`/my-profile`)
@@ -78,8 +80,8 @@ function SpotDetail() {
             </div>
             <div>
                 <div className="linkdiv">
-                    <span>{spot?.Owner?.id === sessionUser?.id && <Link className="editbtnn" key={spotId} to={`/spots/edit/${spotId}`}>Edit</Link>}</span>
-                    {spot?.Owner?.id === sessionUser?.id && <button className="deletespotbtn" onClick={deleterr}>Delete</button>}
+                    <span>{spot?.Owner?.id === sessionUser?.id && <Link className="editbtnn" key={spotId} to={`/spots/edit/${spotId}`}><i class="fa-regular fa-pen-to-square"></i></Link>}</span>
+                    {spot?.Owner?.id === sessionUser?.id && <button className="deletespotbtn" onClick={deleterr}><i class="fa-regular fa-trash-can"></i></button>}
                 </div>
             </div>
             <div >
