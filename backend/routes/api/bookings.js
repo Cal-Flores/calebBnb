@@ -43,6 +43,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
     //         bookings.spotId.datavalues.previewImage = previewImage.datavalues
     //     }
     // }
+    console.log('resulrz', bookings)
 
     const result = [];
     for (let booking of bookings) {

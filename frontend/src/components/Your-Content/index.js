@@ -75,6 +75,8 @@ function MyProfile() {
                 {bookingsArr.map(book => (
                     <div>
                         <div>{book.Spot.name}</div>
+                        <div>Check-in Date: {book.startDate}</div>
+                        <div>Checkout Date: {book.endDate}</div>
                     </div>
                 ))}
             </div>
