@@ -1,11 +1,19 @@
 import { csrfFetch } from "./csrf"
 
 const LOAD_USER_BOOK = '/bookings/user-bookings'
+const POST_BOOKING = '/bookings/post'
 
 const loadUser = bookings => {
     return {
         type: LOAD_USER_BOOK,
         bookings
+    }
+}
+
+const postBook = newBooking => {
+    return {
+        type: POST_BOOKING,
+        newBooking
     }
 }
 
@@ -20,6 +28,20 @@ export const getUserBookings = () => async dispatch => {
     }
 }
 
+export const postNewBooking = ({ startDate, endDate, spotId }) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ startDate, endDate })
+    })
+
+    if (response.ok) {
+        const newBooking = await response.json();
+        dispatch(postBook(newBooking))
+        return newBooking
+    }
+}
+
 
 const initialState = {};
 
@@ -30,6 +52,11 @@ const bookingsReducer = (state = initialState, action) => {
             action.bookings.forEach((book) => {
                 newState[book.id] = book
             })
+            return newState
+        }
+        case POST_BOOKING: {
+            const newState = { ...state }
+            newState[action.newBooking.id] = action.newBooking;
             return newState
         }
         default:

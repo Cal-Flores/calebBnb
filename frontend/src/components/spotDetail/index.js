@@ -7,6 +7,9 @@ import { DeleteSpot } from "../../store/spots";
 import "./spotDetail.css"
 import AllSpots from "../SplashPage";
 import { getAllSpotReviews } from "../../store/reviews";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { postNewBooking } from "../../store/bookings";
 
 
 function SpotDetail() {
@@ -31,6 +34,10 @@ function SpotDetail() {
         })
     }
 
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+
 
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
@@ -47,6 +54,13 @@ function SpotDetail() {
     const reviewer = (e) => {
         e.preventDefault();
         history.push(`/spots/${spotId}/create-review`)
+    }
+
+    const newBook = async (e) => {
+        e.preventDefault()
+        let payload = { startDate, endDate, spotId }
+        await dispatch(postNewBooking(payload))
+        history.push(`/my-profile`)
     }
 
 
@@ -108,22 +122,19 @@ function SpotDetail() {
                 </div>
                 <div className="bookingcont">
                     <div>
-                        {spot?.price} night
+                        {spot?.price}$ night
                     </div>
                     <form>
-                        <label>
-                            <input
-                                type='text'
-                                placeholder="check-in"
-                            />
-                        </label>
-                        <label>
-                            <input
-                                type='text'
-                                placeholder="checkout"
-                            />
-                        </label>
-                        <button>
+                        <div>
+                            <div>Check-in Date</div>
+                            <DatePicker selected={startDate} onChange={(date = Date) => setStartDate(date)} />
+                        </div>
+                        <div>
+                            <div>Checkout Date</div>
+                            <DatePicker selected={endDate} onChange={(date = Date) => setEndDate(date)} />
+                        </div>
+
+                        <button onClick={newBook}>
                             Reserve
                         </button>
                     </form>

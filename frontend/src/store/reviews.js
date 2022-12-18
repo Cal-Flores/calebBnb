@@ -59,10 +59,6 @@ export const getUserReviews = () => async dispatch => {
 }
 
 export const createReview = ({ review, stars, spotId }) => async dispatch => {
-    console.log('me thunk is hit', review);
-    console.log('me stars', stars);
-    console.log('me spot id', spotId);
-    console.log('in body', { review, stars });
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

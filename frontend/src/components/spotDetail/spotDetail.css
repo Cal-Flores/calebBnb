@@ -144,6 +144,7 @@
     width: 22%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     padding: 5%;
 }
 
