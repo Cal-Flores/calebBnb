@@ -12,6 +12,7 @@ import ReviewSpot from "./components/ReviewsBySpot";
 import CreateReiew from "./components/createReview";
 import MyProfile from "./components/Your-Content";
 import './index.css'
+import Editreview from "./components/EditAReview";
 
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route exact path='/my-profile'>
             < MyProfile />
+          </Route>
+          <Route exact path='/reviews/edit/:reviewId'>
+            <Editreview />
           </Route>
         </Switch>
       )}

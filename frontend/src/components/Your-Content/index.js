@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { getUserReviews } from "../../store/reviews";
+import { DeleteReview, getUserReviews } from "../../store/reviews";
 import { DeleteSpot, getUserSpots } from "../../store/spots";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -23,6 +23,9 @@ function MyProfile() {
 
     const deleter = (spotId) => {
         dispatch(DeleteSpot(spotId)).then(() => dispatch(getUserSpots()))
+    }
+    const revDel = (revId) => {
+        dispatch(DeleteReview(revId)).then(() => dispatch(getUserReviews()))
     }
     return (
         <div className="statscont">
@@ -53,6 +56,14 @@ function MyProfile() {
                         </div>
                         <div>{review?.review}</div>
                         <div>{review?.stars}</div>
+                        <div>
+                            <Link key={'to review'} to={`/reviews/edit/${review?.id}`}>
+                                Edit
+                            </Link>
+                            <div onClick={(e) => { revDel(review?.id) }}>
+                                Delete
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>

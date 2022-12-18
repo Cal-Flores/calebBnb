@@ -38,6 +38,7 @@ function ProfileButton({ user }) {
         <>
             <div className="pb">
                 <button className="userNav" onClick={openMenu}>
+                    <i class="fa-solid fa-bars"></i>
                     <i class="fa-solid fa-circle-user"></i>
                 </button>
             </div>

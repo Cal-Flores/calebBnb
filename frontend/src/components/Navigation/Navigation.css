@@ -15,6 +15,13 @@
     cursor: pointer;
     background-color: white;
     border-radius: 30px;
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid gray;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
 }
 
 .userNav:hover {
@@ -105,4 +112,7 @@
 .pb {
     margin-left: 5%;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

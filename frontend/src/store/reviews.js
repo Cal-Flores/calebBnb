@@ -89,6 +89,22 @@ export const DeleteReview = (reviewId) => async dispatch => {
     }
 }
 
+export const EditReview = ({ formInfo, reviewId }) => async dispatch => {
+    console.log('tnis is dadta', formInfo, "reviewid", reviewId)
+    const { review, stars } = formInfo
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'PUT',
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ review, stars })
+    })
+
+    // if (response.ok) {
+    //     const editedReviw = await response.json()
+    //     dispatch(editReview(editedReviw))
+    //     return editedReviw
+    // }
+}
+
 //Reducer
 
 const initialState = {};
