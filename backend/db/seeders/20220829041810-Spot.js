@@ -21,6 +21,9 @@ module.exports = {
           name: 'Cardinal Estate',
           description: 'home of the cardinals',
           price: 750,
+          image: 'https://a0.muscache.com/im/pictures/miso/Hosting-582573931021615910/original/5e56aff5-969c-4994-aab5-fc0d6b8a2b33.jpeg?im_w=720',
+          imageTwo: 'https://a0.muscache.com/im/pictures/miso/Hosting-582573931021615910/original/5e56aff5-969c-4994-aab5-fc0d6b8a2b33.jpeg?im_w=720',
+          imageThree: 'https://a0.muscache.com/im/pictures/miso/Hosting-582573931021615910/original/5e56aff5-969c-4994-aab5-fc0d6b8a2b33.jpeg?im_w=720'
         },
         {
           ownerId: 2,
@@ -33,6 +36,9 @@ module.exports = {
           name: 'Cowboy Estate',
           description: 'home of the cowboys',
           price: 1250,
+          image: 'https://a0.muscache.com/im/pictures/2a5994a6-4480-41ae-9a25-f0a81d74a872.jpg?im_w=720',
+          imageTwo: 'https://a0.muscache.com/im/pictures/2a5994a6-4480-41ae-9a25-f0a81d74a872.jpg?im_w=720',
+          imageThree: 'https://a0.muscache.com/im/pictures/2a5994a6-4480-41ae-9a25-f0a81d74a872.jpg?im_w=720',
         },
         {
           ownerId: 3,
@@ -45,6 +51,9 @@ module.exports = {
           name: 'Bear Estate',
           description: 'home of the bears',
           price: 1550,
+          image: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-49194945/original/c49456c8-8608-446c-9f01-3843adc81945.jpeg?im_w=720',
+          imageTwo: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-49194945/original/c49456c8-8608-446c-9f01-3843adc81945.jpeg?im_w=720',
+          imageThree: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-49194945/original/c49456c8-8608-446c-9f01-3843adc81945.jpeg?im_w=720',
         },
         {
           ownerId: 4,
@@ -57,6 +66,9 @@ module.exports = {
           name: 'Wagon Wheel',
           description: 'home of the mountains',
           price: 375,
+          image: 'https://a0.muscache.com/im/pictures/miso/Hosting-34692739/original/3a75ba1b-e9cb-4b93-b6eb-b757bbcbfa1e.jpeg?im_w=720',
+          imageTwo: 'https://a0.muscache.com/im/pictures/miso/Hosting-34692739/original/3a75ba1b-e9cb-4b93-b6eb-b757bbcbfa1e.jpeg?im_w=720',
+          imageThree: 'https://a0.muscache.com/im/pictures/miso/Hosting-34692739/original/3a75ba1b-e9cb-4b93-b6eb-b757bbcbfa1e.jpeg?im_w=720',
         },
         {
           ownerId: 5,
@@ -69,6 +81,9 @@ module.exports = {
           name: 'The Reach',
           description: 'home of the ducks',
           price: 600,
+          image: 'https://a0.muscache.com/im/pictures/miso/Hosting-46472449/original/0337d704-1a84-47d6-a051-e8ce121b8a70.jpeg?im_w=480',
+          imageTwo: 'https://a0.muscache.com/im/pictures/miso/Hosting-46472449/original/0337d704-1a84-47d6-a051-e8ce121b8a70.jpeg?im_w=480',
+          imageThree: 'https://a0.muscache.com/im/pictures/miso/Hosting-46472449/original/0337d704-1a84-47d6-a051-e8ce121b8a70.jpeg?im_w=480',
         },
         {
           ownerId: 2,
@@ -81,6 +96,9 @@ module.exports = {
           name: 'The Hills',
           description: 'home of the rams and 49ers',
           price: 2000,
+          image: 'https://a0.muscache.com/im/pictures/599f6894-3103-4cfb-bc13-6b0143f439a5.jpg?im_w=720',
+          imageTwo: 'https://a0.muscache.com/im/pictures/599f6894-3103-4cfb-bc13-6b0143f439a5.jpg?im_w=720',
+          imageThree: 'https://a0.muscache.com/im/pictures/599f6894-3103-4cfb-bc13-6b0143f439a5.jpg?im_w=720',
         },
       ],
       {}

@@ -47,8 +47,8 @@ function SpotDetail() {
 
     const deleterr = (e) => {
         e.preventDefault();
-        dispatch(DeleteSpot(spotId));
-        dispatch(getAllSpots())
+        dispatch(DeleteSpot(spotId)).then(() => dispatch(getAllSpots()))
+
         history.push('/')
     }
 
@@ -90,8 +90,12 @@ function SpotDetail() {
                     {spot?.Owner?.id === sessionUser?.id && <button className="deletespotbtn" onClick={deleterr}><i class="fa-regular fa-trash-can"></i></button>}
                 </div>
             </div>
-            <div >
-                <img className="imgcontainer" src={imageNow} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }} width="700" height="350" border-radius="25px"></img>
+            <div className="imgdiv" >
+                <img className="imgcontainer" src={imageNow} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                <div className="imgsplitcont">
+                    <img className="imgsplit" src={spot?.imageTwo} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                    <img className="imgsplit" src={spot?.imageThree} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                </div>
             </div>
             <div className="hostedcont">
                 <div className="ownername">Entire home hosted by {spot?.Owner?.firstName}</div>

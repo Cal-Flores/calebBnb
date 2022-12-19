@@ -43,6 +43,15 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL
       },
+      image: {
+        type: Sequelize.STRING
+      },
+      imageTwo: {
+        type: Sequelize.STRING
+      },
+      imageThree: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

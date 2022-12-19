@@ -51,8 +51,7 @@ function CreateSpotForm({ hideModal }) {
         e.preventDefault();
         setSub(true)
         if (errors.length) return
-        let images = [image, imageTwo, imageThree]
-        let spotDetail = { name, address, city, state, country, images, price, description }
+        let spotDetail = { name, address, city, state, country, image, imageTwo, imageThree, price, description }
         //thunk time!!
         const newSpot = dispatch(CreateNewSpot(spotDetail))
         console.log('new spot', newSpot.id)
@@ -153,7 +152,7 @@ function CreateSpotForm({ hideModal }) {
                             onChange={(e) => setImage(e.target.value)}
                         />
                     </label>
-                    {/* <label >
+                    <label >
 
                         <input
                             className="csinput"
@@ -176,7 +175,7 @@ function CreateSpotForm({ hideModal }) {
                             value={imageThree}
                             onChange={(e) => setImageThree(e.target.value)}
                         />
-                    </label> */}
+                    </label>
                     <label>
                         <input
                             className="csinput"

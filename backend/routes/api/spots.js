@@ -162,8 +162,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
 // post a new spot
 router.post('/', requireAuth, async (req, res, next) => {
-    let { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const newSpot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
+    let { address, city, state, country, lat, lng, name, description, price, image, imageTwo, imageThree } = req.body;
+    const newSpot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price, image, imageTwo, imageThree })
     return res.json(newSpot);
 
 })

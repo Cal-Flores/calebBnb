@@ -92,7 +92,7 @@ export const getOneSpot = (spotId) => async dispatch => {
 }
 
 export const CreateNewSpot = spotDetails => async dispatch => {
-    const { name, address, city, state, country, image, price, description } = spotDetails
+    const { name, address, city, state, country, image, imageTwo, imageThree, price, description } = spotDetails
     //console.log('thunk image', image)
     //console.log('im hit');
     const response = await csrfFetch(`/api/spots`, {
@@ -100,7 +100,7 @@ export const CreateNewSpot = spotDetails => async dispatch => {
         headers: { 'Content-Type': "application/json" },
         //need to destructure individually for some reason?
         body: JSON.stringify({
-            name, address, city, state, country, image, price, description
+            name, address, city, state, country, image, imageTwo, imageThree, price, description
         })
     })
 

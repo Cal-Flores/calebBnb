@@ -30,6 +30,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
                 "lng",
                 "name",
                 "price",
+                "image"
             ],
         }
     })
