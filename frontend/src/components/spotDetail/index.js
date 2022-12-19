@@ -133,26 +133,39 @@ function SpotDetail() {
                     </div>
                 </div>
                 <div className="bookingcont">
-                    <div>
-                        {spot?.price}$ night
-                    </div>
-                    <form>
-                        <div>
-                            <div>Check-in Date</div>
-                            <DatePicker selected={startDate} onChange={(date = Date) => setStartDate(date)} />
-                        </div>
-                        <div>
-                            <div>Checkout Date</div>
-                            <DatePicker selected={endDate} onChange={(date = Date) => setEndDate(date)} />
-                        </div>
 
-                        <button onClick={newBook}>
-                            Reserve
-                        </button>
-                    </form>
-                    <div>you wont be charged yet</div>
-                    <div>
-                        total before taxes {spot?.price}
+
+                    <div className="booknight">
+                        <div> <span className="booknightprice">$ {spot?.price}</span>  night</div>
+                        <div className="bnstars">
+                            <div>{spot?.avgRating} &#9733;</div>
+                            <div>&#8729; {reviewsArr.length} Reviews</div>
+                        </div>
+                    </div>
+                    <div className="ciformcont">
+                        <form>
+                            <div className="checkincont">
+                                <div className="checkwrap">
+                                    <div className="checklabel">Check-in Date</div>
+                                    <DatePicker className="checkinput" selected={startDate} onChange={(date = Date) => setStartDate(date)} />
+                                </div>
+                                <div className="checkwrap">
+                                    <div className="checklabel">Checkout Date</div>
+                                    <DatePicker className="checkinput" selected={endDate} onChange={(date = Date) => setEndDate(date)} />
+                                </div>
+                            </div>
+                            <div className="rsvbtn">
+                                <button className="reservebtn" onClick={newBook}>
+                                    Reserve
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="charge">you wont be charged yet</div>
+                    <div>Cleaning Fee $500</div>
+                    <div>Service Fee $1,000</div>
+                    <div className="chargetot">
+                        Total before taxes ${spot?.price + 1500}
                     </div>
                 </div>
             </div>

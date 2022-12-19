@@ -135,12 +135,37 @@
 .bookingcont {
     border: 1px solid rgb(219, 216, 216);
     border-radius: 2%;
-    width: 22%;
+    width: 26%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 5%;
+    justify-content: space-between;
+    align-items: center;
+    align-items: center;
+    padding: 3%;
+    box-shadow: 0px 0px 10px rgb(162, 161, 161);
 }
+
+
+.booknight {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bnstars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.booknightprice {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 
 .ownerstatscont {
     width: 55%;
@@ -181,4 +206,71 @@
     height: 190px;
     width: 70%;
     border-radius: 20px;
+}
+
+.checkincont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 3%;
+    width: 100%;
+}
+
+.checkinput {
+    border: none;
+    cursor: pointer;
+}
+
+.checklabel {
+    font-size: 12px;
+}
+
+
+.ciformcont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+}
+
+.rsvbtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 4%;
+}
+
+.reservebtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(0.25turn, rgb(255, 111, 135), rgb(255, 15, 79));
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.reservebtn:hover {
+    background: linear-gradient(0.25turn, rgb(255, 15, 79), rgb(255, 111, 135));
+}
+
+.charge {
+    font-size: 14px;
+    color: rgb(119, 119, 119);
+}
+
+.chargetot {
+    width: 100%;
+    padding-top: 4%;
+    border-top: 1px solid gray;
 }
