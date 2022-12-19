@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import { getUserBookings } from "../../store/bookings";
+import './index.css'
 
 
 
-function EditBooking() {
+function EditBooking({ hideModal, book }) {
     const dispatch = useDispatch();
     const history = useHistory()
     const { bookingId } = useParams()
@@ -14,8 +15,8 @@ function EditBooking() {
     const currBooking = bookingsArr.find(book => book.id == bookingId)
     console.log('curr booking', currBooking)
 
-    let [startDate, setStartDate] = useState(currBooking?.startDate);
-    let [endDate, setEndDate] = useState(currBooking?.endDate);
+    let [startDate, setStartDate] = useState(book?.startDate);
+    let [endDate, setEndDate] = useState(book?.endDate);
 
 
     useEffect(() => {
@@ -27,12 +28,14 @@ function EditBooking() {
         let data = { startDate, endDate }
         const payload = { formInfo: data, bookingId }
         await dispatch(EditBooking(payload)).then(() => dispatch(getUserBookings()))
-        history.push(`/my-profile`)
+        hideModal()
     }
 
     return (
-        <div>
-            <form>
+        <div className="ebcont">
+            <form className="ebform">
+                <div className="eblogo"><i class="fa-brands fa-airbnb"></i></div>
+                <h2 className="ebtitle">Edit Your Booking</h2>
                 <div>
                     <div>Check-in Date</div>
                     <label>
@@ -53,8 +56,8 @@ function EditBooking() {
                         />
                     </label>
                 </div>
-                <button onClick={newBooking}>
-                    Reserve
+                <button className="ebbtn" onClick={newBooking}>
+                    Update Booking
                 </button>
             </form>
         </div>

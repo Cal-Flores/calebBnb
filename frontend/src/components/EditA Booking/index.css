@@ -1,0 +1,31 @@
+.ebcont {
+    border-radius: 15%;
+}
+
+.ebform {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.ebbtn {
+    margin-top: 10%;
+    width: 100%;
+    background: linear-gradient(0.25turn, rgb(255, 111, 135), rgb(255, 15, 79));
+    border: none;
+    color: white;
+    height: 25px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.ebbtn:hover {
+    background: linear-gradient(0.25turn, rgb(255, 15, 79), rgb(255, 111, 135));
+}
+
+.eblogo {
+    color: rgb(255, 111, 135);
+    font-size: 30px;
+}

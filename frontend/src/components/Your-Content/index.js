@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import './index.css'
 import { deleteOneBooking, getUserBookings } from "../../store/bookings";
 import EditBooking from "../EditA Booking";
+import EditBookingFormModal from "./bookingModal";
 
 function MyProfile() {
     const history = useHistory()
@@ -52,33 +53,31 @@ function MyProfile() {
                 {spotsArr.map(spot => (
                     <div className="spotwrap">
                         {/* <Link className="spotcard" key={spot.id} to={`/spots/${spot.id}`}> */}
-                        <Link key={spot.id} to={`/spots/${spot.id}`}>
-                            <img className="profileimage" src={spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
-                        </Link>
+                        <img className="profileimage" onClick={(e) => history.push(`/spots/${spot.id}`)} src={spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                         <div>{spot?.name}</div>
-                        <div>${spot?.price} night</div>
+                        <div className="ypspace">${spot?.price} night</div>
                         <div>{spot?.city}, {spot?.state}</div>
-                        <div>
-                            <Link key={spot?.id} to={`/spots/edit/${spot?.id}`}><i class="fa-regular fa-pen-to-square"></i></Link>
+                        <div className="edprof">
+                            <div onClick={(e) => history.push(`/spots/edit/${spot?.id}`)}>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
                             <div onClick={(e) => { deleter(spot?.id) }}><i class="fa-regular fa-trash-can"></i></div>
                         </div>
                     </div>
                 ))}
             </div>
-            <div className="reviewdiv">
+            <div className="spotdiv">
                 <h2>Reviews</h2>
                 {reviewsArr.map(review => (
                     <div className="spotwrap">
-                        <img className="profileimage" src={review.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
-                        <div>
-                            <Link key={'no'} to={`/spots/${review?.Spot?.id}`}>{review?.Spot?.name}</Link>
-                        </div>
+                        <img className="profileimage" onClick={(e) => history.push(`/spots/${review?.Spot?.id}`)} src={review.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                        <div>{review?.Spot?.name}</div>
+                        <div className="ypspace">{review?.stars} &#9733;</div>
                         <div>{review?.review}</div>
-                        <div>{review?.stars} &#9733;</div>
-                        <div>
-                            <Link key={'to review'} to={`/reviews/edit/${review?.id}`}>
+                        <div className="edprof">
+                            <div onClick={(e) => history.push(`/reviews/edit/${review?.id}`)}>
                                 <i class="fa-regular fa-pen-to-square"></i>
-                            </Link>
+                            </div>
                             <div onClick={(e) => { revDel(review?.id) }}>
                                 <i class="fa-regular fa-trash-can"></i>
                             </div>
@@ -86,22 +85,22 @@ function MyProfile() {
                     </div>
                 ))}
             </div>
-            <div className="bookingdiv">
+            <div className="spotdiv">
                 <h2>Bookings</h2>
-                <div className="spotwrap">
-                    {bookingsArr.map(book => (
-                        <div className="spotwrap">
-                            <img className="bookingimage" src={book?.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
-                            <div>{book?.Spot?.name}</div>
-                            <div>{book?.Spot?.city}, {book?.Spot?.state}</div>
-                            <div>Check-in Date: {book?.startDate}</div>
-                            <div>Checkout Date: {book?.endDate}</div>
+                {bookingsArr.map(book => (
+                    <div className="spotwrap">
+                        <img className="profileimage" src={book?.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                        <div>{book?.Spot?.name}</div>
+                        <div className="ypspace">Check-in Date: {book?.startDate}</div>
+                        <div>Checkout Date: {book?.endDate}</div>
+                        <div className="edprof">
+                            <div>
+                                <EditBookingFormModal book={book} />
+                            </div>
                             <div onClick={(e) => { bookDelete(book?.id) }}><i class="fa-regular fa-trash-can"></i></div>
-                            <div onClick={(e) => history.push(`booking/edit/${book?.id}`)}><i class="fa-regular fa-pen-to-square"></i></div>
                         </div>
-                    ))}
-                    {editForm && <EditBooking />}
-                </div>
+                    </div>
+                ))}
             </div>
 
         </div >
