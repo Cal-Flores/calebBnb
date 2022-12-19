@@ -9,6 +9,7 @@ const LOAD_USER_SPOTS = '/spots/userspots';
 const CREATE_SPOT = '/spots/post'
 const EDIT_SPOT = '/spots/edit'
 const DELETE_SPOT = '/spots/delete';
+const POST_IMAGE = '.spots/images';
 
 
 // regular AC
@@ -157,6 +158,8 @@ export const DeleteSpot = (spotId) => async dispatch => {
         return deleted;
     }
 }
+
+
 
 //reducer
 const initialState = {};

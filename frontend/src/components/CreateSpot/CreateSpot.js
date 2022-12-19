@@ -16,6 +16,8 @@ function CreateSpotForm({ hideModal }) {
     // const [lat, setLat] = useState(0)
     // const [lng, setLng] = useState(0)
     const [image, setImage] = useState('')
+    const [imageTwo, setImageTwo] = useState('')
+    const [imageThree, setImageThree] = useState('')
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
@@ -49,7 +51,8 @@ function CreateSpotForm({ hideModal }) {
         e.preventDefault();
         setSub(true)
         if (errors.length) return
-        let spotDetail = { name, address, city, state, country, image, price, description }
+        let images = [image, imageTwo, imageThree]
+        let spotDetail = { name, address, city, state, country, images, price, description }
         //thunk time!!
         const newSpot = dispatch(CreateNewSpot(spotDetail))
         console.log('new spot', newSpot.id)
@@ -150,6 +153,30 @@ function CreateSpotForm({ hideModal }) {
                             onChange={(e) => setImage(e.target.value)}
                         />
                     </label>
+                    {/* <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="Optional Image"
+                            type='text'
+                            name="image"
+                            required
+                            value={imageTwo}
+                            onChange={(e) => setImageTwo(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="csinput"
+                            placeholder="Optional Image"
+                            type='text'
+                            name="image"
+                            required
+                            value={imageThree}
+                            onChange={(e) => setImageThree(e.target.value)}
+                        />
+                    </label> */}
                     <label>
                         <input
                             className="csinput"

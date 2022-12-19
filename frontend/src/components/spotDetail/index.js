@@ -23,6 +23,7 @@ function SpotDetail() {
     console.log('reviewsArr', reviewsArr)
     let { spotId } = useParams();
     const spot = spotObj[spotId];
+    console.log('THIS MY SPOT', spot)
     const sessionUser = useSelector((state) => state.session.user);
 
     let reviwed = true;
@@ -65,6 +66,11 @@ function SpotDetail() {
         history.push(`/my-profile`)
     }
 
+    let imageNow;
+    let spotImg = spot?.SpotImages
+    spotImg?.map(simg => {
+        imageNow = simg.url
+    })
 
     return (
         <div className="detailcontainer">
@@ -85,7 +91,7 @@ function SpotDetail() {
                 </div>
             </div>
             <div >
-                <img className="imgcontainer" src={spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }} width="700" height="350" border-radius="25px"></img>
+                <img className="imgcontainer" src={imageNow} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }} width="700" height="350" border-radius="25px"></img>
             </div>
             <div className="hostedcont">
                 <div className="ownername">Entire home hosted by {spot?.Owner?.firstName}</div>
