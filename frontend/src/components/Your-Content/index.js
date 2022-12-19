@@ -6,7 +6,8 @@ import { DeleteSpot, getUserSpots } from "../../store/spots";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import './index.css'
-import { getUserBookings } from "../../store/bookings";
+import { deleteOneBooking, getUserBookings } from "../../store/bookings";
+import EditBooking from "../EditA Booking";
 
 function MyProfile() {
     const history = useHistory()
@@ -15,6 +16,7 @@ function MyProfile() {
     const userReviews = useSelector((state) => state.reviews)
     const userBookings = useSelector((state) => state.bookings)
     const reviewsArr = Object.values(userReviews)
+    console.log('hellllllllll00000', reviewsArr)
     const spotsArr = Object.values(userSpots)
     const bookingsArr = Object.values(userBookings)
     console.log('this is my selector booinks', bookingsArr)
@@ -30,6 +32,19 @@ function MyProfile() {
     const revDel = (revId) => {
         dispatch(DeleteReview(revId)).then(() => dispatch(getUserReviews()))
     }
+    const bookDelete = (bookId) => {
+        dispatch(deleteOneBooking(bookId)).then(() => dispatch(getUserBookings()))
+    }
+
+    const [editForm, setEditForm] = useState(false)
+    // const editFormer = () => {
+    //     if (editForm == true) {
+    //         setEditForm(false)
+    //     } else {
+    //         setEditForm(true)
+    //     }
+    // }
+
     return (
         <div className="statscont">
             <div className="spotdiv">
@@ -54,6 +69,7 @@ function MyProfile() {
                 <h2>Reviews</h2>
                 {reviewsArr.map(review => (
                     <div className="spotwrap">
+                        <img className="profileimage" src={review.Spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                         <div>
                             <Link key={'no'} to={`/spots/${review?.Spot?.id}`}>{review?.Spot?.name}</Link>
                         </div>
@@ -79,10 +95,11 @@ function MyProfile() {
                             <div>{book?.Spot?.city}, {book?.Spot?.state}</div>
                             <div>Check-in Date: {book?.startDate}</div>
                             <div>Checkout Date: {book?.endDate}</div>
-                            <div><i class="fa-regular fa-trash-can"></i></div>
-                            <div><i class="fa-regular fa-pen-to-square"></i></div>
+                            <div onClick={(e) => { bookDelete(book?.id) }}><i class="fa-regular fa-trash-can"></i></div>
+                            <div onClick={(e) => history.push(`booking/edit/${book?.id}`)}><i class="fa-regular fa-pen-to-square"></i></div>
                         </div>
                     ))}
+                    {editForm && <EditBooking />}
                 </div>
             </div>
 

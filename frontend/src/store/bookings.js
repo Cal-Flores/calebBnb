@@ -42,6 +42,26 @@ export const postNewBooking = ({ startDate, endDate, spotId }) => async dispatch
     }
 }
 
+export const deleteOneBooking = (bookId) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${bookId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        const deleted = await response.json();
+        return deleted
+    }
+}
+
+export const editBooking = ({ formInfo, bookingId }) => async dispatch => {
+    console.log('forminfo in edit booking', formInfo)
+    const { startDate, endDate } = formInfo
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'PUT',
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ startDate, endDate })
+    })
+}
+
 
 const initialState = {};
 

@@ -6,8 +6,9 @@ const {
     authenticate,
 } = require('../../utils/auth');
 const { Op } = require("sequelize");
-const { User, Spot, Image, Review, Booking } = require("../../db/models");
+const { User, Spot, Image, Review, Booking, SpotImage } = require("../../db/models");
 const { Sequelize } = require("sequelize");
+const spotimage = require('../../db/models/spotimage');
 const router = express.Router();
 
 
@@ -44,7 +45,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
     //     }
     // }
 
-
+    //console.log('this is backend booking', bookings)
     const result = [];
     for (let booking of bookings) {
         booking = booking.toJSON();
