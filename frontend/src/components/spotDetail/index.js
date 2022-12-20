@@ -20,10 +20,8 @@ function SpotDetail() {
     const spotObj = useSelector((state) => state.spots)
     const spotReviews = useSelector((state) => state.reviews)
     let reviewsArr = Object.values(spotReviews)
-    console.log('reviewsArr', reviewsArr)
     let { spotId } = useParams();
     const spot = spotObj[spotId];
-    console.log('THIS MY SPOT', spot)
     const sessionUser = useSelector((state) => state.session.user);
 
     let reviwed = true;
@@ -37,8 +35,18 @@ function SpotDetail() {
 
     let [startDate, setStartDate] = useState(new Date());
     let [endDate, setEndDate] = useState(new Date());
+    const [sub, setSub] = useState(false)
+    const [errors, setErrors] = useState([])
 
+    useEffect(() => {
+        const validateError = [];
+        const d1 = new Date(startDate)
+        const d2 = new Date(endDate)
+        console.log('DAY ONE', d1)
+        if (d1.getTime() > d2.getTime()) validateError.push('start date must be before end date')
 
+        setErrors(validateError)
+    }, [startDate, endDate])
 
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
@@ -59,10 +67,11 @@ function SpotDetail() {
 
     const newBook = async (e) => {
         e.preventDefault()
-        startDate = startDate.toISOString().split('T')[0];
-        endDate = endDate.toISOString().split('T')[0];
+        // startDate = startDate.toISOString().split('T')[0];
+        // endDate = endDate.toISOString().split('T')[0];
         let payload = { startDate, endDate, spotId }
         await dispatch(postNewBooking(payload))
+        setSub(true)
         history.push(`/my-profile`)
     }
 
@@ -144,6 +153,11 @@ function SpotDetail() {
                     </div>
                     <div className="ciformcont">
                         <form>
+                            {errors.length > 0 &&
+                                errors.map(error => (
+                                    <li className="bookerr" key={error}>{error}</li>
+                                ))
+                            }
                             <div className="checkincont">
                                 <div className="checkwrap">
                                     <div className="checklabel">Check-in Date</div>
@@ -155,7 +169,7 @@ function SpotDetail() {
                                 </div>
                             </div>
                             <div className="rsvbtn">
-                                <button className="reservebtn" onClick={newBook}>
+                                <button className="reservebtn" onClick={newBook} disabled={!!errors.length}>
                                     Reserve
                                 </button>
                             </div>
