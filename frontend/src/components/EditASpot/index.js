@@ -45,6 +45,8 @@ function EditSpotForm({ hideModal, spotty }) {
 
         setErrors(validateError);
 
+        const states = ["Alabama", "Alaska", "Arizona", " Arkansas", " California", "Colorado", "Connecticut", " Delaware", "Florida", " Georgia", " Hawaii", " Idaho", "Illinois", " Indiana", "Iowa", "Kansas", " Kentucky", "Louisiana", "Maine", "Maryland", " Massachusetts", "Michigan", " Minnesota", " Mississippi", " Missouri", " Montana", "Nebraska", " Nevada", "New Hampshire", " New Jersey", "New Mexico", " New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", " Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", " Tennessee", "Texas", "Utah", "Vermont", " Virginia", " Washington", "West Virginia", "Wisconsin", "Wyoming"]
+
     }, [name, address, city, state, country, description, price])
 
     const editSubmitter = (e) => {
@@ -110,18 +112,13 @@ function EditSpotForm({ hideModal, spotty }) {
                             onChange={(e) => setCity(e.target.value)}
                         />
                     </label>
-                    <label>
-
-                        <input
-                            className="esinput"
-                            placeholder="State"
-                            type='text'
-                            name="state"
-                            required
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
-                        />
-                    </label>
+                    {/* <label>
+                        <select selected='State' className="csstateinput">
+                            {states.map(sta => (
+                                <option className="stateinput">{sta}</option>
+                            ))}
+                        </select>
+                    </label> */}
                     <label>
 
                         <input

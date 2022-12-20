@@ -117,7 +117,7 @@ function CreateSpotForm({ hideModal }) {
                         />
                     </label>
                     <label>
-                        <select selected='State' className="csinput">
+                        <select selected='State' className="csstateinput">
                             {states.map(sta => (
                                 <option className="stateinput">{sta}</option>
                             ))}
@@ -127,7 +127,7 @@ function CreateSpotForm({ hideModal }) {
 
                         <input
                             className="csinput"
-                            placeholder=" Country"
+                            placeholder="Country"
                             type='text'
                             name="country"
                             required

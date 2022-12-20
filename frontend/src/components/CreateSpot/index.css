@@ -5,6 +5,7 @@
     justify-content: center;
     /* width: 100%; */
     background: linear-gradient(rgb(251, 176, 189), #fbfcff);
+    height: 400px;
 }
 
 .csform {
@@ -59,6 +60,12 @@
 }
 
 
-.stateinput {
-    background-color: black;
+.csstateinput {
+    width: 102.5%;
+    height: 37px;
+    color: gray;
 }
+
+/* #modal-content {
+    border-radius: 13px;
+} */
