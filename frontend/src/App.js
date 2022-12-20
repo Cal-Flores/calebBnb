@@ -14,6 +14,7 @@ import MyProfile from "./components/Your-Content";
 import './index.css'
 import Editreview from "./components/EditAReview";
 import EditBooking from "./components/EditA Booking";
+import Footer from "./components/Footer/footer";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   return (
     <div className="sitewide">
       <Navigation isLoaded={isLoaded} />
+      <Footer />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>

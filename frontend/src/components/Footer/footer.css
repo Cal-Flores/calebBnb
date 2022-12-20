@@ -1,0 +1,52 @@
+.footercontainer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid black;
+    background: white;
+}
+
+.footwrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.linkswrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.aref {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.devname {
+    display: flex;
+    flex-direction: row;
+    color: black;
+}
+
+
+.hellog {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.hellog:hover {
+    color: rgb(255, 111, 135);
+}
+
+.ind-link {
+    text-decoration: none;
+}
