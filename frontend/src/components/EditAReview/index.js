@@ -2,24 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import { EditReview, getUserReviews } from "../../store/reviews";
+import './index.css'
 
-function Editreview() {
+function Editreview({ hideModal, rev }) {
+    console.log('REV HERE', rev)
     const dispatch = useDispatch();
-    const history = useHistory()
-    const userReviews = useSelector((state) => state.reviews)
-    const revArr = Object.values(userReviews)
-    const { reviewId } = useParams();
-    const currReview = revArr.find(rev => rev.id == reviewId)
-    //console.log('this is my curr review', currReview)
+    const reviewId = rev?.id
 
-    const [review, setReview] = useState(currReview?.review);
-    let [stars, setStars] = useState(currReview?.stars);
+    const [review, setReview] = useState(rev?.review);
+    let [stars, setStars] = useState(rev?.stars);
     const [errors, setErrors] = useState([])
 
-
-    useEffect(() => {
-        dispatch(getUserReviews())
-    }, [dispatch])
 
 
     useEffect(() => {
@@ -27,7 +20,7 @@ function Editreview() {
 
         if (stars > 5 || stars <= 0) validateError.push('stars must be between 1 and 5');
         if (review === '') validateError.push('please leave a review')
-        if (review.length > 100) validateError.push('review cant exceed 50 characters')
+        if (review?.length > 100) validateError.push('review cant exceed 50 characters')
 
         setErrors(validateError);
     }, [stars, review])
@@ -38,16 +31,18 @@ function Editreview() {
         let editedRev = { review, stars }
         const data = { formInfo: editedRev, reviewId }
         await dispatch(EditReview(data)).then(() => dispatch(getUserReviews()))
-        //console.log('the review in comp', payload);
-        history.push(`/my-profile`)
+        hideModal()
     }
 
     return (
-        <div className="escont">
-            <div className="crwrapper">
+        <div className="recont">
+            <div className="rewrapper">
+                <div className="relogo">
+                    <i class="fa-brands fa-airbnb"></i>
+                </div>
                 <h1 className="reviewwheader"> Edit Review</h1>
-                <form className="outer-form">
-                    <ul className="errors">
+                <form className="reform">
+                    <ul className="reerrors">
                         {errors.length > 0 &&
                             errors.map(error => (
                                 <li key={error}>{error}</li>
@@ -56,7 +51,7 @@ function Editreview() {
                     </ul>
                     <label>
                         <input
-                            className="crinput"
+                            className="reinput"
                             type='textArea'
                             placeholder='Review'
                             required
@@ -66,7 +61,7 @@ function Editreview() {
                     </label>
                     <label>
                         <input
-                            className="crinput"
+                            className="reinput"
                             type='number'
                             placeholder='Stars'
                             required
@@ -74,7 +69,7 @@ function Editreview() {
                             onChange={(e) => setStars(e.target.value)}
                         />
                     </label>
-                    <button className="sendBtn"
+                    <button className="resendBtn"
                         onClick={reviewSub}
                         disabled={!!errors.length}
                     >
@@ -85,4 +80,4 @@ function Editreview() {
     )
 }
 
-export default Editreview
+export default Editreview;

@@ -1,55 +1,69 @@
-.errors {
+.crrerrors {
     color: red;
-    margin-bottom: 6%;
+    font-size: 14px;
 }
 
-.reviewwheader {
-    color: rgb(255, 111, 135);
-    margin-left: 28%;
+.crcont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.crwrapper {
+.crrwrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 30%;
-    margin-right: 30%;
+    align-items: center;
     border: 1px solid gray;
     background-color: white;
-    margin-top: 5%;
+    /* margin-top: 5%; */
+    padding: 20px;
+    width: 100%;
 }
 
-.outer-form {
+.crouter-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-left: 20%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.crinput {
-    width: 70%;
+.crrinput {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
     height: 30px;
 }
 
-.sendBtn {
-    border: none;
-    background: rgb(255, 111, 135);
-    padding: .5rem;
-    margin: 1rem 0;
-    color: azure;
+.crsendBtn {
     cursor: pointer;
+    margin-top: 5%;
+    border: none;
+    width: 200px;
+    height: 30px;
     border-radius: 20px;
-    width: 20%;
+    color: white;
+    background: linear-gradient(0.25turn, rgb(255, 111, 135), rgb(255, 15, 79));
 }
 
-.sendBtn:hover {
-    background: rgb(255, 68, 99);
+.crsendBtn:hover {
+    background: linear-gradient(0.25turn, rgb(255, 15, 79), rgb(255, 111, 135));
 }
 
 .crlogo {
     font-size: 30px;
     color: rgb(255, 111, 135);
-    display: flex;
+}
 
+.crreviewwheader {
+    /* color: rgb(255, 111, 135); */
+    font-size: 22px;
+}
+
+.reerrors {
+    color: red;
 }

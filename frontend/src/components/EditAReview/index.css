@@ -1,0 +1,54 @@
+.recont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.rewrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    background-color: white;
+    /* margin-top: 5%; */
+    padding: 20px;
+    width: 100%;
+}
+
+.reform {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.reinput {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 30px;
+}
+
+.resendBtn {
+    cursor: pointer;
+    margin-top: 5%;
+    border: none;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    background: linear-gradient(0.25turn, rgb(255, 111, 135), rgb(255, 15, 79));
+}
+
+.resendBtn:hover {
+    background: linear-gradient(0.25turn, rgb(255, 15, 79), rgb(255, 111, 135));
+}
+
+.relogo {
+    font-size: 30px;
+    color: rgb(255, 111, 135);
+}

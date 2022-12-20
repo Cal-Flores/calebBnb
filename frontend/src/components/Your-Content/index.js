@@ -9,6 +9,7 @@ import './index.css'
 import { deleteOneBooking, getUserBookings } from "../../store/bookings";
 import EditBooking from "../EditA Booking";
 import EditBookingFormModal from "./bookingModal";
+import EditReviewModal from "../EditAReview/editReviewModal";
 
 function MyProfile() {
     const history = useHistory()
@@ -60,17 +61,17 @@ function MyProfile() {
             </div>
             <div className="spotdiv">
                 <h2>Reviews</h2>
-                {reviewsArr.map(review => (
+                {reviewsArr.map(rev => (
                     <div className="spotwrap">
-                        <img className="profileimage" onClick={(e) => history.push(`/spots/${review?.Spot?.id}`)} src={review.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
-                        <div>{review?.Spot?.name}</div>
-                        <div className="ypspace">{review?.stars} &#9733;</div>
-                        <div>{review?.review}</div>
+                        <img className="profileimage" onClick={(e) => history.push(`/spots/${rev?.Spot?.id}`)} src={rev.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                        <div>{rev?.Spot?.name}</div>
+                        <div className="ypspace">{rev?.stars} &#9733;</div>
+                        <div>{rev?.review}</div>
                         <div className="edprof">
-                            <div onClick={(e) => history.push(`/reviews/edit/${review?.id}`)}>
-                                <i class="fa-regular fa-pen-to-square"></i>
+                            <div>
+                                <EditReviewModal rev={rev} />
                             </div>
-                            <div onClick={(e) => { revDel(review?.id) }}>
+                            <div onClick={(e) => { revDel(rev?.id) }}>
                                 <i class="fa-regular fa-trash-can"></i>
                             </div>
                         </div>

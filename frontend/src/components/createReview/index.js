@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview, getAllSpotReviews } from "../../store/reviews";
 import "./createSpot.css"
-import "../EditASpot/index.css"
 
 
 
-function CreateReiew() {
+
+function CreateReiew({ hideModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [review, setReview] = useState('');
@@ -19,9 +19,8 @@ function CreateReiew() {
     useEffect(() => {
         const validateError = [];
 
-        if (stars > 5 || stars <= 0) validateError.push('stars must be between 1 and 5');
-        if (review === '') validateError.push('please leave a review')
-        if (review.length > 100) validateError.push('review cant exceed 50 characters')
+        if (stars > 5 || stars <= 0) validateError.push('Stars must be between 1 and 5');
+        if (review.length < 5 || review.length > 50) validateError.push('Review must be between 5 and 50 characters')
 
         setErrors(validateError);
     }, [stars, review])
@@ -33,15 +32,18 @@ function CreateReiew() {
         await dispatch(createReview(payload))
         await dispatch(getAllSpotReviews(spotId))
         //console.log('the review in comp', payload);
-        history.push(`/spots/${spotId}`)
+        hideModal()
     }
 
     return (
-        <div className="escont">
-            <div className="crwrapper">
-                <h1 className="reviewwheader"> Create Review</h1>
-                <form className="outer-form">
-                    <ul className="errors">
+        <div className="crrcont">
+            <div className="crrwrapper">
+                <div className="crlogo">
+                    <i class="fa-brands fa-airbnb"></i>
+                </div>
+                <div className="crreviewwheader"> Create Review</div>
+                <form className="crouter-form">
+                    <ul className="crrerrors">
                         {errors.length > 0 &&
                             errors.map(error => (
                                 <li key={error}>{error}</li>
@@ -50,8 +52,8 @@ function CreateReiew() {
                     </ul>
                     <label>
                         <input
-                            className="crinput"
-                            type='textArea'
+                            className="crrinput crreview"
+                            type='textarea'
                             placeholder='Review'
                             required
                             value={review}
@@ -60,7 +62,7 @@ function CreateReiew() {
                     </label>
                     <label>
                         <input
-                            className="crinput"
+                            className="crrinput"
                             type='number'
                             placeholder='Stars'
                             required
@@ -68,7 +70,7 @@ function CreateReiew() {
                             onChange={(e) => setStars(e.target.value)}
                         />
                     </label>
-                    <button className="sendBtn"
+                    <button className="crsendBtn"
                         onClick={reviewSub}
                         disabled={!!errors.length}
                     >

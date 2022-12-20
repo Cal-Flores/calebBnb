@@ -10,6 +10,8 @@ import { getAllSpotReviews } from "../../store/reviews";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { postNewBooking } from "../../store/bookings";
+import CreateReviewModal from "../createReview/createReviewModal";
+
 
 
 function SpotDetail() {
@@ -185,9 +187,7 @@ function SpotDetail() {
             </div>
             <div>
                 {reviwed &&
-                    <button className="lrbtn" onClick={reviewer}>
-                        Leave a Review?
-                    </button>
+                    <CreateReviewModal />
                 }
             </div>
             <div className="reviewscont">
