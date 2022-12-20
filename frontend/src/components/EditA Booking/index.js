@@ -15,8 +15,8 @@ function EditBooking({ hideModal, book }) {
     const currBooking = bookingsArr.find(book => book.id == bookingId)
     console.log('curr booking', currBooking)
 
-    let [startDate, setStartDate] = useState(book?.startDate);
-    let [endDate, setEndDate] = useState(book?.endDate);
+    let [startDate, setStartDate] = useState(book?.startDate.split('T')[0]);
+    let [endDate, setEndDate] = useState(book?.endDate.split('T')[0]);
 
 
     useEffect(() => {

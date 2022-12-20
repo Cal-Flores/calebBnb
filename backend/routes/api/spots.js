@@ -51,7 +51,7 @@ router.post('/:spotId/bookings', requireAuth, restoreUser, async (req, res, next
         spotId: spotId,
         userId: userId,
         startDate: req.body.startDate,
-        endDate: req.body.endDate,
+        endDate: req.body.endDate
     });
     return res.json(newBooking);
 });
