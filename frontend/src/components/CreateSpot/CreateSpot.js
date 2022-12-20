@@ -29,6 +29,7 @@ function CreateSpotForm({ hideModal }) {
     useEffect(() => {
         let validateErrors = [];
 
+        if (description?.length > 500) validateErrors.push('please include a Description under 500 characters')
         if (name.length > 25) validateErrors.push('name must be under 25 characters')
         if (address.length > 25) validateErrors.push('Adress must be under 25 characters')
         if (city > 25) validateErrors.push('City must be under 25 characters')
@@ -74,7 +75,7 @@ function CreateSpotForm({ hideModal }) {
                     className="spotFrom"
                     onSubmit={submitter}>
                     <ul className="err">
-                        {sub && (
+                        {(
                             errors.map(error => (
                                 <li key={error}>{error}</li>
                             ))

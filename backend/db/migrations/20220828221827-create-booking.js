@@ -21,10 +21,10 @@ module.exports = {
         references: { model: 'Users' }
       },
       startDate: {
-        type: Sequelize.STRING(10)
+        type: Sequelize.DATE
       },
       endDate: {
-        type: Sequelize.STRING(10)
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

@@ -6,7 +6,12 @@
     font-weight: bold;
 }
 
-
+.dropdown {
+    /* position: relative;
+    display: inline-block; */
+    display: flex;
+    width: 100%;
+}
 
 .dropdwn {
     display: flex;
@@ -28,8 +33,29 @@
 } */
 
 .textdiv {
-    /* padding-bottom: 10px; */
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: #fffdfd;
 }
+
+.textdiv div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.textdiv div:hover {
+    background-color: #e3e2e2;
+}
+
+.dropdown:hover .textdiv {
+    display: block;
+}
+
 
 .logoutBtn {
     color: white;
@@ -133,6 +159,7 @@
     /* padding-left: 15%; */
     border: 1px solid rgb(159, 159, 159);
     border-radius: 30px;
+    padding: 5%;
 }
 
 .userNav:hover {

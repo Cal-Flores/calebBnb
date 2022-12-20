@@ -43,7 +43,7 @@ function EditSpotForm() {
         if (city?.length > 25) validateError.push('please include a city under 25 characters')
         if (state?.length > 25) validateError.push('please include a state under 25 characters')
         if (country?.length > 25) validateError.push('please include a country under 25 characters')
-        if (description?.length > 50) validateError.push('please include a Description under 50 characters')
+        if (description?.length > 500) validateError.push('please include a Description under 500 characters')
         if (name === '') validateError.push('please include a name')
         if (address === '') validateError.push('please include a Address')
         if (city === '') validateError.push('please include a city')

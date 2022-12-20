@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
     };
 
     return (
-        <>
+        <div className="dropdown">
             <button className="userNav" onClick={openMenu}>
                 <div className="bars">
                     <i class="fa-solid fa-bars"></i>
@@ -44,25 +44,22 @@ function ProfileButton({ user }) {
                     <i class="fa-solid fa-circle-user"></i>
                 </div>
             </button>
-            {
-                showMenu && (
-                    <>
-                        <div className="profile-dropdown">
-                            <div className="textdiv">
-                                <div>{user.username}</div>
-                                <div>{user.email}</div>
-                                <div>
-                                    <button className="logoutBtn" onClick={logout}>Log Out</button>
-                                </div>
-                                <div>
-                                    <button onClick={(e) => history.push(`/my-profile`)} className="logoutBtn">My Profile</button>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                )
-            }
-        </>
+            <div className="profile-dropdown">
+                <div className="textdiv">
+                    <div>{user.username}</div>
+                    <div>{user.email}</div>
+                    <div onClick={(e) => history.push(`/my-profile`)}>
+                        My Profile
+                    </div>
+                    <div onClick={logout}>
+                        Log Out
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
     );
 }
 

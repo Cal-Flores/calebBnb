@@ -46,3 +46,10 @@
 .sendBtn:hover {
     background: rgb(255, 68, 99);
 }
+
+.crlogo {
+    font-size: 30px;
+    color: rgb(255, 111, 135);
+    display: flex;
+
+}
