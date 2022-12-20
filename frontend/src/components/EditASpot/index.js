@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { EditSpot, getAllSpots, getOneSpot } from "../../store/spots";
+import { EditSpot, getAllSpots, getOneSpot, getUserSpots } from "../../store/spots";
 import "./index.css"
 
 function EditSpotForm({ hideModal, spotty }) {
@@ -14,16 +14,16 @@ function EditSpotForm({ hideModal, spotty }) {
     const [city, setCity] = useState(spotty?.city)
     const [state, setState] = useState(spotty?.state)
     const [country, setCountry] = useState(spotty?.country)
-    // const [lat, setLat] = useState(0)
-    // const [lng, setLng] = useState(0)
-    //const [previewImage, setPreviewImage] = useState(spot.previewImage)
+    const [image, setImage] = useState(spotty?.image)
+    const [imageTwo, setImageTwo] = useState(spotty?.imageTwo)
+    const [imageThree, setImageThree] = useState(spotty?.imageThree)
     const [price, setPrice] = useState(spotty?.price)
     const [description, setDescription] = useState(spotty?.description)
     const [error, setErrors] = useState([])
 
 
     useEffect(() => {
-        dispatch(getAllSpots()).then(dispatch(getOneSpot(spotId)))
+        dispatch(getUserSpots())
     }, [dispatch, spotId])
 
     useEffect(() => {
@@ -49,10 +49,10 @@ function EditSpotForm({ hideModal, spotty }) {
 
     const editSubmitter = (e) => {
         e.preventDefault();
-        let editedSpot = { name, address, city, state, country, price, description }
+        let editedSpot = { name, address, city, state, country, price, description, image, imageTwo, imageThree }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
-        // hideModal()
+        hideModal()
     }
 
 
@@ -132,6 +132,40 @@ function EditSpotForm({ hideModal, spotty }) {
                             required
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="esinput"
+                            placeholder="Preview Image"
+                            type='text'
+                            name="image"
+                            required
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="esinput"
+                            placeholder="Optional Image"
+                            type='text'
+                            name="image"
+                            value={imageTwo}
+                            onChange={(e) => setImageTwo(e.target.value)}
+                        />
+                    </label>
+                    <label >
+
+                        <input
+                            className="esinput"
+                            placeholder="Optional Image"
+                            type='text'
+                            name="image"
+                            value={imageThree}
+                            onChange={(e) => setImageThree(e.target.value)}
                         />
                     </label>
                     <label>

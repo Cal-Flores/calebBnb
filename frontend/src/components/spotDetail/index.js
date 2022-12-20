@@ -43,13 +43,12 @@ function SpotDetail() {
 
     useEffect(() => {
         const validateError = [];
-        const d1 = new Date(startDate)
-        const d2 = new Date(endDate)
-        console.log('DAY ONE', d1)
-        if (d1.getTime() > d2.getTime()) validateError.push('start date must be before end date')
-
+        // const d1 = new Date(startDate)
+        // const d2 = new Date(endDate)
+        if (startDate.getTime() > endDate.getTime()) validateError.push('start date must be before end date')
         setErrors(validateError)
     }, [startDate, endDate])
+
 
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))

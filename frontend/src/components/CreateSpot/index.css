@@ -51,15 +51,14 @@
     flex-direction: column;
     width: 100%;
     height: 30px;
+    color: grey;
 }
 
 .pricecs {
     color: grey;
 }
 
-.csdinput {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 70px;
+
+.stateinput {
+    background-color: black;
 }

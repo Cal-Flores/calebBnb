@@ -3,11 +3,10 @@
 import React, { useState } from 'react';
 import EditSpotForm from '.';
 import { Modal } from '../../context/Modal';
-import { EditSpot } from '../../store/spots';
+
 
 
 function EditSpotFormModal({ spot }) {
-    console.log('this mi modal spot', spot)
     const [showModal, setShowModal] = useState(false);
 
     const hideModal = () => {

@@ -29,6 +29,7 @@ export const getUserBookings = () => async dispatch => {
 }
 
 export const postNewBooking = ({ startDate, endDate, spotId }) => async dispatch => {
+    console.log('thunk startdate', startDate)
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -52,13 +53,14 @@ export const deleteOneBooking = (bookId) => async dispatch => {
     }
 }
 
-export const editBooking = ({ formInfo, bookingId }) => async dispatch => {
-    console.log('forminfo in edit booking', formInfo)
+export const editABooking = ({ formInfo, bookingId }) => async dispatch => {
+    // console.log('forminfo in edit booking', formInfo)
     const { startDate, endDate } = formInfo
     const response = await csrfFetch(`/api/bookings/${bookingId}`, {
         method: 'PUT',
         header: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ startDate, endDate })
+
     })
 }
 

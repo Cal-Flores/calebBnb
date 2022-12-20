@@ -43,9 +43,9 @@
 .edprof {
     display: flex;
     flex-direction: row;
-    width: 10%;
+    width: 30%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 2%;
     cursor: pointer;
 }

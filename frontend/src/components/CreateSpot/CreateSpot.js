@@ -25,6 +25,8 @@ function CreateSpotForm({ hideModal }) {
     const [succ, setSucc] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
+    const states = ["Alabama", "Alaska", "Arizona", " Arkansas", " California", "Colorado", "Connecticut", " Delaware", "Florida", " Georgia", " Hawaii", " Idaho", "Illinois", " Indiana", "Iowa", "Kansas", " Kentucky", "Louisiana", "Maine", "Maryland", " Massachusetts", "Michigan", " Minnesota", " Mississippi", " Missouri", " Montana", "Nebraska", " Nevada", "New Hampshire", " New Jersey", "New Mexico", " New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", " Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", " Tennessee", "Texas", "Utah", "Vermont", " Virginia", " Washington", "West Virginia", "Wisconsin", "Wyoming"]
+
 
     useEffect(() => {
         let validateErrors = [];
@@ -68,9 +70,6 @@ function CreateSpotForm({ hideModal }) {
             <h1 className="spotheader">CalebBnB's New Home</h1>
             {succ && <div>Thank you, Your New Spot Is Successfully Created!</div>}
             <div className="cscont">
-
-
-
                 <form
                     className="spotFrom"
                     onSubmit={submitter}>
@@ -117,17 +116,12 @@ function CreateSpotForm({ hideModal }) {
                             onChange={(e) => setCity(e.target.value)}
                         />
                     </label>
-                    <label >
-
-                        <input
-                            className="csinput"
-                            placeholder="State"
-                            type='text'
-                            name="state"
-                            required
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
-                        />
+                    <label>
+                        <select selected='State' className="csinput">
+                            {states.map(sta => (
+                                <option className="stateinput">{sta}</option>
+                            ))}
+                        </select>
                     </label>
                     <label >
 

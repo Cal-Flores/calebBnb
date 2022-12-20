@@ -183,7 +183,7 @@ router.delete('/:spotId', requireAuth, restoreUser, async (req, res, next) => {
 
 //update an existing spot
 router.put('/:spotId', requireAuth, async (req, res, next) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, image, imageTwo, imageThree } = req.body;
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) {
         return res.json({
@@ -191,7 +191,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
             "statusCode": 404
         });
     }
-    const updatespot = await spot.update({ address, city, state, country, lat, lng, name, description, price });
+    const updatespot = await spot.update({ address, city, state, country, lat, lng, name, description, price, image, imageTwo, imageThree });
     return res.json(updatespot);
 })
 

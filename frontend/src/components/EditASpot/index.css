@@ -31,7 +31,7 @@
 }
 
 .esinput {
-    height: 40px;
+    height: 30px;
     width: 500px;
 }
 
@@ -50,7 +50,7 @@
     width: 500px;
     border: none;
     border-radius: 30px;
-    height: 30px;
+    height: 35px;
     margin-top: 5%;
     color: white;
     background: linear-gradient(0.25turn, rgb(255, 111, 135), rgb(255, 15, 79));
