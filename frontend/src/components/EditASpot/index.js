@@ -6,28 +6,19 @@ import { useEffect, useState } from "react";
 import { EditSpot, getAllSpots, getOneSpot } from "../../store/spots";
 import "./index.css"
 
-function EditSpotForm() {
-    const spots = useSelector((state) => state.spots)
-    //console.log('this is edit component spots', spots)
-    const { spotId } = useParams();
-    const spotObj = useSelector((state) => state.spots)
-    const spot = spotObj[spotId];
-
-    //console.log('edit prop spot', spot);
-    //console.log('edit prop', spotObj);
-
+function EditSpotForm({ hideModal, spotty }) {
+    const spotId = spotty?.id;
     const dispatch = useDispatch()
-    const history = useHistory()
-    const [name, setName] = useState(spot?.name)
-    const [address, setAddress] = useState(spot?.address)
-    const [city, setCity] = useState(spot?.city)
-    const [state, setState] = useState(spot?.state)
-    const [country, setCountry] = useState(spot?.country)
+    const [name, setName] = useState(spotty?.name)
+    const [address, setAddress] = useState(spotty?.address)
+    const [city, setCity] = useState(spotty?.city)
+    const [state, setState] = useState(spotty?.state)
+    const [country, setCountry] = useState(spotty?.country)
     // const [lat, setLat] = useState(0)
     // const [lng, setLng] = useState(0)
     //const [previewImage, setPreviewImage] = useState(spot.previewImage)
-    const [price, setPrice] = useState(spot?.price)
-    const [description, setDescription] = useState(spot?.description)
+    const [price, setPrice] = useState(spotty?.price)
+    const [description, setDescription] = useState(spotty?.description)
     const [error, setErrors] = useState([])
 
 
@@ -61,7 +52,7 @@ function EditSpotForm() {
         let editedSpot = { name, address, city, state, country, price, description }
         const payload = { formInfo: editedSpot, spotId }
         dispatch(EditSpot(payload))
-        history.push(`/spots/${spotId}`);
+        // hideModal()
     }
 
 
@@ -69,9 +60,12 @@ function EditSpotForm() {
     return (
         <div className="escont">
             <div className="eswrapper">
-                <h2 className="esheader">Edit Your Home</h2>
+                <div className="eslogo">
+                    <i class="fa-brands fa-airbnb"></i>
+                </div>
+                <div className="esheader">Edit Your Home</div>
                 <form
-                    className="editForm"
+                    className="esseditForm"
                     onSubmit={editSubmitter}>
                     <ul className="er">
                         {error.length > 0 &&
@@ -163,7 +157,7 @@ function EditSpotForm() {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
-                    <button className="send" type='submit' disabled={!!error.length}>SUBMIT</button>
+                    <button className="essend" type='submit' disabled={!!error.length}>SUBMIT</button>
                 </form>
             </div>
         </div>

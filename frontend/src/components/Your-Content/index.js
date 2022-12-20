@@ -10,6 +10,7 @@ import { deleteOneBooking, getUserBookings } from "../../store/bookings";
 import EditBooking from "../EditA Booking";
 import EditBookingFormModal from "./bookingModal";
 import EditReviewModal from "../EditAReview/editReviewModal";
+import EditSpotFormModal from "../EditASpot/createSpotModal";
 
 function MyProfile() {
     const history = useHistory()
@@ -20,7 +21,7 @@ function MyProfile() {
     const reviewsArr = Object.values(userReviews)
     const spotsArr = Object.values(userSpots)
     const bookingsArr = Object.values(userBookings)
-    console.log('this is my selector booinks', bookingsArr)
+    console.log('this is my selector booinks', spotsArr)
     useEffect(() => {
         dispatch(getUserSpots())
         dispatch(getUserReviews())
@@ -51,8 +52,8 @@ function MyProfile() {
                         <div className="ypspace">${spot?.price} night</div>
                         <div>{spot?.city}, {spot?.state}</div>
                         <div className="edprof">
-                            <div onClick={(e) => history.push(`/spots/edit/${spot?.id}`)}>
-                                <i class="fa-regular fa-pen-to-square"></i>
+                            <div>
+                                < EditSpotFormModal spot={spot} />
                             </div>
                             <div onClick={(e) => { deleter(spot?.id) }}><i class="fa-regular fa-trash-can"></i></div>
                         </div>

@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { postNewBooking } from "../../store/bookings";
 import CreateReviewModal from "../createReview/createReviewModal";
+import EditSpotFormModal from "../EditASpot/createSpotModal";
 
 
 
@@ -97,12 +98,12 @@ function SpotDetail() {
             </div>
             <div>
                 <div className="linkdiv">
-                    <span>{spot?.Owner?.id === sessionUser?.id && <Link className="editbtnn" key={spotId} to={`/spots/edit/${spotId}`}><i class="fa-regular fa-pen-to-square"></i></Link>}</span>
+                    {/* {spot?.Owner?.id === sessionUser?.id && <div> <EditSpotFormModal spot={spot} /></div>} */}
                     {spot?.Owner?.id === sessionUser?.id && <button className="deletespotbtn" onClick={deleterr}><i class="fa-regular fa-trash-can"></i></button>}
                 </div>
             </div>
             <div className="imgdiv" >
-                <img className="imgcontainer" src={imageNow} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                <img className="imgcontainer" src={spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                 <div className="imgsplitcont">
                     <img className="imgsplit" src={spot?.imageTwo} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                     <img className="imgsplit" src={spot?.imageThree} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>

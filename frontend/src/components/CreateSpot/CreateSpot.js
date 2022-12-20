@@ -160,7 +160,6 @@ function CreateSpotForm({ hideModal }) {
                             placeholder="Optional Image"
                             type='text'
                             name="image"
-                            required
                             value={imageTwo}
                             onChange={(e) => setImageTwo(e.target.value)}
                         />
@@ -172,7 +171,6 @@ function CreateSpotForm({ hideModal }) {
                             placeholder="Optional Image"
                             type='text'
                             name="image"
-                            required
                             value={imageThree}
                             onChange={(e) => setImageThree(e.target.value)}
                         />
