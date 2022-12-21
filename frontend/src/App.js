@@ -30,11 +30,11 @@ function App() {
   return (
     <div className="sitewide">
       <Navigation isLoaded={isLoaded} />
-      <Footer />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
             < AllSpots />
+            <Footer />
           </Route>
           <Route exact path='/search-results'>
             <SearchedResult />

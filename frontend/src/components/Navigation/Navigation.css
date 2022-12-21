@@ -106,6 +106,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /* font-weight: 500;
     font-size: small; */
+    width: 40%;
     cursor: pointer;
     border: none;
     background-color: white;
@@ -164,4 +165,10 @@
 
 .userNav:hover {
     box-shadow: 0px 5px 5px rgb(162, 161, 161);
+}
+
+.searchbarform {
+    display: flex;
+    flex-direction: row;
+    width: 100%
 }

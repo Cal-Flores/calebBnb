@@ -1,0 +1,44 @@
+.sbcont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.searchbarform {
+    width: 200%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchbarinput {
+    width: 75%;
+    height: 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    color: grey;
+    padding-left: 3%;
+    padding-right: 3%;
+    cursor: pointer;
+}
+
+.searchbtn {
+    height: 32px;
+    width: 32px;
+    font-size: 12px;
+    border-radius: 50%;
+    background: rgb(255, 111, 135);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-left: 5%;
+}
+
+.searchbtn:hover {
+    background: rgb(252, 65, 96);
+}
+
+.searchinput {
+    margin-left: 10%;
+}

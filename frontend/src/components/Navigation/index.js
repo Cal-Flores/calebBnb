@@ -56,7 +56,7 @@ function Navigation({ isLoaded }) {
                 </div>
             </NavLink>
             <div>
-                <SearchForm />
+                <SearchForm className="calebbnb" />
             </div>
             <div className='seslinks'>
                 {isLoaded && sessionLinks}

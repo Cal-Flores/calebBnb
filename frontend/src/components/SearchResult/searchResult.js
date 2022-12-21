@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import SpotCard from "../spotCard";
+import './searchResult.css'
 
 function SearchedResult() {
     const searchObj = useSelector(state => state.search)
@@ -13,8 +14,8 @@ function SearchedResult() {
             <div>Hello to you stranger</div>
             <div>
                 {searchArr?.map(spot => (
-                    <div className="splashcont">
-                        <div className="splashwrapper">
+                    <div className='searchcont'>
+                        <div className='searchwrap'>
                             <Link className="spotcard" key={spot.id} to={`/spots/${spot.id}`}>
                                 <div>
                                     <img className="spotimg" src={spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>

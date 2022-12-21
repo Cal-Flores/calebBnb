@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom'
 import { SearchResult } from '../../store/search'
 import SpotCard from '../spotCard'
+import './searchForm.css'
 function SearchForm() {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -19,21 +20,22 @@ function SearchForm() {
         history.push('/search-results')
     }
     return (
-        <div>
+        <div className='sbcont'>
             <form
                 onSubmit={searcher}
             >
-                <label>
+                <div className='searchbarform'>
                     <select selected='State'
-                        className="csstateinput"
+                        className="searchbarinput"
                         value={reqstate}
                         onChange={(e) => setReqState(e.target.value)}>
+                        <option value="" selected disabled hidden>Anywhere</option>
                         {states.map(sta => (
-                            <option className="stateinput">{sta}</option>
+                            <option className="searchinput">{sta}</option>
                         ))}
                     </select>
-                </label>
-                <button type='submit'>Search</button>
+                    <button className='searchbtn' type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             </form>
             {/* {searchArr.map(spot => (
                 <SpotCard spot={spot} />
