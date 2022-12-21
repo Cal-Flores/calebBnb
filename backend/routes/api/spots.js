@@ -384,6 +384,17 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 }
 );
 
+//search route
+router.post('/search', async (req, res, next) => {
+    const { reqstate } = req.body;
+    const spots = await Spot.findAll({
+        where: {
+            state: reqstate
+        }
+    })
+    return res.json({ spots })
+})
+
 
 
 

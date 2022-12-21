@@ -35,6 +35,11 @@
     width: 500px;
 }
 
+.esstateinput {
+    width: 508px;
+    height: 36px;
+}
+
 .eslogo {
     font-size: 40px;
     color: rgb(255, 111, 135);

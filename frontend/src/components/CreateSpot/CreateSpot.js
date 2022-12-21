@@ -117,10 +117,16 @@ function CreateSpotForm({ hideModal }) {
                         />
                     </label>
                     <label>
-                        <select selected='State' className="csstateinput">
+                        <select
+                            selected='State'
+                            className="csstateinput"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                        >
                             {states.map(sta => (
                                 <option className="stateinput">{sta}</option>
                             ))}
+
                         </select>
                     </label>
                     <label >
