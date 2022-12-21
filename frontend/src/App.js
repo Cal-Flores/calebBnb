@@ -15,6 +15,9 @@ import './index.css'
 import Editreview from "./components/EditAReview";
 import EditBooking from "./components/EditA Booking";
 import Footer from "./components/Footer/footer";
+import SearchedResult from "./components/SearchResult/searchResult";
+
+
 
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             < AllSpots />
+          </Route>
+          <Route exact path='/search-results'>
+            <SearchedResult />
           </Route>
           <Route exact path="/spots/:spotId">
             <SpotDetail />

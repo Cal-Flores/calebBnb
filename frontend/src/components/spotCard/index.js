@@ -12,7 +12,7 @@ function SpotCard({ spot }) {
             <div className="splashwrapper">
                 <Link className="spotcard" key={spot.id} to={`/spots/${spot.id}`}>
                     <div>
-                        <img className="spotimg" src={spot?.previewImage} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                        <img className="spotimg" src={spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                     </div>
                     <div className="infowrapper">
                         <div className="spotloc"> {spot.city}, {spot.state}</div>

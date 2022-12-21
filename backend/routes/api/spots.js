@@ -386,10 +386,12 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
 //search route
 router.post('/search', async (req, res, next) => {
-    const { reqstate } = req.body;
+    const reqstate = req.body;
+    const thisState = Object.values(reqstate)
+    console.log('this is sbackend', thisState[0])
     const spots = await Spot.findAll({
         where: {
-            state: reqstate
+            state: thisState[0]
         }
     })
     return res.json({ spots })

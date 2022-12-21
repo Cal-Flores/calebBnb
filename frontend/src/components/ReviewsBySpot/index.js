@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { createReview, DeleteReview, getAllSpotReviews } from "../../store/reviews";
-import ReviewCard from "../ReviewCard";
 import "./reviewsplash.css"
 
 function ReviewSpot() {
@@ -67,10 +66,6 @@ function ReviewSpot() {
         <>
             <div className="reviewcontainer">
                 <h1 className="reviewhead">Reviews</h1>
-                <div>{reviews.map(review => (
-                    <ReviewCard review={review} />
-                ))}
-                </div>
                 <div>
                 </div>
 
