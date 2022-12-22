@@ -40,12 +40,12 @@ function SpotDetail() {
     let [endDate, setEndDate] = useState(new Date());
     const [sub, setSub] = useState(false)
     const [errors, setErrors] = useState([])
+    const currentDate = new Date()
 
     useEffect(() => {
         const validateError = [];
-        // const d1 = new Date(startDate)
-        // const d2 = new Date(endDate)
         if (startDate.getTime() > endDate.getTime()) validateError.push('start date must be before end date')
+        if (startDate.getTime() < currentDate.getTime()) validateError.push('start date must be after today')
         setErrors(validateError)
     }, [startDate, endDate])
 
@@ -71,6 +71,8 @@ function SpotDetail() {
         e.preventDefault()
         // startDate = startDate.toISOString().split('T')[0];
         // endDate = endDate.toISOString().split('T')[0];
+        startDate = new Date(startDate).toUTCString();
+        endDate = new Date(endDate).toUTCString()
         let payload = { startDate, endDate, spotId }
         await dispatch(postNewBooking(payload))
         setSub(true)
@@ -198,8 +200,8 @@ function SpotDetail() {
                             <div className="revimg">
                                 <img src='https://cdn-icons-png.flaticon.com/128/149/149071.png' style={{ width: '40px', height: '40px', borderRadius: '25px' }} />
                                 <div className="namestars">
-                                    <div>{rev.User.firstName}</div>
-                                    <div className="revsrs">{rev.stars} stars</div>
+                                    <div>{rev?.User?.firstName}</div>
+                                    <div className="revsrs">{rev.stars} &#9733;</div>
                                 </div>
                             </div>
                             <div>{rev.review}</div>

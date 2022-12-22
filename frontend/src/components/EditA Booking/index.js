@@ -10,22 +10,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function EditBooking({ hideModal, book }) {
     const dispatch = useDispatch();
-    const history = useHistory()
     const bookingId = book?.id
-    const userBookings = useSelector((state) => state.bookings)
 
-    let [startDate, setStartDate] = useState(new Date(book?.startDate.split('T')[0]));
-    let [endDate, setEndDate] = useState(new Date(book?.endDate.split('T')[0]));
+    let [startDate, setStartDate] = useState(new Date(book?.startDate));
+    let [endDate, setEndDate] = useState(new Date(book?.endDate));
 
-
-    // useEffect(() => {
-    //     dispatch(getUserBookings())
-    // }, [dispatch])
 
     const newBooking = async (e) => {
         e.preventDefault()
-        console.log('my edit booking form start', startDate)
-        console.log('my edit booking form end', endDate)
         let data = { startDate, endDate }
         const payload = { formInfo: data, bookingId }
         await dispatch(editABooking(payload)).then(() => dispatch(getUserBookings()))
