@@ -1,6 +1,7 @@
-.searchcont {
+.srcont {
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin-left: 1%;
@@ -8,7 +9,35 @@
     margin-top: 5%;
 }
 
-.searchwrap {
-    display: flex;
+.srheader {
+    font-size: 22px;
+}
 
+.srdetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.srdet {
+    margin-top: 2%;
+}
+
+.nsrcont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nsrlogo {
+    color: rgb(255, 111, 135);
+    font-size: 100px;
+    margin-bottom: 5%;
+}
+
+.nsrtext {
+    font-size: 18px;
+    font-weight: bold;
 }
