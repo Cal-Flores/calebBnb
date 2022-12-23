@@ -75,12 +75,16 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    margin-top: 1%;
-    /* margin-bottom: 2%; */
     padding-bottom: 1%;
-    padding-top: 1%;
     border-bottom: 1px solid rgb(219, 216, 216);
     align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    background: rgb(253, 251, 251);
+    margin-bottom: 30%;
+    padding-top: 1%;
 }
 
 .navwrapper {

@@ -11,6 +11,7 @@ import { SearchResult } from '../../store/search';
 import SpotDetail from '../spotDetail';
 import SpotCard from '../spotCard';
 import SearchForm from '../SearchForm/searchForm';
+import './Navigation.css'
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
