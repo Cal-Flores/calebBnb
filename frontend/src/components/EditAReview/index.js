@@ -19,8 +19,8 @@ function Editreview({ hideModal, rev }) {
         const validateError = [];
 
         if (stars > 5 || stars <= 0) validateError.push('stars must be between 1 and 5');
-        if (review === '') validateError.push('please leave a review')
-        if (review?.length > 100) validateError.push('review cant exceed 50 characters')
+        if (review.length < 5 || review.length > 200) validateError.push('Review must be between 5 and 200 characters')
+
 
         setErrors(validateError);
     }, [stars, review])

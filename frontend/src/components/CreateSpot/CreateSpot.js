@@ -32,13 +32,14 @@ function CreateSpotForm({ hideModal }) {
         let validateErrors = [];
 
         if (description?.length > 500) validateErrors.push('please include a Description under 500 characters')
-        if (name.length > 25) validateErrors.push('name must be under 25 characters')
-        if (address.length > 25) validateErrors.push('Adress must be under 25 characters')
-        if (city > 25) validateErrors.push('City must be under 25 characters')
-        if (state > 25) validateErrors.push('State must be under 25 characters')
-        if (country > 25) validateErrors.push('Country must be under 25 characters')
+        if (name.length > 25 || name.length < 2) validateErrors.push('name must be under 25 characters, over 2 characters')
+        if (address.length > 25 || address.length < 2) validateErrors.push('Adress must be under 25 characters, over 2 characters')
+        if (city.length > 25 || address.length < 2) validateErrors.push('City must be under 25 characters, over 2 characters')
+        //if (state > 25) validateErrors.push('State must be under 25 characters')
+        if (country.length > 25 || country.length < 2) validateErrors.push('Country must be under 25 characters, over 2 characters')
         if (!price) validateErrors.push('cost per night is required')
         if (price <= 0) validateErrors.push('price per night must be greater than 0')
+        if (description.length < 10 || description.length > 500) validateErrors.push('Description must be between 10 and 500 characters')
         if (!image.includes(".jpg") && !image.includes(".png") && !image.includes(".jpeg") && !image.includes(".JPG") && !image.includes(".PNG") && !image.includes(".JPEG")) validateErrors.push('Invalid Image')
         //if (!image.includes(".JPG") && !image.includes(".PNG") && !image.includes(".JPEG")) validateErrors.push('Invalid Image!')
 

@@ -287,14 +287,14 @@ router.get('/', async (req, res, next) => {
     }
 
     const spots = await Spot.findAll({
-        where: {
-            [Op.and]: pagination.options,
-        },
-        limit: pagination.limit,
-        offset: pagination.offset,
+        // where: {
+        //     [Op.and]: pagination.options,
+        // },
+        // limit: pagination.limit,
+        // offset: pagination.offset,
     });
 
-
+    console.log('backend spots find all', spots)
     for (let spot of spots) {
         const stars = await spot.getReviews({
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]

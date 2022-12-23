@@ -15,7 +15,7 @@ function AllSpots() {
     const spots = useSelector((state) => state.spots)
     // console.log('this is spots', spots)
     const spotsArr = Object.values(spots);
-    //console.log('this is spots arr', spotsArr);
+    console.log('this is spots arr', spotsArr);
 
     useEffect(() => {
         dispatch(getAllSpots()).then(setLoaded(true))

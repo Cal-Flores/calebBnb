@@ -139,7 +139,7 @@ function SpotDetail() {
                     </div>
                     <div className="acover">
                         <div className="airc">air<span className="blackcover">cover</span></div>
-                        <div className="aircover">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+                        <div>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
                     </div>
                     <div className="spotdes">
                         <div>{spot?.description}</div>

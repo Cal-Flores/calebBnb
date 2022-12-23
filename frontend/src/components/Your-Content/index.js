@@ -83,7 +83,7 @@ function MyProfile() {
                 <h2>Bookings</h2>
                 {bookingsArr.map(book => (
                     <div className="spotwrap">
-                        <img className="profileimage" src={book?.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
+                        <img className="profileimage" onClick={(e) => history.push(`/spots/${book.spotId}`)} src={book?.Spot?.image} onError={(e) => { e.target.src = 'https://i0.wp.com/www.careandshare-ut.org/wp-content/uploads/2020/09/image-coming-soon.jpg?fit=1200%2C1200&ssl=1' }}></img>
                         <div>{book?.Spot?.name}</div>
                         <div className="ypspace">Check-in Date: {book?.startDate?.split('T')[0]}</div>
 

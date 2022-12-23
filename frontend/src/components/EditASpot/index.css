@@ -64,3 +64,7 @@
 .essend:hover {
     background: linear-gradient(0.25turn, rgb(255, 15, 79), rgb(255, 111, 135));
 }
+
+.er {
+    color: red;
+}
