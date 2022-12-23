@@ -11,10 +11,22 @@ module.exports = {
       options,
       [
         {
-          spotId: 1,
+          spotId: 3,
           userId: 1,
-          startDate: '2022-12-20',
-          endDate: '2022-12-27',
+          startDate: new Date(),
+          endDate: new Date("2023-1-30"),
+        },
+        {
+          spotId: 7,
+          userId: 1,
+          startDate: (new Date("2022-12-25")),
+          endDate: new Date(("2023-01-15")),
+        },
+        {
+          spotId: 15,
+          userId: 1,
+          startDate: (new Date("2023-2-19")),
+          endDate: new Date(("2023-03-14")),
         },
 
 
