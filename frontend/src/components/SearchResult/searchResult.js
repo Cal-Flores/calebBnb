@@ -9,8 +9,8 @@ function SearchedResult() {
     const searchArr = Object.values(searchObj)
     console.log('this is searchobj', searchArr)
 
-    let res;
-    if (searchArr.length === 0) {
+    let res = true;
+    if (searchArr?.length === 0) {
         res = false
     }
     return (

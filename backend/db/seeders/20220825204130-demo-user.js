@@ -20,30 +20,65 @@ module.exports = {
       {
         firstName: 'Amy',
         lastName: 'Jones',
-        email: 'user1@user.io',
-        username: 'FakeUser1',
+        email: 'user2@user.io',
+        username: 'FakeUser2',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
         firstName: 'Charles',
         lastName: 'Oliviera',
-        email: 'user2@user.io',
-        username: 'FakeUser2',
+        email: 'user3@user.io',
+        username: 'FakeUser3',
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
         firstName: 'Dakota',
         lastName: 'Prescott',
-        email: 'user3@user.io',
-        username: 'FakeUser3',
+        email: 'user4@user.io',
+        username: 'FakeUser4',
         hashedPassword: bcrypt.hashSync('password4')
       },
       {
         firstName: 'Harley',
         lastName: 'Flores',
-        email: 'user4@user.io',
-        username: 'FakeUser4',
+        email: 'user5@user.io',
+        username: 'FakeUser5',
         hashedPassword: bcrypt.hashSync('password5')
+      },
+      {
+        firstName: 'Alica',
+        lastName: 'Myron',
+        email: 'user6@user.io',
+        username: 'FakeUser6',
+        hashedPassword: bcrypt.hashSync('password6')
+      },
+      {
+        firstName: 'Ezekiel',
+        lastName: 'Elliot',
+        email: 'user7@user.io',
+        username: 'FakeUser7',
+        hashedPassword: bcrypt.hashSync('password7')
+      },
+      {
+        firstName: 'Dustin',
+        lastName: 'Poirier',
+        email: 'user8@user.io',
+        username: 'FakeUser8',
+        hashedPassword: bcrypt.hashSync('password8')
+      },
+      {
+        firstName: 'Alexander',
+        lastName: 'Volkanovski',
+        email: 'user9@user.io',
+        username: 'FakeUser9',
+        hashedPassword: bcrypt.hashSync('password9')
+      },
+      {
+        firstName: 'Micah',
+        lastName: 'Parsons',
+        email: 'user10@user.io',
+        username: 'FakeUser10',
+        hashedPassword: bcrypt.hashSync('password10')
       }
     ], {});
   },
@@ -52,7 +87,7 @@ module.exports = {
     options.tableName = 'Users';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      username: { [Op.in]: ['Demo-lition', 'FakeUser2', 'FakeUser3', 'FakeUser4', 'FakeUser5', 'FakeUser6', 'FakeUser7', 'FakeUser8', 'FakeUser9', 'FakeUser10', 'FakeUser11'] }
     }, {});
   }
 };
