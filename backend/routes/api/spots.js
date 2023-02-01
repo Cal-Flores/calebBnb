@@ -363,7 +363,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     // all bookings if the spot does not belong to current user
     const allBookings = await Booking.findAll({
         where: { spotId: req.params.spotId },
-        attributes: ["spotId", "startDate", "endDate"],
+        attributes: ["spotId", "id", "startDate", "endDate"],
     });
 
 
@@ -376,11 +376,12 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         },
     });
 
-    if (spot.ownerId === req.user.id) {
-        return res.json({ Bookings: ownerBookings });
-    } else {
-        return res.json({ Bookings: allBookings });
-    }
+    // if (spot.ownerId === req.user.id) {
+    //     return res.json({ Bookings: ownerBookings });
+    // } else {
+    //     return res.json({ Bookings: allBookings });
+    // }
+    return res.json({ Bookings: allBookings });
 }
 );
 

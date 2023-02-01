@@ -1,7 +1,9 @@
+// import booking from "../../../backend/db/models/booking"
 import { csrfFetch } from "./csrf"
 
 const LOAD_USER_BOOK = '/bookings/user-bookings'
 const POST_BOOKING = '/bookings/post'
+const SPOT_BOOKING = '/bookings/spot'
 
 const loadUser = bookings => {
     return {
@@ -17,6 +19,13 @@ const postBook = newBooking => {
     }
 }
 
+const oneSpotBookings = spotBookings => {
+    return {
+        type: SPOT_BOOKING,
+        spotBookings
+    }
+}
+
 
 export const getUserBookings = () => async dispatch => {
     const response = await csrfFetch(`/api/bookings/current`);
@@ -25,6 +34,19 @@ export const getUserBookings = () => async dispatch => {
         const bookings = await response.json();
         dispatch(loadUser(bookings.Bookings))
         return bookings
+    }
+}
+
+export const getSpotBookings = (spotId) => async dispatch => {
+    console.log('thunk hit rn')
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
+
+    if (response.ok) {
+        console.log('response ok')
+        const spotBookings = await response.json()
+        console.log('thiss spot bookings', spotBookings)
+        dispatch(oneSpotBookings(spotBookings))
+        return spotBookings
     }
 }
 
@@ -65,6 +87,7 @@ export const editABooking = ({ formInfo, bookingId }) => async dispatch => {
 }
 
 
+
 const initialState = {};
 
 const bookingsReducer = (state = initialState, action) => {
@@ -73,6 +96,12 @@ const bookingsReducer = (state = initialState, action) => {
         case LOAD_USER_BOOK: {
             action.bookings.forEach((book) => {
                 newState[book.id] = book
+            })
+            return newState
+        }
+        case SPOT_BOOKING: {
+            action.spotBookings.Bookings.forEach((booking) => {
+                newState[booking.id] = booking
             })
             return newState
         }

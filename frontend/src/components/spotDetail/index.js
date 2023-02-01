@@ -9,7 +9,7 @@ import AllSpots from "../SplashPage";
 import { getAllSpotReviews } from "../../store/reviews";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { postNewBooking } from "../../store/bookings";
+import { getSpotBookings, postNewBooking } from "../../store/bookings";
 import CreateReviewModal from "../createReview/createReviewModal";
 import EditSpotFormModal from "../EditASpot/createSpotModal";
 
@@ -21,8 +21,13 @@ function SpotDetail() {
     const dispatch = useDispatch();
     const history = useHistory()
     const spotObj = useSelector((state) => state.spots)
+    const bookings = useSelector((state) => state.bookings)
+    // const spotBookings = useSelector((state) => state)
+    console.log('HERE HE BOOKINGS', bookings)
+
     const spotReviews = useSelector((state) => state.reviews)
     let reviewsArr = Object.values(spotReviews)
+    let bookingsArr = Object.values(bookings)
     let { spotId } = useParams();
     const spot = spotObj[spotId];
     const sessionUser = useSelector((state) => state.session.user);
@@ -53,6 +58,7 @@ function SpotDetail() {
     useEffect(() => {
         dispatch(getOneSpot(spotId)).then(setIsLoaded(true))
         dispatch(getAllSpotReviews(spotId))
+        dispatch(getSpotBookings(spotId))
     }, [dispatch])
 
     const deleterr = (e) => {
@@ -69,14 +75,48 @@ function SpotDetail() {
 
     const newBook = async (e) => {
         e.preventDefault()
+        let err = []
+        setErrors([])
         // startDate = startDate.toISOString().split('T')[0];
         // endDate = endDate.toISOString().split('T')[0];
         startDate = new Date(startDate).toUTCString();
         endDate = new Date(endDate).toUTCString()
-        let payload = { startDate, endDate, spotId }
-        await dispatch(postNewBooking(payload))
-        setSub(true)
-        history.push(`/my-profile`)
+
+        let userStartSplit = startDate.split(" ")
+        let userStartDate = `${userStartSplit[1]}-${userStartSplit[2]}-${userStartSplit[3]}`
+        let userEndSplit = endDate.split(" ")
+        let userEndDate = `${userEndSplit[1]}-${userEndSplit[2]}-${userEndSplit[3]}`
+        let userEndmili = new Date(userEndDate).getTime()
+        let userStartmili = new Date(userStartDate).getTime()
+
+        if (userStartmili === userEndmili) err.push('Start date and end date cannot be the same')
+        for (let date of bookingsArr) {
+            console.log("DATE", date)
+            let bookStartDate = new Date(date.startDate).toUTCString()
+            let bookEndDate = new Date(date.endDate).toUTCString()
+            let splitBookStart = bookStartDate.split(' ')
+            let splitBookEnd = bookEndDate.split(' ')
+            let dateStringStart = `${splitBookStart[1]}-${splitBookStart[2]}-${splitBookStart[3]}`
+            let dateStringEnd = `${splitBookEnd[1]}-${splitBookEnd[2]}-${splitBookEnd[3]}`
+            let dateEndmili = new Date(dateStringEnd).getTime()
+            let dateStartmili = new Date(dateStringStart).getTime()
+
+            if (userStartmili <= dateEndmili && userStartmili >= dateStartmili) {
+                err.push('Start date conflicts with an exisiting booking')
+            }
+            if (userEndmili <= dateEndmili && userEndmili >= dateStartmili) {
+                err.push('End date conflicts with an exisiting booking')
+            }
+        }
+
+        if (err.length > 0) {
+            setErrors(err)
+        } else {
+            let payload = { startDate, endDate, spotId }
+            await dispatch(postNewBooking(payload))
+            setSub(true)
+            history.push(`/my-profile`)
+        }
     }
 
     let imageNow;
