@@ -1,5 +1,6 @@
 .ebcont {
-    border-radius: 15%;
+    border-radius: 40px;
+    background: white;
 }
 
 .ebform {
@@ -32,4 +33,8 @@
 
 .ebccheckinput {
     margin-top: 3%;
+}
+
+.react-datepicker-wrapper {
+    margin-bottom: 8%;
 }

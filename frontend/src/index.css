@@ -13,3 +13,8 @@ body {
 #modal-background {
     background-color: rgb(0 0 0 / 39%);
 }
+
+#modal-content {
+    border: 1px solid black;
+    border-radius: 500px;
+}

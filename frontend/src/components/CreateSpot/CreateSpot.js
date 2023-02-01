@@ -68,7 +68,6 @@ function CreateSpotForm({ hideModal }) {
 
     return (
         <div className="spotformcont">
-            <h1 className="spotheader">CalebBnB's New Home</h1>
             {succ && <div>Thank you, Your New Spot Is Successfully Created!</div>}
             <div className="cscont">
                 <form

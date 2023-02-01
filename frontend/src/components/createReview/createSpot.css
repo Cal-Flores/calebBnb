@@ -6,9 +6,11 @@
 .crcont {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
     align-items: center;
+    background: white;
+    border-radius: 30px;
 }
 
 
@@ -17,11 +19,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid gray;
-    background-color: white;
+    background: white;
     /* margin-top: 5%; */
     padding: 20px;
     width: 100%;
+    border-radius: 30px;
 }
 
 .crouter-form {
@@ -37,6 +39,7 @@
     flex-direction: column;
     width: 200px;
     height: 30px;
+    margin-bottom: 5%;
 }
 
 .crsendBtn {

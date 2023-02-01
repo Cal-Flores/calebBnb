@@ -4,8 +4,8 @@
     flex-direction: column;
     justify-content: center;
     /* width: 100%; */
-    background: linear-gradient(rgb(251, 176, 189), #fbfcff);
-    height: 100%;
+    background: white;
+    /* height: 50%; */
 }
 
 .csform {
@@ -52,6 +52,7 @@
     width: 100%;
     height: 30px;
     color: grey;
+    margin-top: 2%;
 }
 
 .pricecs {
@@ -63,6 +64,7 @@
     width: 102.5%;
     height: 37px;
     color: gray;
+    margin-top: 2%;
 }
 
 /* #modal-content {
