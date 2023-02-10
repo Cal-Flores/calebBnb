@@ -39,6 +39,54 @@ This is the Reviews Page to get a look at other CalebBnBs users thoughts on the 
 - <s> The abilty to delete and edit a Booking you have made. </s>
 - The ability to add an image to your review.
 
+## Code I am proud of
+```
+ const newBook = async (e) => {
+        e.preventDefault()
+        let err = []
+        setErrors([])
+        startDate = new Date(startDate).toUTCString();
+        endDate = new Date(endDate).toUTCString()
+
+        let userStartSplit = startDate.split(" ")
+        let userStartDate = `${userStartSplit[1]}-${userStartSplit[2]}-${userStartSplit[3]}`
+        let userEndSplit = endDate.split(" ")
+        let userEndDate = `${userEndSplit[1]}-${userEndSplit[2]}-${userEndSplit[3]}`
+        let userEndmili = new Date(userEndDate).getTime()
+        let userStartmili = new Date(userStartDate).getTime()
+
+        if (userStartmili === userEndmili) err.push('Start date and end date cannot be the same')
+        for (let date of bookingsArr) {
+            console.log("DATE", date)
+            let bookStartDate = new Date(date.startDate).toUTCString()
+            let bookEndDate = new Date(date.endDate).toUTCString()
+            let splitBookStart = bookStartDate.split(' ')
+            let splitBookEnd = bookEndDate.split(' ')
+            let dateStringStart = `${splitBookStart[1]}-${splitBookStart[2]}-${splitBookStart[3]}`
+            let dateStringEnd = `${splitBookEnd[1]}-${splitBookEnd[2]}-${splitBookEnd[3]}`
+            let dateEndmili = new Date(dateStringEnd).getTime()
+            let dateStartmili = new Date(dateStringStart).getTime()
+
+            if (userStartmili <= dateEndmili && userStartmili >= dateStartmili) {
+                err.push('Start date conflicts with an exisiting booking')
+            }
+            if (userEndmili <= dateEndmili && userEndmili >= dateStartmili) {
+                err.push('End date conflicts with an exisiting booking')
+            }
+        }
+
+        if (err.length > 0) {
+            setErrors(err)
+        } else {
+            let payload = { startDate, endDate, spotId }
+            await dispatch(postNewBooking(payload))
+            setSub(true)
+            history.push(`/my-profile`)
+        }
+    }
+```
+This is my handle submit for creating a new booking. With CalebBnb we throw error validations if a booking overlaps with an existing booking. We make use of the split javascript function to remove the minute and milisecond portion of our timestamps the user provided. We then use the getTime() function to complie a range of miliseconds between the start date and the end date the user submitted. Next, we iterate all bookings previously booked for this specific spot and for each booking we repeat the last steps of getting a range of miliseconds. Now the validators can be written, checking if the user start date or end date interfers with an iterated booking. If so we throw the appropiate error. If no edge cases are met we can confidently go through with the booking of a new spot!
+
 ```
 router.get('/current', requireAuth, async (req, res, next) => {
     const current = req.user.id;
@@ -72,6 +120,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
     return res.json({ spots });
 });
 ```
+This backend route selects all spots belonging to a user and includes that spots reviews. Inisde the reviews table we are gathering all the stars that belong to the spot. Wr average the stars and set in to one decimal for the frontend to display!
 
 
 
