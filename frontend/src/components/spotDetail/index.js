@@ -23,7 +23,7 @@ function SpotDetail() {
     const spotObj = useSelector((state) => state.spots)
     const bookings = useSelector((state) => state.bookings)
     // const spotBookings = useSelector((state) => state)
-    console.log('HERE HE BOOKINGS', bookings)
+
 
     const spotReviews = useSelector((state) => state.reviews)
     let reviewsArr = Object.values(spotReviews)
