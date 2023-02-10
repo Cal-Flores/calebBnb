@@ -1,6 +1,6 @@
 ## CalebBnb
 
-Live Heroku Link: https://calebbnb.herokuapp.com/
+Live Render Link: https://calebbnb.onrender.com
 
 CalebBnB is a website clone of AirBnb! Create a page with your home for calebBnB users to examine and potentially book a spot with! Feel free to leave Comments and Ratings for homes you have visited before! CalebBnb supports images for your lovely home, please include images so the world can see your home!
 
@@ -35,7 +35,7 @@ This is the Reviews Page to get a look at other CalebBnBs users thoughts on the 
 
 ## Road Map for the future
 - The ability to edit a comment if you are the owner of the comment.
-- The ability to create a Booking with a spot.
+<s> The ability to create a Booking with a spot. <s>
 - The abilty to delete and edit a Booking you have made
 - The ability to add an image to your review.
 
