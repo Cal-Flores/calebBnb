@@ -39,6 +39,40 @@ This is the Reviews Page to get a look at other CalebBnBs users thoughts on the 
 - <s> The abilty to delete and edit a Booking you have made. </s>
 - The ability to add an image to your review.
 
+```
+router.get('/current', requireAuth, async (req, res, next) => {
+    const current = req.user.id;
+    const spots = await Spot.findAll({
+        where: {
+            ownerId: current
+        }
+    })
+
+    for (let spot of spots) {
+        const starts = await Review.findAll({
+            where: {
+                spotId: spot.id
+            },
+            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+        })
+        let avgRating = starts[0].dataValues.avgRating;
+        spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+
+        let previewImage = await SpotImage.findOne({
+            where: {
+                spotId: spot.id
+            }
+        })
+        if (previewImage) {
+            spot.dataValues.previewImage = previewImage.dataValues.url;
+        }
+    }
+
+
+    return res.json({ spots });
+});
+```
+
 
 
 ## How to get Started
