@@ -35,7 +35,7 @@ This is the Reviews Page to get a look at other CalebBnBs users thoughts on the 
 
 ## Road Map for the future
 - The ability to edit a comment if you are the owner of the comment.
-<s> The ability to create a Booking with a spot. <s>
+<s> The ability to create a Booking with a spot.
 - The abilty to delete and edit a Booking you have made
 - The ability to add an image to your review.
 
