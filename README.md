@@ -1,6 +1,6 @@
 ## CalebBnb
 
-Live Heroku Link: https://calebbnb.herokuapp.com/
+Live Render Link: https://calebbnb.onrender.com
 
 CalebBnB is a website clone of AirBnb! Create a page with your home for calebBnB users to examine and potentially book a spot with! Feel free to leave Comments and Ratings for homes you have visited before! CalebBnb supports images for your lovely home, please include images so the world can see your home!
 
@@ -34,10 +34,94 @@ This is the Reviews Page to get a look at other CalebBnBs users thoughts on the 
 
 
 ## Road Map for the future
-- The ability to edit a comment if you are the owner of the comment.
-- The ability to create a Booking with a spot.
-- The abilty to delete and edit a Booking you have made
+- <s> The ability to edit a comment if you are the owner of the comment. </s>
+- <s> The ability to create a Booking with a spot. </s>
+- <s> The abilty to delete and edit a Booking you have made. </s>
 - The ability to add an image to your review.
+- The ability to compile a total for your booking based on how many days you book
+
+## Code I am proud of
+```
+ const newBook = async (e) => {
+        e.preventDefault()
+        let err = []
+        setErrors([])
+        startDate = new Date(startDate).toUTCString();
+        endDate = new Date(endDate).toUTCString()
+
+        let userStartSplit = startDate.split(" ")
+        let userStartDate = `${userStartSplit[1]}-${userStartSplit[2]}-${userStartSplit[3]}`
+        let userEndSplit = endDate.split(" ")
+        let userEndDate = `${userEndSplit[1]}-${userEndSplit[2]}-${userEndSplit[3]}`
+        let userEndmili = new Date(userEndDate).getTime()
+        let userStartmili = new Date(userStartDate).getTime()
+
+        if (userStartmili === userEndmili) err.push('Start date and end date cannot be the same')
+        for (let date of bookingsArr) {
+            console.log("DATE", date)
+            let bookStartDate = new Date(date.startDate).toUTCString()
+            let bookEndDate = new Date(date.endDate).toUTCString()
+            let splitBookStart = bookStartDate.split(' ')
+            let splitBookEnd = bookEndDate.split(' ')
+            let dateStringStart = `${splitBookStart[1]}-${splitBookStart[2]}-${splitBookStart[3]}`
+            let dateStringEnd = `${splitBookEnd[1]}-${splitBookEnd[2]}-${splitBookEnd[3]}`
+            let dateEndmili = new Date(dateStringEnd).getTime()
+            let dateStartmili = new Date(dateStringStart).getTime()
+
+            if (userStartmili <= dateEndmili && userStartmili >= dateStartmili) {
+                err.push('Start date conflicts with an exisiting booking')
+            }
+            if (userEndmili <= dateEndmili && userEndmili >= dateStartmili) {
+                err.push('End date conflicts with an exisiting booking')
+            }
+        }
+
+        if (err.length > 0) {
+            setErrors(err)
+        } else {
+            let payload = { startDate, endDate, spotId }
+            await dispatch(postNewBooking(payload))
+            setSub(true)
+            history.push(`/my-profile`)
+        }
+    }
+```
+This is my handle submit for creating a new booking. With CalebBnb we throw error validations if a booking overlaps with an existing booking. We make use of the split javascript function to remove the minute and milisecond portion of our timestamps the user provided. We then use the getTime() function to complie a range of miliseconds between the start date and the end date the user submitted. Next, we iterate all bookings previously booked for this specific spot and for each booking we repeat the last steps of getting a range of miliseconds. Now the validators can be written, checking if the user start date or end date interfers with an iterated booking. If so we throw the appropiate error. If no edge cases are met we can confidently go through with the booking of a new spot!
+
+```
+router.get('/current', requireAuth, async (req, res, next) => {
+    const current = req.user.id;
+    const spots = await Spot.findAll({
+        where: {
+            ownerId: current
+        }
+    })
+
+    for (let spot of spots) {
+        const starts = await Review.findAll({
+            where: {
+                spotId: spot.id
+            },
+            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+        })
+        let avgRating = starts[0].dataValues.avgRating;
+        spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+
+        let previewImage = await SpotImage.findOne({
+            where: {
+                spotId: spot.id
+            }
+        })
+        if (previewImage) {
+            spot.dataValues.previewImage = previewImage.dataValues.url;
+        }
+    }
+
+
+    return res.json({ spots });
+});
+```
+This backend route selects all spots belonging to a user and includes that spots reviews. Inisde the reviews table we are gathering all the stars that belong to the spot. Wr average the stars and set in to one decimal for the frontend to display!
 
 ## Code im proud of
 ![bnb-back](ReadmeFeatures/bnb-backend.png)
